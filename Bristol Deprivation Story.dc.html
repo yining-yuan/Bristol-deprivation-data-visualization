@@ -24,6 +24,13 @@
   .om-src{color:inherit;opacity:.62;text-decoration:none;border-bottom:1px dotted currentColor;transition:opacity .15s ease}
   .om-src:hover{opacity:1}
   .om-fig{cursor:help}
+  .om-titlelink{cursor:pointer;transition:color .18s ease}
+  .om-titlelink:hover{color:#b0432b}
+  .om-openbtn{display:inline-flex;align-items:center;gap:9px;background:#2a4a3c;color:#f4f3f0;border:none;border-radius:999px;padding:11px 20px;font:500 12.5px/1 'IBM Plex Mono';letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:transform .18s ease,background .18s ease}
+  .om-openbtn:hover{background:#b0432b;transform:translateY(-2px)}
+  .om-sub{position:fixed;inset:0;z-index:120;background:#f4f3f0;overflow-y:auto;overflow-x:hidden}
+  .om-subclose{position:fixed;top:20px;right:24px;z-index:130;width:46px;height:46px;border-radius:50%;border:1px solid rgba(42,74,60,.22);background:#fbfaf7;color:#1a1f1c;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s ease}
+  .om-subclose:hover{background:#b0432b;color:#fff;border-color:#b0432b;transform:rotate(90deg)}
   .om-ic{display:inline-block;flex:none;background-color:currentColor;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain}
   @keyframes ombob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
 </style>
@@ -134,11 +141,14 @@
         <span style="font-family:'Newsreader',serif;font-size:clamp(40px,6vw,84px);line-height:1;color:rgba(42,74,60,.22)">01</span>
         <div>
           <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b08a3e"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/baby.svg');mask-image:url('icons/baby.svg')"></span>Ages 0–5 · Early years</div>
-          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.04;margin:8px 0 0">Before school even starts, the gap is already open.</h2>
+          <h2 class="om-titlelink" onClick="{{ openEarly }}" title="Open the full early-years dataset" style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.04;margin:8px 0 0">Before school even starts, the gap is already open. <span class="om-mono" style="font-size:13px;color:#b08a3e;letter-spacing:.04em;text-transform:uppercase;vertical-align:middle;white-space:nowrap">↗ see all</span></h2>
         </div>
       </div>
       <p style="font-size:18px;line-height:1.62;color:#4a544e;max-width:58ch;margin:18px 0 14px">More than a third of children arrive at reception not "school ready" — and the children least ready are concentrated in the city's poorest wards. The starting line is not the same for everyone.</p>
-      <div style="font:400 13.5px/1.5 'IBM Plex Sans';font-style:italic;color:#6b7268;max-width:58ch;margin:0 0 36px">Below: three early-years signals. Two flag risk; one — premature births — is a genuine regional strength, shown <span style="color:#3f6b56;font-style:normal;font-weight:600">in green</span>.</div>
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:0 0 36px">
+        <button class="om-openbtn" onClick="{{ openEarly }}"><span class="om-ic" style="width:15px;height:15px;-webkit-mask-image:url('icons/layout-dashboard.svg');mask-image:url('icons/layout-dashboard.svg')"></span>Open the full early-years dataset</button>
+        <span style="font:400 13.5px/1.5 'IBM Plex Sans';font-style:italic;color:#6b7268;max-width:46ch">Every topic from the early-years brief — each number beside its benchmark, each linked to its source at the smallest geography available.</span>
+      </div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px">
         <div class="om-card om-fig" title="{{ f.notReady.about }}" style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:26px">
@@ -240,58 +250,58 @@
   </section>
 
   <!-- ===================== ACT 4 — TRANSITION (dark) ===================== -->
-  <section id="transition" data-chapter="4" data-screen-label="Transition to adulthood" style="padding:80px 32px;background:#2a4a3c;color:#f4f3f0">
+  <section id="transition" data-chapter="4" data-screen-label="Transition to adulthood" style="padding:64px 32px;border-top:1px solid rgba(42,74,60,.12)">
     <div style="max-width:1080px;margin:0 auto">
       <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
-        <span style="font-family:'Newsreader',serif;font-size:clamp(40px,6vw,84px);line-height:1;color:rgba(244,243,240,.22)">04</span>
+        <span style="font-family:'Newsreader',serif;font-size:clamp(40px,6vw,84px);line-height:1;color:rgba(42,74,60,.22)">04</span>
         <div>
-          <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#cda85f"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/briefcase.svg');mask-image:url('icons/briefcase.svg')"></span>Ages 16–25 · Transition to adulthood</div>
+          <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b08a3e"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/briefcase.svg');mask-image:url('icons/briefcase.svg')"></span>Ages 16–25 · Transition to adulthood</div>
           <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.04;margin:8px 0 0">The cliff edge between education and work.</h2>
         </div>
       </div>
-      <p style="font-size:18px;line-height:1.62;color:rgba(244,243,240,.82);max-width:60ch;margin:18px 0 14px">The journey to adulthood is getting longer and more precarious. Routes into work are thin, ill health among young adults is rising sharply, and many cannot afford to leave home. For care leavers, who are over-represented in Bristol, the supports fall away earliest.</p>
-      <div style="font:400 13.5px/1.5 'IBM Plex Sans';font-style:italic;color:rgba(244,243,240,.6);max-width:60ch;margin:0 0 40px">Three charts, three pressures: too few routes in, rising ill health, and a delayed, unaffordable independence.</div>
+      <p style="font-size:18px;line-height:1.62;color:#4a544e;max-width:60ch;margin:18px 0 14px">The journey to adulthood is getting longer and more precarious. Routes into work are thin, ill health among young adults is rising sharply, and many cannot afford to leave home. For care leavers, who are over-represented in Bristol, the supports fall away earliest.</p>
+      <div style="font:400 13.5px/1.5 'IBM Plex Sans';font-style:italic;color:#6b7268;max-width:60ch;margin:0 0 40px">Three charts, three pressures: too few routes in, rising ill health, and a delayed, unaffordable independence.</div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px">
-        <div style="background:rgba(244,243,240,.06);border:1px solid rgba(244,243,240,.16);border-radius:5px;padding:24px">
-          <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#cda85f;margin-bottom:4px">Youth opportunity index (of 100)</div>
-          <div style="font-size:12px;color:rgba(244,243,240,.55);margin-bottom:12px">Higher is better</div>
+        <div style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:24px">
+          <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#b08a3e;margin-bottom:4px">Youth opportunity index (of 100)</div>
+          <div style="font-size:12px;color:#6b7268;margin-bottom:12px">Higher is better</div>
           <div style="position:relative;height:128px"><canvas id="chart-opportunity"></canvas></div>
-          <div style="font-size:13px;color:rgba(244,243,240,.7);line-height:1.45;margin-top:12px">Bristol ranks {{ f.rankBristol.disp }}th nationally; Bath &amp; NES {{ f.rankBath.disp }}st — within the same combined authority.</div>
-          <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:10px;color:rgba(244,243,240,.45)">Source · <a class="om-src" href="{{ sources.lw.url }}" target="_blank" rel="noopener">L&amp;W Institute ↗</a></div>
+          <div style="font-size:13px;color:#4a544e;line-height:1.45;margin-top:12px">Bristol ranks {{ f.rankBristol.disp }}th nationally; Bath &amp; NES {{ f.rankBath.disp }}st — within the same combined authority.</div>
+          <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:10px;color:#9a9389">Source · <a class="om-src" href="{{ sources.lw.url }}" target="_blank" rel="noopener">L&amp;W Institute ↗</a></div>
         </div>
-        <div style="background:rgba(244,243,240,.06);border:1px solid rgba(244,243,240,.16);border-radius:5px;padding:24px">
-          <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#cda85f;margin-bottom:4px">NEET with a health condition</div>
-          <div style="font-size:12px;color:rgba(244,243,240,.55);margin-bottom:12px">% of NEET young people · 2015 vs 2025</div>
+        <div style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:24px">
+          <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#b08a3e;margin-bottom:4px">NEET with a health condition</div>
+          <div style="font-size:12px;color:#6b7268;margin-bottom:12px">% of NEET young people · 2015 vs 2025</div>
           <div style="position:relative;height:128px"><canvas id="chart-neet"></canvas></div>
-          <div style="font-size:13px;color:rgba(244,243,240,.7);line-height:1.45;margin-top:12px">{{ f.neet2025.disp }} of NEET young people now report a work-limiting condition — up from {{ f.neet2015.disp }} in 2015.</div>
-          <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:10px;color:rgba(244,243,240,.45)">Source · <a class="om-src" href="{{ sources.milburn.url }}" target="_blank" rel="noopener">Youth review ↗</a></div>
+          <div style="font-size:13px;color:#4a544e;line-height:1.45;margin-top:12px">{{ f.neet2025.disp }} of NEET young people now report a work-limiting condition — up from {{ f.neet2015.disp }} in 2015.</div>
+          <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:10px;color:#9a9389">Source · <a class="om-src" href="{{ sources.milburn.url }}" target="_blank" rel="noopener">Youth review ↗</a></div>
         </div>
-        <div style="background:rgba(244,243,240,.06);border:1px solid rgba(244,243,240,.16);border-radius:5px;padding:24px">
-          <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#cda85f;margin-bottom:4px">Living with parents, by age</div>
-          <div style="font-size:12px;color:rgba(244,243,240,.55);margin-bottom:12px">% still at a parental home</div>
+        <div style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:24px">
+          <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#b08a3e;margin-bottom:4px">Living with parents, by age</div>
+          <div style="font-size:12px;color:#6b7268;margin-bottom:12px">% still at a parental home</div>
           <div style="position:relative;height:128px"><canvas id="chart-coreside"></canvas></div>
-          <div style="font-size:13px;color:rgba(244,243,240,.7);line-height:1.45;margin-top:12px">{{ f.core25.disp }} of 25-year-olds still live at home — nearly half of those on the lowest incomes.</div>
-          <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:10px;color:rgba(244,243,240,.45)">Source · <a class="om-src" href="{{ sources.ifs.url }}" target="_blank" rel="noopener">IFS ↗</a></div>
+          <div style="font-size:13px;color:#4a544e;line-height:1.45;margin-top:12px">{{ f.core25.disp }} of 25-year-olds still live at home — nearly half of those on the lowest incomes.</div>
+          <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:10px;color:#9a9389">Source · <a class="om-src" href="{{ sources.ifs.url }}" target="_blank" rel="noopener">IFS ↗</a></div>
         </div>
       </div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px">
-        <div class="om-fig" title="{{ f.care.about }}" style="background:rgba(244,243,240,.06);border:1px solid rgba(244,243,240,.16);border-radius:5px;padding:26px;display:flex;align-items:center;gap:24px">
-          <div style="font-family:'Newsreader',serif;font-size:56px;line-height:1;color:#fff;flex:none">{{ f.care.disp }}<span style="font-size:.4em"> /10k</span></div>
+        <div class="om-fig" title="{{ f.care.about }}" style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:26px;display:flex;align-items:center;gap:24px">
+          <div style="font-family:'Newsreader',serif;font-size:56px;line-height:1;color:#1a1f1c;flex:none">{{ f.care.disp }}<span style="font-size:.4em"> /10k</span></div>
           <div>
-            <div style="font-size:14.5px;line-height:1.5;color:rgba(244,243,240,.85)">children in care in Bristol — well above the England rate of {{ f.careEng.disp }} per 10,000. Care leavers are expected to be independent well before their peers.</div>
-            <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:10px;color:rgba(244,243,240,.45)">Source · <a class="om-src" href="{{ sources.bcc.url }}" target="_blank" rel="noopener">Bristol CC ↗</a></div>
+            <div style="font-size:14.5px;line-height:1.5;color:#4a544e">children in care in Bristol — well above the England rate of {{ f.careEng.disp }} per 10,000. Care leavers are expected to be independent well before their peers.</div>
+            <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:10px;color:#9a9389">Source · <a class="om-src" href="{{ sources.bcc.url }}" target="_blank" rel="noopener">Bristol CC ↗</a></div>
           </div>
         </div>
-        <div style="background:rgba(244,243,240,.06);border:1px solid rgba(244,243,240,.16);border-radius:5px;padding:26px;display:flex;align-items:center;gap:24px">
+        <div style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:26px;display:flex;align-items:center;gap:24px">
           <div style="display:flex;align-items:baseline;gap:10px;flex:none">
-            <div class="om-fig" title="{{ f.uniWhite.about }}"><div style="font-family:'Newsreader',serif;font-size:48px;line-height:1;color:#cda85f">{{ f.uniWhite.disp }}</div><div class="om-mono" style="font-size:10px;text-transform:uppercase;color:rgba(244,243,240,.6);margin-top:4px">White FSM</div></div>
-            <div class="om-fig" title="{{ f.uniBlack.about }}"><div style="font-family:'Newsreader',serif;font-size:48px;line-height:1;color:#fff">{{ f.uniBlack.disp }}</div><div class="om-mono" style="font-size:10px;text-transform:uppercase;color:rgba(244,243,240,.6);margin-top:4px">Black African FSM</div></div>
+            <div class="om-fig" title="{{ f.uniWhite.about }}"><div style="font-family:'Newsreader',serif;font-size:48px;line-height:1;color:#b08a3e">{{ f.uniWhite.disp }}</div><div class="om-mono" style="font-size:10px;text-transform:uppercase;color:#6b7268;margin-top:4px">White FSM</div></div>
+            <div class="om-fig" title="{{ f.uniBlack.about }}"><div style="font-family:'Newsreader',serif;font-size:48px;line-height:1;color:#1a1f1c">{{ f.uniBlack.disp }}</div><div class="om-mono" style="font-size:10px;text-transform:uppercase;color:#6b7268;margin-top:4px">Black African FSM</div></div>
           </div>
           <div>
-            <div style="font-size:14.5px;line-height:1.5;color:rgba(244,243,240,.85)">progress to university. In Bristol North West, just {{ f.degNW.disp }} of white FSM pupils hold a degree by 22 — the South West is a higher-education cold spot for disadvantaged children.</div>
-            <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:10px;color:rgba(244,243,240,.45)">Source · <a class="om-src" href="{{ sources.sutton.url }}" target="_blank" rel="noopener">Sutton Trust ↗</a></div>
+            <div style="font-size:14.5px;line-height:1.5;color:#4a544e">progress to university. In Bristol North West, just {{ f.degNW.disp }} of white FSM pupils hold a degree by 22 — the South West is a higher-education cold spot for disadvantaged children.</div>
+            <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:10px;color:#9a9389">Source · <a class="om-src" href="{{ sources.sutton.url }}" target="_blank" rel="noopener">Sutton Trust ↗</a></div>
           </div>
         </div>
       </div>
@@ -491,11 +501,107 @@
     </div>
   </footer>
 
+  <!-- ===================== EARLY-YEARS SUB-PAGE (overlay) ===================== -->
+  <div class="om-sub" style="{{ subStyle }}">
+    <button class="om-subclose" onClick="{{ closeEarly }}" title="Close (Esc)">×</button>
+    <div style="max-width:1080px;margin:0 auto;padding:60px 32px 88px">
+
+      <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b08a3e;margin-bottom:18px"><span class="om-ic" style="width:18px;height:18px;-webkit-mask-image:url('icons/baby.svg');mask-image:url('icons/baby.svg')"></span>Ages 0–5 · Early years — the full dataset</div>
+      <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(34px,5vw,64px);line-height:1.02;letter-spacing:-.01em;margin:0 0 20px;max-width:18ch">Every early-years number, beside its benchmark.</h1>
+      <p style="font-size:18px;line-height:1.6;color:#4a544e;max-width:62ch;margin:0 0 24px">All {{ earlyCount }} topics from the early-years brief, grouped by theme. Each local figure <span style="color:#b0432b;font-weight:600">(in red)</span> sits against its benchmark <span style="color:#3f6b56;font-weight:600">(in green)</span> — England, a neighbouring authority, or the previous year. Every card links to its source <strong style="color:#1a1f1c">at the smallest geography that source publishes</strong>; the badge says how fine that is.</p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:6px;padding:14px 18px;margin-bottom:40px">
+        <span class="om-mono" style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#4a544e">Granularity</span>
+        <span style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:#4a544e"><span style="width:11px;height:11px;border-radius:3px;background:rgba(63,107,86,.55)"></span>LSOA / ward — mappable below city</span>
+        <span style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:#4a544e"><span style="width:11px;height:11px;border-radius:3px;background:rgba(176,138,62,.7)"></span>Local authority — Bristol vs England</span>
+        <span style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:#4a544e"><span style="width:11px;height:11px;border-radius:3px;background:rgba(176,67,43,.6)"></span>National only / not published</span>
+        <span style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:#4a544e"><span style="font-family:'Newsreader',serif;font-size:16px;color:#e6007e">—</span>value to read live from source</span>
+      </div>
+
+      <!-- Economic circumstances -->
+      <div style="display:flex;align-items:baseline;gap:12px;border-top:1px solid rgba(42,74,60,.16);padding-top:22px;margin-bottom:18px">
+        <span class="om-ic" style="width:18px;height:18px;color:#b0432b;-webkit-mask-image:url('icons/coins.svg');mask-image:url('icons/coins.svg')"></span>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(22px,2.6vw,30px);line-height:1;margin:0">Economic circumstances</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:48px">
+        <sc-for list="{{ earlyEcon }}" as="e" hint-placeholder-count="4">
+          <div class="om-card" style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:22px;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px"><span class="om-ic" style="{{ e.iconStyle }}"></span><span style="{{ e.gStyle }}">{{ e.gLabel }}</span></div>
+            <div style="font-size:15.5px;font-weight:600;line-height:1.32;color:#1a1f1c;margin-bottom:16px;min-height:42px">{{ e.label }}</div>
+            <div style="margin-bottom:10px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px"><span style="font-size:12.5px;color:#1a1f1c">{{ e.aP }}</span><span style="font-family:'Newsreader',serif;font-size:19px;color:{{ e.aColor }}">{{ e.aDisp }}</span></div>
+              <div style="height:8px;background:rgba(42,74,60,.08);border-radius:2px;overflow:hidden"><div style="height:100%;width:{{ e.aW }};background:#b0432b"></div></div>
+            </div>
+            <div style="margin-bottom:14px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px"><span style="font-size:12.5px;color:#4a544e">{{ e.bP }}</span><span style="font-family:'Newsreader',serif;font-size:19px;color:{{ e.bColor }}">{{ e.bDisp }}</span></div>
+              <div style="height:8px;background:rgba(42,74,60,.08);border-radius:2px;overflow:hidden"><div style="height:100%;width:{{ e.bW }};background:#3f6b56"></div></div>
+            </div>
+            <div style="font-size:12.5px;color:#4a544e;line-height:1.4;margin-top:auto">{{ e.note }}</div>
+            <div class="om-mono" style="font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#9a9389;margin-top:12px;border-top:1px solid rgba(42,74,60,.1);padding-top:9px">{{ e.asOf }} · <a class="om-src" href="{{ e.srcUrl }}" target="_blank" rel="noopener">{{ e.srcName }} ↗</a></div>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- Education & learning -->
+      <div style="display:flex;align-items:baseline;gap:12px;border-top:1px solid rgba(42,74,60,.16);padding-top:22px;margin-bottom:18px">
+        <span class="om-ic" style="width:18px;height:18px;color:#2a4a3c;-webkit-mask-image:url('icons/book-open.svg');mask-image:url('icons/book-open.svg')"></span>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(22px,2.6vw,30px);line-height:1;margin:0">Education &amp; learning</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:48px">
+        <sc-for list="{{ earlyEdu }}" as="e" hint-placeholder-count="6">
+          <div class="om-card" style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:22px;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px"><span class="om-ic" style="{{ e.iconStyle }}"></span><span style="{{ e.gStyle }}">{{ e.gLabel }}</span></div>
+            <div style="font-size:15.5px;font-weight:600;line-height:1.32;color:#1a1f1c;margin-bottom:16px;min-height:42px">{{ e.label }}</div>
+            <div style="margin-bottom:10px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px"><span style="font-size:12.5px;color:#1a1f1c">{{ e.aP }}</span><span style="font-family:'Newsreader',serif;font-size:19px;color:{{ e.aColor }}">{{ e.aDisp }}</span></div>
+              <div style="height:8px;background:rgba(42,74,60,.08);border-radius:2px;overflow:hidden"><div style="height:100%;width:{{ e.aW }};background:#b0432b"></div></div>
+            </div>
+            <div style="margin-bottom:14px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px"><span style="font-size:12.5px;color:#4a544e">{{ e.bP }}</span><span style="font-family:'Newsreader',serif;font-size:19px;color:{{ e.bColor }}">{{ e.bDisp }}</span></div>
+              <div style="height:8px;background:rgba(42,74,60,.08);border-radius:2px;overflow:hidden"><div style="height:100%;width:{{ e.bW }};background:#3f6b56"></div></div>
+            </div>
+            <div style="font-size:12.5px;color:#4a544e;line-height:1.4;margin-top:auto">{{ e.note }}</div>
+            <div class="om-mono" style="font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#9a9389;margin-top:12px;border-top:1px solid rgba(42,74,60,.1);padding-top:9px">{{ e.asOf }} · <a class="om-src" href="{{ e.srcUrl }}" target="_blank" rel="noopener">{{ e.srcName }} ↗</a></div>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- Health & wellbeing -->
+      <div style="display:flex;align-items:baseline;gap:12px;border-top:1px solid rgba(42,74,60,.16);padding-top:22px;margin-bottom:18px">
+        <span class="om-ic" style="width:18px;height:18px;color:#b0432b;-webkit-mask-image:url('icons/heart-pulse.svg');mask-image:url('icons/heart-pulse.svg')"></span>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(22px,2.6vw,30px);line-height:1;margin:0">Health &amp; wellbeing</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:40px">
+        <sc-for list="{{ earlyHealth }}" as="e" hint-placeholder-count="8">
+          <div class="om-card" style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:22px;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px"><span class="om-ic" style="{{ e.iconStyle }}"></span><span style="{{ e.gStyle }}">{{ e.gLabel }}</span></div>
+            <div style="font-size:15.5px;font-weight:600;line-height:1.32;color:#1a1f1c;margin-bottom:16px;min-height:42px">{{ e.label }}</div>
+            <div style="margin-bottom:10px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px"><span style="font-size:12.5px;color:#1a1f1c">{{ e.aP }}</span><span style="font-family:'Newsreader',serif;font-size:19px;color:{{ e.aColor }}">{{ e.aDisp }}</span></div>
+              <div style="height:8px;background:rgba(42,74,60,.08);border-radius:2px;overflow:hidden"><div style="height:100%;width:{{ e.aW }};background:#b0432b"></div></div>
+            </div>
+            <div style="margin-bottom:14px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px"><span style="font-size:12.5px;color:#4a544e">{{ e.bP }}</span><span style="font-family:'Newsreader',serif;font-size:19px;color:{{ e.bColor }}">{{ e.bDisp }}</span></div>
+              <div style="height:8px;background:rgba(42,74,60,.08);border-radius:2px;overflow:hidden"><div style="height:100%;width:{{ e.bW }};background:#3f6b56"></div></div>
+            </div>
+            <div style="font-size:12.5px;color:#4a544e;line-height:1.4;margin-top:auto">{{ e.note }}</div>
+            <div class="om-mono" style="font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#9a9389;margin-top:12px;border-top:1px solid rgba(42,74,60,.1);padding-top:9px">{{ e.asOf }} · <a class="om-src" href="{{ e.srcUrl }}" target="_blank" rel="noopener">{{ e.srcName }} ↗</a></div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;border-top:1px solid rgba(42,74,60,.16);padding-top:22px">
+        <span style="font:400 13px/1.5 'IBM Plex Sans';font-style:italic;color:#6b7268;max-width:64ch">Where a value reads “—”, the figure is not yet pinned in <span class="om-mono" style="font-style:normal;font-size:12px;background:rgba(42,74,60,.08);padding:1px 5px;border-radius:3px">bristol-data.js</span> — open the linked source to read the latest number at the geography shown.</span>
+        <button class="om-openbtn" onClick="{{ closeEarly }}">← Back to the story</button>
+      </div>
+    </div>
+  </div>
+
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { theme:'all', stage:'all', wardMetric:'life_w' };
+  state = { theme:'all', stage:'all', wardMetric:'life_w', sub:false };
 
   C = { ink:'#1a1f1c', soft:'#4a544e', green:'#2a4a3c', green2:'#3f6b56', gold:'#b08a3e', brick:'#b0432b', line:'rgba(42,74,60,.14)' };
   TM = {
@@ -514,7 +620,10 @@ class Component extends DCLogic {
     this._charts={};
     this.whenReady(()=>{ this.applyLive(()=>{ this.forceUpdate(); this.buildCharts(); setTimeout(()=>this.buildCharts(), 350); }); });
     this.initScroll();
+    try{ document.addEventListener('keydown', e=>{ if(e.key==='Escape' && this.state.sub) this.closeEarly(); }); }catch(e){}
   }
+  openEarly(){ this.setState({sub:true}, ()=>{ try{ document.body.style.overflow='hidden'; var s=document.querySelector('.om-sub'); if(s) s.scrollTop=0; }catch(e){} }); }
+  closeEarly(){ this.setState({sub:false}, ()=>{ try{ document.body.style.overflow=''; }catch(e){} }); }
   whenReady(cb){ const ok=()=>window.Chart&&window.BRISTOL_DATA; if(ok()){cb();return;} const t=setInterval(()=>{ if(ok()){clearInterval(t);cb();} },60); setTimeout(()=>clearInterval(t),8000); }
   applyLive(done){
     const D=window.BRISTOL_DATA;
@@ -547,15 +656,15 @@ class Component extends DCLogic {
 
       c=g('chart-opportunity'); if(c) this._charts.opp=new Ch(c,{type:'bar',
         data:{labels:K.opportunity.labels,datasets:[{data:K.opportunity.values,backgroundColor:[C.gold,C.brick],borderRadius:3,barThickness:24}]},
-        options:Object.assign(darkOpts(100),{indexAxis:'y',scales:{x:{min:0,max:100,grid:{color:'rgba(244,243,240,.14)'},ticks:{color:'rgba(244,243,240,.6)'}},y:{grid:{display:false},ticks:{color:'rgba(244,243,240,.85)'}}}})});
+        options:Object.assign(lightOpts(100),{indexAxis:'y',scales:{x:{min:0,max:100,grid:{color:C.line},ticks:{color:'#6b7268'}},y:{grid:{display:false},ticks:{color:'#1a1f1c'}}}})});
 
       c=g('chart-neet'); if(c) this._charts.neet=new Ch(c,{type:'bar',
-        data:{labels:K.neet.labels,datasets:[{data:K.neet.values,backgroundColor:['rgba(244,243,240,.45)',C.brick],borderRadius:3,barThickness:44}]},
-        options:darkOpts(50)});
+        data:{labels:K.neet.labels,datasets:[{data:K.neet.values,backgroundColor:['rgba(42,74,60,.25)',C.brick],borderRadius:3,barThickness:44}]},
+        options:lightOpts(50)});
 
       c=g('chart-coreside'); if(c) this._charts.cor=new Ch(c,{type:'bar',
         data:{labels:K.coreside.labels,datasets:[{data:K.coreside.values,backgroundColor:[C.brick,C.green2],borderRadius:3,barThickness:44}]},
-        options:darkOpts(50)});
+        options:lightOpts(50)});
 
       this.renderWard();
     }catch(e){ console.warn('chart build', e); }
@@ -602,7 +711,7 @@ class Component extends DCLogic {
     const {theme,stage,wardMetric}=this.state;
     const navLinks=this.navData();
     const D=this.D();
-    if(!D){ return { loading:true, navLinks, updated:'', f:{}, sources:{}, indicators:[], dumbbells:[], themeChips:[], stageChips:[], metricChips:[], sourcesList:[], count:0, wardTitle:'', wardSrcName:'', wardSrcUrl:'' }; }
+    if(!D){ return { loading:true, navLinks, updated:'', f:{}, sources:{}, indicators:[], dumbbells:[], themeChips:[], stageChips:[], metricChips:[], sourcesList:[], count:0, wardTitle:'', wardSrcName:'', wardSrcUrl:'', earlyEcon:[], earlyEdu:[], earlyHealth:[], earlyCount:0, subStyle:'display:none', openEarly:()=>this.openEarly(), closeEarly:()=>this.closeEarly() }; }
 
     // figures → display map with source resolution
     const f={};
@@ -634,9 +743,37 @@ class Component extends DCLogic {
     const wm=D.wards[wardMetric]||{}; const ws=D.sources[wm.src]||{};
     const sourcesList=Object.keys(D.sources).map(k=>D.sources[k]);
 
+    // ---------- early-years sub-page ----------
+    const gMap={ LSOA:['LSOA · finest grain','#3f6b56','rgba(63,107,86,.12)'], Ward:['Ward level','#3f6b56','rgba(63,107,86,.12)'], MSOA:['MSOA level','#3f6b56','rgba(63,107,86,.12)'], LA:['Local authority','#8a6a1f','rgba(176,138,62,.14)'], National:['National only','#b0432b','rgba(176,67,43,.1)'], None:['Not published','#b0432b','rgba(176,67,43,.1)'] };
+    const mapEarly=e=>{
+      const s=D.sources[e.src]||{};
+      const av=e.a?e.a.v:null, bv=e.b?e.b.v:null;
+      const vals=[av,bv].filter(x=>x!=null);
+      const max=vals.length?Math.max.apply(null,vals):0;
+      const w=v=>(v!=null&&max>0)?(v/max*100).toFixed(1)+'%':'0%';
+      const gm=gMap[s.g||'LA']||gMap.LA;
+      const themeColor=(this.TM[e.theme]||{}).color||'#2a4a3c';
+      return {
+        label:e.label, note:e.note, asOf:e.asOf||'',
+        iconStyle:`display:block;width:24px;height:24px;color:${themeColor};-webkit-mask-image:url('icons/${e.icon||'layout-dashboard'}.svg');mask-image:url('icons/${e.icon||'layout-dashboard'}.svg')`,
+        gLabel:gm[0], gStyle:`font:500 9.5px/1 'IBM Plex Mono';letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:999px;color:${gm[1]};background:${gm[2]};white-space:nowrap`,
+        aP:e.a.p, bP:e.b.p,
+        aDisp:av!=null?this.indFmt(av,e.unit):'—', bDisp:bv!=null?this.indFmt(bv,e.unit):'—',
+        aColor:av!=null?'#b0432b':'#e6007e', bColor:bv!=null?'#3f6b56':'#e6007e',
+        aW:w(av), bW:w(bv),
+        srcName:s.name||'', srcUrl:s.url||'#' };
+    };
+    const early=D.early||[];
+    const earlyEcon=early.filter(e=>e.cluster==='Economic circumstances').map(mapEarly);
+    const earlyEdu=early.filter(e=>e.cluster==='Education & learning').map(mapEarly);
+    const earlyHealth=early.filter(e=>e.cluster==='Health & wellbeing').map(mapEarly);
+
     return { navLinks, updated:D.updated||'', f, sources:D.sources, indicators, count:indicators.length,
       dumbbells, themeChips, stageChips, metricChips, sourcesList,
-      wardTitle:wm.title||'', wardSrcName:ws.name||'', wardSrcUrl:ws.url||'#' };
+      wardTitle:wm.title||'', wardSrcName:ws.name||'', wardSrcUrl:ws.url||'#',
+      earlyEcon, earlyEdu, earlyHealth, earlyCount:early.length,
+      subStyle:'display:'+(this.state.sub?'block':'none'),
+      openEarly:()=>this.openEarly(), closeEarly:()=>this.closeEarly() };
   }
 }
 </script>

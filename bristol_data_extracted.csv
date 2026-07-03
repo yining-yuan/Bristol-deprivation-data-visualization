@@ -1,0 +1,52 @@
+id,area_code,area_name,source_key,source_url,table_or_measure,cell,value,method,calc
+quals_l4,,,ts067,https://www.nomisweb.co.uk/datasets/c2021ts067,c2021ts067,level 4 qualifications and above,,nomis,
+quals_none,,,ts067,https://www.nomisweb.co.uk/datasets/c2021ts067,c2021ts067,no qualifications,,nomis,
+health_bad,,,ts037,https://www.nomisweb.co.uk/datasets/c2021ts037,c2021ts037,bad health,,nomis,total
+disability,,,ts038,https://www.nomisweb.co.uk/datasets/c2021ts038,c2021ts038,disabled under the equality act,,nomis,total
+unpaid_care,,,ts039,https://www.nomisweb.co.uk/datasets/c2021ts039,c2021ts039,hours unpaid care,,nomis,total
+no_car,,,ts045,https://www.nomisweb.co.uk/datasets/c2021ts045,c2021ts045,no cars or vans,,nomis,
+overcrowd,,,ts052,https://www.nomisweb.co.uk/datasets/c2021ts052,c2021ts052,-1 or less,,nomis,
+social_rent,,,ts054,https://www.nomisweb.co.uk/datasets/c2021ts054,c2021ts054,social rented,,nomis,total
+own_outright,,,ts054,https://www.nomisweb.co.uk/datasets/c2021ts054,c2021ts054,owns outright,,nomis,
+no_heating,,,ts046,https://www.nomisweb.co.uk/datasets/c2021ts046,c2021ts046,no central heating,,nomis,
+lone_parent,,,ts003,https://www.nomisweb.co.uk/datasets/c2021ts003,c2021ts003,one-parent,,nomis,total
+nssec_rout,,,ts062,https://www.nomisweb.co.uk/datasets/c2021ts062,c2021ts062,routine; semi-routine,,nomis,total
+median_age,,,ts007,https://www.nomisweb.co.uk/datasets/c2021ts007a,c2021ts007a,median age,,nomis,
+deprived_34,,,ts011,https://www.nomisweb.co.uk/datasets/c2021ts011,c2021ts011,three dimensions; four dimensions,,nomis,total
+deprived_any,,,ts011,https://www.nomisweb.co.uk/datasets/c2021ts011,c2021ts011,not deprived in any dimension,,nomis,one_or_more
+degree_ward,,,ts067,https://www.nomisweb.co.uk/datasets/c2021ts067,c2021ts067,level 4 qualifications and above,,nomis,
+child_share,,,ts007,https://www.nomisweb.co.uk/datasets/c2021ts007a,c2021ts007a,aged 0 to 15,,nomis,
+health_index,,,ons,https://www.ons.gov.uk/explore-local-statistics/areas/E06000023-bristol-city-of,Health Index (2021),Bristol vs England 100.8,,manual,
+gdhi,,,ons,https://www.ons.gov.uk/explore-local-statistics/areas/E06000023-bristol-city-of,Gross disposable household income per head (2023),Bristol,,manual,
+employment,,,ons,https://www.ons.gov.uk/explore-local-statistics/areas/E06000023-bristol-city-of,Employment rate 16–64 (APS 2023),Bristol,,manual,
+inactivity,,,ons,https://www.ons.gov.uk/explore-local-statistics/areas/E06000023-bristol-city-of,Economic inactivity rate 16–64,Bristol,,manual,
+pay,,,ons,https://www.ons.gov.uk/explore-local-statistics/areas/E06000023-bristol-city-of,Gross median weekly pay (ASHE 2025),Bristol,,manual,
+le_city_m,,,ons_le,https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/healthandlifeexpectancies/bulletins/lifeexpectancyforlocalareasoftheuk/between2001to2003and202
+1to2023,"Life expectancy at birth, males","Bristol, City of",,manual,
+le_city_f,,,ons_le,https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/healthandlifeexpectancies/bulletins/lifeexpectancyforlocalareasoftheuk/between2001to2003and2021to2023,"Life expectancy at birth, females","Bristol, City of",,manual,
+le_eng_m,,,ons_nlt,https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/lifeexpectancies/bulletins/nationallifetablesunitedkingdom/2021to2023,"National life tables, England males 2021-23",England,,manual,
+hle_f,,,ons_hle,https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/healthandlifeexpectancies/bulletins/healthstatelifeexpectanciesuk/between2011to2013and2021to2023,"Healthy life expectancy at birth, females",Bristol,,manual,
+le_gap_m,,,ons_le,https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/healthandlifeexpectancies/bulletins/lifeexpectancyforlocalareasoftheuk/between2001to2003and2021to2023,Male LE gap between lowest & highest ward,lowest ward; highest ward,,manual,difference
+le_male_ward,,,ons_le,https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/healthandlifeexpectancies/bulletins/lifeexpectancyforlocalareasoftheuk/between2001to2003and2021to2023,"Life expectancy at birth, males, by ward",each Bristol ward,,manual,
+le_female_ward,,,ons_le,https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/healthandlifeexpectancies/bulletins/lifeexpectancyforlocalareasoftheuk/between2001to2003and2021to2023,"Life expectancy at birth, females, by ward",each Bristol ward,,manual,
+child_pov_ward,,,ons_clif,https://www.gov.uk/government/statistics/children-in-low-income-families-local-area-statistics-2022-to-2025,"Children in relative low income, by ward",each Bristol ward,,manual,
+fsm_uni,,,sutton,https://www.suttontrust.com/our-research/,"'Crossing Paths' — FSM to university by 19, by ethnicity",White British FSM; Black African FSM,,manual,
+ey_ready,,,sutton,https://www.suttontrust.com/our-research/,School readiness of disadvantaged children; 19-month gap,disadvantaged; England average,,manual,
+early_access,,,sutton,https://www.suttontrust.com/our-research/,Access to funded early education by income,under £20k; over £45k,,manual,
+fsm_bristol,,,sutton,https://www.suttontrust.com/our-research/,Opportunity Index — Bristol NW white-FSM degree by 22; Bristol South rank of 543,Bristol North West,,manual,
+eyfsp_gld,,,dfe_eyfsp,https://explore-education-statistics.service.gov.uk/find-statistics/early-years-foundation-stage-profile-results/2024-25,Good level of development (all pupils),Bristol; England,,manual,
+eyfsp_gap,,,dfe_eyfsp,https://explore-education-statistics.service.gov.uk/find-statistics/early-years-foundation-stage-profile-results/2024-25,GLD by disadvantage (FSM vs peers),FSM; non-FSM,,manual,difference
+phonics,,,dfe_phon,https://explore-education-statistics.service.gov.uk/find-statistics/phonics-screening-check-attainment/2024-25,Year 1 phonics — met expected standard,Bristol; England,,manual,
+ks2_rwm,,,dfe_ks2,https://explore-education-statistics.service.gov.uk/find-statistics/key-stage-2-attainment/2024-25-revised,"KS2 reading, writing & maths expected standard",Bristol; England,,manual,
+ks2_gap,,,dfe_ks2,https://explore-education-statistics.service.gov.uk/find-statistics/key-stage-2-attainment/2024-25-revised,KS2 RWM by disadvantage,disadvantaged; others,,manual,difference
+prim_oo,,,dfe,https://explore-education-statistics.service.gov.uk/,Ofsted primary good or outstanding %,Bristol; England,,manual,
+attainment8,,,dfe_ks4,https://explore-education-statistics.service.gov.uk/find-statistics/key-stage-4-performance/2024-25,Average Attainment 8 score,Bristol; England,,manual,
+gcse5_em,,,dfe_ks4,https://explore-education-statistics.service.gov.uk/find-statistics/key-stage-4-performance/2024-25,Grade 5+ English & maths by disadvantage,disadvantaged; others,,manual,
+progress8,,,dfe_ks4,https://explore-education-statistics.service.gov.uk/find-statistics/key-stage-4-performance/2024-25,Average Progress 8 by disadvantage,disadvantaged; others,,manual,
+absence,,,dfe_abs,https://explore-education-statistics.service.gov.uk/find-statistics/pupil-absence-in-schools-in-england/2023-24,Persistent absentees (10%+ sessions),Bristol; England,,manual,
+suspensions_rate,,,dfe_excl,https://explore-education-statistics.service.gov.uk/find-statistics/suspensions-and-permanent-exclusions-in-england,Suspension rate per 100 pupils,Bristol; England,,manual,
+he_prog,,,dfe_wp,https://explore-education-statistics.service.gov.uk/find-statistics/widening-participation-in-higher-education/2023-24,"Progression to HE by 19, FSM",Bristol FSM; England FSM,,manual,
+neet,,,dfe_neet,https://explore-education-statistics.service.gov.uk/find-statistics/participation-in-education-training-and-neet-age-16-to-17-by-local-authority/2024-25,NEET 16–17 by LA,Bristol; England,,manual,
+excl_gcse,,,dfe_excl,https://explore-education-statistics.service.gov.uk/find-statistics/suspensions-and-permanent-exclusions-in-england,Timpson Review — good GCSEs after permanent exclusion,excluded pupils,,manual,
+he_part_ward,,,ofs,https://www.officeforstudents.org.uk/data-and-analysis/young-participation-by-area/,"TUNDRA young HE participation, by MSOA/area",each Bristol area,,manual,
+susp_ward,,,odb_edu,https://opendata.bristol.gov.uk/explore/dataset/progress-8-and-attainment-8-scores-in-bristol/,"Pupils suspended per 1,000, by ward",each ward,,manual,per100_to_per1000

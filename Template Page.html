@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Story — Fill-in Template</title>
+
+<!-- ==========================================================================
+     FILL-IN TEMPLATE  ·  "How deprivation happens in Bristol" house style
+     --------------------------------------------------------------------------
+     This is a BLANK version of the data story, for a non-technical editor to
+     fill in. It keeps the exact same look, fonts, colours and card shapes as
+     the real page — only the words and numbers have been replaced with
+     labelled slots you can type over.
+
+     HOW TO USE
+       1. Open this file in any web browser to see the layout.
+       2. Open it in a plain text editor (or Word > "Edit as text") and
+          replace every [BRACKETED SLOT] with your own words or numbers.
+       3. The slots you need to fill are always one of six kinds:
+              [TITLE]        a heading
+              [ANALYSE TEXT] a paragraph of explanation / the story
+              [FIGURE]       one big number, e.g. 37%  (keep the % or "yrs")
+              [DATA]         a short label or small number next to a figure
+              [DATA SOURCE]  who published the number, e.g. "Census 2021"
+              [LINK]         the web address the source links to (starts http)
+       4. Anything shown in PINK on the page is still a blank slot.
+       5. To keep the data in a separate file instead, use datasource.js —
+          it has the same slots, laid out as a simple list to fill in.
+
+     You do NOT need to touch anything between < and > — that is layout code.
+=========================================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#f4f3f0;color:#1a1f1c;font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:#b08a3e;color:#fff}
+  .om-mono{font-family:'IBM Plex Mono',monospace}
+  .om-card{transition:transform .25s ease, box-shadow .25s ease}
+  .om-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(26,31,28,.35)}
+  .om-src{color:inherit;opacity:.62;text-decoration:none;border-bottom:1px dotted currentColor;transition:opacity .15s ease}
+  .om-src:hover{opacity:1}
+  .om-ic{display:inline-block;flex:none;background-color:currentColor;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain}
+  /* Every blank slot is highlighted in magenta so it is easy to find and replace */
+  .ph{color:#e6007e;font-style:normal;font-weight:600;background:rgba(230,0,126,.06);border-radius:3px;padding:0 3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  @keyframes ombob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+</style>
+</head>
+<body>
+
+<!-- ============ EDITOR HELP BANNER (delete this whole block when finished) ============ -->
+<div style="background:#1a1f1c;color:#f4f3f0;padding:14px 32px;font:500 12.5px/1.5 'IBM Plex Mono';letter-spacing:.02em">
+  <div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center">
+    <span style="color:#e6007e;text-transform:uppercase;letter-spacing:.1em">● Fill-in template</span>
+    <span style="opacity:.8">Replace every <span class="ph">[SLOT]</span> with your own content.</span>
+    <span style="opacity:.8">Slots: [TITLE] · [ANALYSE TEXT] · [FIGURE] · [DATA] · [DATA SOURCE] · [LINK]</span>
+    <span style="opacity:.55">Delete this bar before publishing.</span>
+  </div>
+</div>
+
+<div style="background:#f4f3f0;position:relative">
+
+  <!-- ===================== HERO ===================== -->
+  <header style="background:#2a4a3c;color:#f4f3f0;min-height:88vh;display:flex;flex-direction:column;justify-content:space-between;padding:48px 32px 40px">
+    <div style="max-width:1080px;margin:0 auto;width:100%;display:flex;justify-content:space-between;align-items:center;font:500 12px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:rgba(244,243,240,.62)">
+      <span class="ph">[DATA — organisation / brand]</span>
+      <span>A data story · <span class="ph">[DATA — date]</span></span>
+    </div>
+
+    <div style="max-width:1080px;margin:0 auto;width:100%">
+      <div style="font:500 13px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#cda85f;margin-bottom:28px"><span class="ph">[TITLE — small kicker line above the headline]</span></div>
+      <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(46px,7.4vw,104px);line-height:.98;letter-spacing:-.015em;margin:0 0 28px;max-width:15ch"><span class="ph">[TITLE — the big headline of the whole story]</span></h1>
+      <p style="font-size:clamp(18px,2.1vw,24px);line-height:1.5;max-width:48ch;color:rgba(244,243,240,.82);margin:0;font-weight:400"><span class="ph">[ANALYSE TEXT — one or two sentences that set up the story]</span></p>
+    </div>
+
+    <div style="max-width:1080px;margin:0 auto;width:100%;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+      <div style="display:flex;gap:44px;flex-wrap:wrap">
+        <!-- Hero headline figure ×3 — one big number + a short label -->
+        <div>
+          <div style="font-family:'Newsreader',serif;font-size:clamp(34px,4vw,52px);line-height:1;color:#fff"><span class="ph">[FIGURE]</span></div>
+          <div class="om-mono" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,243,240,.6);margin-top:6px;max-width:18ch"><span class="ph">[DATA — what this number means]</span></div>
+        </div>
+        <div>
+          <div style="font-family:'Newsreader',serif;font-size:clamp(34px,4vw,52px);line-height:1;color:#fff"><span class="ph">[FIGURE]</span></div>
+          <div class="om-mono" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,243,240,.6);margin-top:6px;max-width:20ch"><span class="ph">[DATA — what this number means]</span></div>
+        </div>
+        <div>
+          <div style="font-family:'Newsreader',serif;font-size:clamp(34px,4vw,52px);line-height:1;color:#fff"><span class="ph">[FIGURE]</span></div>
+          <div class="om-mono" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,243,240,.6);margin-top:6px;max-width:20ch"><span class="ph">[DATA — what this number means]</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(244,243,240,.55)">
+        <span class="om-mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase">Scroll</span>
+        <div style="animation:ombob 1.8s ease-in-out infinite;font-size:18px">↓</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== INTRO — TEXT + TWO COMPARISON CARDS ===================== -->
+  <section style="padding:96px 32px 72px">
+    <div style="max-width:1080px;margin:0 auto">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start">
+        <div>
+          <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b0432b;margin-bottom:20px"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/map-pin.svg');mask-image:url('icons/map-pin.svg')"></span><span class="ph">[TITLE — section label]</span></div>
+          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1.06;letter-spacing:-.01em;margin:0 0 24px"><span class="ph">[TITLE — section headline]</span></h2>
+          <p style="font-size:18px;line-height:1.62;color:#4a544e;margin:0 0 18px"><span class="ph">[ANALYSE TEXT — first paragraph]</span></p>
+          <p style="font-size:18px;line-height:1.62;color:#4a544e;margin:0 0 22px"><span class="ph">[ANALYSE TEXT — second paragraph]</span></p>
+          <div style="display:flex;align-items:flex-start;gap:10px;background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-left:3px solid #b08a3e;border-radius:4px;padding:14px 16px">
+            <span style="font-size:15px;line-height:1.3;flex:none;color:#b08a3e">↳</span>
+            <span style="font-size:13.5px;line-height:1.5;color:#4a544e"><strong style="color:#1a1f1c;font-weight:600"><span class="ph">[TITLE — call-out lead-in.]</span></strong> <span class="ph">[ANALYSE TEXT — a short "how to read this" note.]</span></span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <!-- Comparison card — a title, two labelled bars, and a source -->
+          <div style="border:1px solid rgba(42,74,60,.16);border-radius:4px;padding:22px 24px;background:#fbfaf7">
+            <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:14px"><span class="ph">[TITLE — what this chart shows]</span></div>
+            <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:10px">
+              <span style="width:90px;font-size:14px;color:#1a1f1c"><span class="ph">[DATA — label]</span></span>
+              <div style="flex:1;height:18px;background:rgba(42,74,60,.08);border-radius:3px;overflow:hidden"><div style="height:100%;width:70%;background:#b0432b"></div></div>
+              <span style="width:48px;text-align:right;font-family:'Newsreader',serif;font-size:20px"><span class="ph">[FIGURE]</span></span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:14px">
+              <span style="width:90px;font-size:14px;color:#1a1f1c"><span class="ph">[DATA — label]</span></span>
+              <div style="flex:1;height:18px;background:rgba(42,74,60,.08);border-radius:3px;overflow:hidden"><div style="height:100%;width:40%;background:#3f6b56"></div></div>
+              <span style="width:48px;text-align:right;font-family:'Newsreader',serif;font-size:20px"><span class="ph">[FIGURE]</span></span>
+            </div>
+            <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:14px;color:#9a9389">Source · <a class="om-src" href="[LINK]" target="_blank" rel="noopener"><span class="ph">[DATA SOURCE]</span> ↗</a></div>
+          </div>
+
+          <div style="border:1px solid rgba(42,74,60,.16);border-radius:4px;padding:22px 24px;background:#fbfaf7">
+            <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:14px"><span class="ph">[TITLE — what this chart shows]</span></div>
+            <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:10px">
+              <span style="width:90px;font-size:14px;color:#1a1f1c"><span class="ph">[DATA — label]</span></span>
+              <div style="flex:1;height:18px;background:rgba(42,74,60,.08);border-radius:3px;overflow:hidden"><div style="height:100%;width:80%;background:#b0432b"></div></div>
+              <span style="width:48px;text-align:right;font-family:'Newsreader',serif;font-size:20px"><span class="ph">[FIGURE]</span></span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:14px">
+              <span style="width:90px;font-size:14px;color:#1a1f1c"><span class="ph">[DATA — label]</span></span>
+              <div style="flex:1;height:18px;background:rgba(42,74,60,.08);border-radius:3px;overflow:hidden"><div style="height:100%;width:50%;background:#3f6b56"></div></div>
+              <span style="width:48px;text-align:right;font-family:'Newsreader',serif;font-size:20px"><span class="ph">[FIGURE]</span></span>
+            </div>
+            <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:14px;color:#9a9389">Source · <a class="om-src" href="[LINK]" target="_blank" rel="noopener"><span class="ph">[DATA SOURCE]</span> ↗</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== NUMBERED ACT — THREE STAT CARDS ===================== -->
+  <section style="padding:64px 32px;border-top:1px solid rgba(42,74,60,.12)">
+    <div style="max-width:1080px;margin:0 auto">
+      <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+        <span style="font-family:'Newsreader',serif;font-size:clamp(40px,6vw,84px);line-height:1;color:rgba(42,74,60,.22)">01</span>
+        <div>
+          <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b08a3e"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/seedling.svg');mask-image:url('icons/seedling.svg')"></span><span class="ph">[TITLE — chapter label]</span></div>
+          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.04;margin:8px 0 0"><span class="ph">[TITLE — chapter headline]</span></h2>
+        </div>
+      </div>
+      <p style="font-size:18px;line-height:1.62;color:#4a544e;max-width:58ch;margin:18px 0 36px"><span class="ph">[ANALYSE TEXT — introduce this chapter]</span></p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px">
+        <!-- Stat card — icon, one big figure, a sentence, and a source -->
+        <div class="om-card" style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:26px">
+          <span class="om-ic" style="display:block;width:30px;height:30px;color:#b0432b;margin-bottom:14px;-webkit-mask-image:url('icons/blocks.svg');mask-image:url('icons/blocks.svg')"></span>
+          <div style="font-family:'Newsreader',serif;font-size:52px;line-height:1;color:#b0432b"><span class="ph">[FIGURE]</span></div>
+          <div style="font-size:15px;line-height:1.45;color:#1a1f1c;margin:12px 0 6px;font-weight:500"><span class="ph">[DATA — what the number describes]</span></div>
+          <div style="font-size:13.5px;color:#4a544e;line-height:1.45"><span class="ph">[ANALYSE TEXT — one sentence of context]</span></div>
+          <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:14px;color:#9a9389">Source · <a class="om-src" href="[LINK]" target="_blank" rel="noopener"><span class="ph">[DATA SOURCE]</span> ↗</a></div>
+        </div>
+        <div class="om-card" style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:26px">
+          <span class="om-ic" style="display:block;width:30px;height:30px;color:#b0432b;margin-bottom:14px;-webkit-mask-image:url('icons/calendar-x.svg');mask-image:url('icons/calendar-x.svg')"></span>
+          <div style="font-family:'Newsreader',serif;font-size:52px;line-height:1;color:#b0432b"><span class="ph">[FIGURE]</span></div>
+          <div style="font-size:15px;line-height:1.45;color:#1a1f1c;margin:12px 0 6px;font-weight:500"><span class="ph">[DATA — what the number describes]</span></div>
+          <div style="font-size:13.5px;color:#4a544e;line-height:1.45"><span class="ph">[ANALYSE TEXT — one sentence of context]</span></div>
+          <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:14px;color:#9a9389">Source · <a class="om-src" href="[LINK]" target="_blank" rel="noopener"><span class="ph">[DATA SOURCE]</span> ↗</a></div>
+        </div>
+        <div class="om-card" style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:26px">
+          <span class="om-ic" style="display:block;width:30px;height:30px;color:#3f6b56;margin-bottom:14px;-webkit-mask-image:url('icons/heart-pulse.svg');mask-image:url('icons/heart-pulse.svg')"></span>
+          <div style="font-family:'Newsreader',serif;font-size:52px;line-height:1;color:#3f6b56"><span class="ph">[FIGURE]</span></div>
+          <div style="font-size:15px;line-height:1.45;color:#1a1f1c;margin:12px 0 6px;font-weight:500"><span class="ph">[DATA — what the number describes]</span></div>
+          <div style="font-size:13.5px;color:#4a544e;line-height:1.45"><span class="ph">[ANALYSE TEXT — one sentence of context]</span></div>
+          <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:14px;color:#9a9389">Source · <a class="om-src" href="[LINK]" target="_blank" rel="noopener"><span class="ph">[DATA SOURCE]</span> ↗</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== NUMBERED ACT — CHART + TWO SIDE CARDS ===================== -->
+  <section style="padding:64px 32px;border-top:1px solid rgba(42,74,60,.12)">
+    <div style="max-width:1080px;margin:0 auto">
+      <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+        <span style="font-family:'Newsreader',serif;font-size:clamp(40px,6vw,84px);line-height:1;color:rgba(42,74,60,.22)">02</span>
+        <div>
+          <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b08a3e"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/pencil.svg');mask-image:url('icons/pencil.svg')"></span><span class="ph">[TITLE — chapter label]</span></div>
+          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.04;margin:8px 0 0"><span class="ph">[TITLE — chapter headline]</span></h2>
+        </div>
+      </div>
+      <p style="font-size:18px;line-height:1.62;color:#4a544e;max-width:58ch;margin:18px 0 36px"><span class="ph">[ANALYSE TEXT — introduce this chapter]</span></p>
+
+      <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:stretch">
+        <!-- Chart placeholder — a designer/developer drops the graph in here later -->
+        <div style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:26px 26px 22px">
+          <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:4px"><span class="ph">[TITLE — what this chart shows]</span></div>
+          <div style="font-size:13.5px;color:#4a544e;margin-bottom:16px"><span class="ph">[DATA — sub-label / years covered]</span></div>
+          <div style="position:relative;height:240px;border:1.5px dashed #e6007e;border-radius:4px;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;background:rgba(230,0,126,.03)">
+            <span class="om-mono" style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#e6007e;line-height:1.6">[FIGURE — chart goes here]<br><span style="opacity:.7;text-transform:none;letter-spacing:0">put the numbers for this chart in datasource.js</span></span>
+          </div>
+          <div style="font-size:13px;color:#4a544e;line-height:1.45;margin-top:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <span class="ph">[ANALYSE TEXT — one line reading the chart]</span>
+            <span class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#9a9389;white-space:nowrap">Source · <a class="om-src" href="[LINK]" target="_blank" rel="noopener"><span class="ph">[DATA SOURCE]</span> ↗</a></span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <!-- Before → after card -->
+          <div class="om-card" style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:24px">
+            <div style="display:flex;align-items:baseline;gap:18px">
+              <div><div style="font-family:'Newsreader',serif;font-size:40px;line-height:1;color:#3f6b56"><span class="ph">[FIGURE]</span></div><div class="om-mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#4a544e;margin-top:6px"><span class="ph">[DATA — label]</span></div></div>
+              <div style="font-size:22px;color:#b0432b">→</div>
+              <div><div style="font-family:'Newsreader',serif;font-size:40px;line-height:1;color:#b0432b"><span class="ph">[FIGURE]</span></div><div class="om-mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#4a544e;margin-top:6px"><span class="ph">[DATA — label]</span></div></div>
+            </div>
+            <div style="font-size:14px;color:#1a1f1c;line-height:1.45;margin-top:14px;font-weight:500"><span class="ph">[ANALYSE TEXT — what the change means]</span></div>
+            <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:10px;color:#9a9389">Source · <a class="om-src" href="[LINK]" target="_blank" rel="noopener"><span class="ph">[DATA SOURCE]</span> ↗</a></div>
+          </div>
+          <!-- Local vs benchmark card -->
+          <div class="om-card" style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:24px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline">
+              <div><div style="font-family:'Newsreader',serif;font-size:40px;line-height:1;color:#b0432b"><span class="ph">[FIGURE]</span></div><div class="om-mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#4a544e;margin-top:6px"><span class="ph">[DATA — label]</span></div></div>
+              <div><div style="font-family:'Newsreader',serif;font-size:40px;line-height:1;color:#4a544e"><span class="ph">[FIGURE]</span></div><div class="om-mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#4a544e;margin-top:6px"><span class="ph">[DATA — benchmark label]</span></div></div>
+            </div>
+            <div style="font-size:14px;color:#1a1f1c;line-height:1.45;margin-top:14px;font-weight:500"><span class="ph">[ANALYSE TEXT — what the comparison means]</span></div>
+            <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:10px;color:#9a9389">Source · <a class="om-src" href="[LINK]" target="_blank" rel="noopener"><span class="ph">[DATA SOURCE]</span> ↗</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== NUMBERED ACT — HORIZONTAL BAR ROWS ===================== -->
+  <section style="padding:64px 32px;border-top:1px solid rgba(42,74,60,.12)">
+    <div style="max-width:1080px;margin:0 auto">
+      <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+        <span style="font-family:'Newsreader',serif;font-size:clamp(40px,6vw,84px);line-height:1;color:rgba(42,74,60,.22)">03</span>
+        <div>
+          <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b08a3e"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/book-open.svg');mask-image:url('icons/book-open.svg')"></span><span class="ph">[TITLE — chapter label]</span></div>
+          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.04;margin:8px 0 0"><span class="ph">[TITLE — chapter headline]</span></h2>
+        </div>
+      </div>
+      <p style="font-size:18px;line-height:1.62;color:#4a544e;max-width:58ch;margin:18px 0 32px"><span class="ph">[ANALYSE TEXT — introduce this chapter]</span></p>
+
+      <div style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:30px 30px 26px">
+        <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:18px"><span class="ph">[TITLE — what these bars measure]</span></div>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;align-items:center;gap:16px"><span style="width:180px;font-size:15px;color:#1a1f1c"><span class="ph">[DATA — row label]</span></span><div style="flex:1;height:26px;background:rgba(42,74,60,.07);border-radius:3px;overflow:hidden"><div style="height:100%;width:100%;background:#b0432b"></div></div><span style="width:56px;text-align:right;font-family:'Newsreader',serif;font-size:24px"><span class="ph">[FIGURE]</span></span></div>
+          <div style="display:flex;align-items:center;gap:16px"><span style="width:180px;font-size:15px;color:#1a1f1c"><span class="ph">[DATA — row label]</span></span><div style="flex:1;height:26px;background:rgba(42,74,60,.07);border-radius:3px;overflow:hidden"><div style="height:100%;width:80%;background:#b0432b"></div></div><span style="width:56px;text-align:right;font-family:'Newsreader',serif;font-size:24px"><span class="ph">[FIGURE]</span></span></div>
+          <div style="display:flex;align-items:center;gap:16px"><span style="width:180px;font-size:15px;color:#1a1f1c"><span class="ph">[DATA — row label]</span></span><div style="flex:1;height:26px;background:rgba(42,74,60,.07);border-radius:3px;overflow:hidden"><div style="height:100%;width:60%;background:#b0432b"></div></div><span style="width:56px;text-align:right;font-family:'Newsreader',serif;font-size:24px"><span class="ph">[FIGURE]</span></span></div>
+        </div>
+        <div style="font-size:13.5px;color:#4a544e;line-height:1.5;margin-top:18px;border-top:1px solid rgba(42,74,60,.1);padding-top:16px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+          <span style="max-width:64ch"><span class="ph">[ANALYSE TEXT — what the bars add up to]</span></span>
+          <span class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#9a9389;white-space:nowrap">Source · <a class="om-src" href="[LINK]" target="_blank" rel="noopener"><span class="ph">[DATA SOURCE]</span> ↗</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PLACE — DUMBBELL / RANGE ROWS ===================== -->
+  <section style="padding:88px 32px">
+    <div style="max-width:1080px;margin:0 auto">
+      <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b0432b;margin-bottom:18px"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/map-pin.svg');mask-image:url('icons/map-pin.svg')"></span><span class="ph">[TITLE — section label]</span></div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,3.8vw,48px);line-height:1.04;margin:0 0 16px;max-width:22ch"><span class="ph">[TITLE — section headline]</span></h2>
+      <p style="font-size:18px;line-height:1.62;color:#4a544e;max-width:62ch;margin:0 0 36px"><span class="ph">[ANALYSE TEXT — introduce this section]</span></p>
+
+      <div style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:34px 34px 26px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:26px;flex-wrap:wrap;gap:12px">
+          <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e"><span class="ph">[TITLE — what these ranges show]</span></div>
+          <div style="display:flex;gap:18px;font:500 11px/1 'IBM Plex Mono';text-transform:uppercase;letter-spacing:.06em">
+            <span style="display:flex;align-items:center;gap:6px;color:#4a544e"><span style="width:9px;height:9px;border-radius:50%;background:#b0432b"></span><span class="ph">[DATA — low label]</span></span>
+            <span style="display:flex;align-items:center;gap:6px;color:#4a544e"><span style="width:9px;height:9px;border-radius:50%;background:#3f6b56"></span><span class="ph">[DATA — high label]</span></span>
+          </div>
+        </div>
+
+        <!-- Range row — low dot, connecting line, high dot -->
+        <div style="margin-bottom:30px">
+          <div style="display:flex;justify-content:space-between;font-size:13px;color:#1a1f1c;margin-bottom:14px">
+            <span><strong style="font-weight:600"><span class="ph">[DATA — low name]</span></strong> → <span class="ph">[DATA — high name]</span></span>
+            <span class="om-mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#b08a3e"><span class="ph">[FIGURE]</span> gap</span>
+          </div>
+          <div style="position:relative;height:22px">
+            <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(42,74,60,.12)"></div>
+            <div style="position:absolute;top:50%;transform:translateY(-50%);height:4px;background:rgba(42,74,60,.22);border-radius:2px;left:20%;width:45%"></div>
+            <div style="position:absolute;top:50%;left:20%;transform:translate(-50%,-50%);width:15px;height:15px;border-radius:50%;background:#b0432b;border:2px solid #fbfaf7;box-shadow:0 0 0 1px rgba(176,67,43,.4)"></div>
+            <div style="position:absolute;top:50%;left:65%;transform:translate(-50%,-50%);width:15px;height:15px;border-radius:50%;background:#3f6b56;border:2px solid #fbfaf7;box-shadow:0 0 0 1px rgba(63,107,86,.4)"></div>
+            <span style="position:absolute;top:50%;left:20%;transform:translate(-50%,-150%);font-family:'Newsreader',serif;font-size:15px;color:#b0432b"><span class="ph">[FIGURE]</span></span>
+            <span style="position:absolute;top:50%;left:65%;transform:translate(-50%,-150%);font-family:'Newsreader',serif;font-size:15px;color:#3f6b56"><span class="ph">[FIGURE]</span></span>
+          </div>
+        </div>
+        <div style="margin-bottom:30px">
+          <div style="display:flex;justify-content:space-between;font-size:13px;color:#1a1f1c;margin-bottom:14px">
+            <span><strong style="font-weight:600"><span class="ph">[DATA — low name]</span></strong> → <span class="ph">[DATA — high name]</span></span>
+            <span class="om-mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#b08a3e"><span class="ph">[FIGURE]</span> gap</span>
+          </div>
+          <div style="position:relative;height:22px">
+            <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(42,74,60,.12)"></div>
+            <div style="position:absolute;top:50%;transform:translateY(-50%);height:4px;background:rgba(42,74,60,.22);border-radius:2px;left:30%;width:35%"></div>
+            <div style="position:absolute;top:50%;left:30%;transform:translate(-50%,-50%);width:15px;height:15px;border-radius:50%;background:#b0432b;border:2px solid #fbfaf7;box-shadow:0 0 0 1px rgba(176,67,43,.4)"></div>
+            <div style="position:absolute;top:50%;left:65%;transform:translate(-50%,-50%);width:15px;height:15px;border-radius:50%;background:#3f6b56;border:2px solid #fbfaf7;box-shadow:0 0 0 1px rgba(63,107,86,.4)"></div>
+            <span style="position:absolute;top:50%;left:30%;transform:translate(-50%,-150%);font-family:'Newsreader',serif;font-size:15px;color:#b0432b"><span class="ph">[FIGURE]</span></span>
+            <span style="position:absolute;top:50%;left:65%;transform:translate(-50%,-150%);font-family:'Newsreader',serif;font-size:15px;color:#3f6b56"><span class="ph">[FIGURE]</span></span>
+          </div>
+        </div>
+        <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:12px;color:#9a9389">Source · <a class="om-src" href="[LINK]" target="_blank" rel="noopener"><span class="ph">[DATA SOURCE]</span> ↗</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== INDICATOR EXPLORER — CARD GRID ===================== -->
+  <section style="padding:80px 32px 36px;background:#f4f3f0;border-top:1px solid rgba(42,74,60,.12)">
+    <div style="max-width:1080px;margin:0 auto">
+      <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b0432b;margin-bottom:18px"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/layout-dashboard.svg');mask-image:url('icons/layout-dashboard.svg')"></span><span class="ph">[TITLE — section label]</span></div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,3.8vw,48px);line-height:1.04;margin:0 0 16px;max-width:22ch"><span class="ph">[TITLE — section headline]</span></h2>
+      <p style="font-size:18px;line-height:1.6;color:#4a544e;max-width:60ch;margin:0 0 30px"><span class="ph">[ANALYSE TEXT — introduce the full data set]</span></p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+        <!-- Indicator card — repeat this block once per number in your data set -->
+        <div class="om-card" style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:22px;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:14px">
+            <span class="om-ic" style="width:20px;height:20px;color:#2a4a3c;-webkit-mask-image:url('icons/layout-dashboard.svg');mask-image:url('icons/layout-dashboard.svg')"></span>
+            <span class="om-mono" style="font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:#4a544e"><span class="ph">[DATA — category]</span></span>
+          </div>
+          <div style="font-size:15.5px;font-weight:600;line-height:1.32;color:#1a1f1c;margin-bottom:18px;min-height:42px"><span class="ph">[TITLE — indicator name]</span></div>
+          <div style="margin-bottom:10px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px"><span style="font-size:12.5px;color:#1a1f1c"><span class="ph">[DATA — label]</span></span><span style="font-family:'Newsreader',serif;font-size:19px;color:#b0432b"><span class="ph">[FIGURE]</span></span></div>
+            <div style="height:8px;background:rgba(42,74,60,.08);border-radius:2px;overflow:hidden"><div style="height:100%;width:70%;background:#b0432b"></div></div>
+          </div>
+          <div style="margin-bottom:14px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px"><span style="font-size:12.5px;color:#4a544e"><span class="ph">[DATA — benchmark label]</span></span><span style="font-family:'Newsreader',serif;font-size:19px;color:#3f6b56"><span class="ph">[FIGURE]</span></span></div>
+            <div style="height:8px;background:rgba(42,74,60,.08);border-radius:2px;overflow:hidden"><div style="height:100%;width:45%;background:#3f6b56"></div></div>
+          </div>
+          <div style="font-size:12.5px;color:#4a544e;line-height:1.4;margin-top:auto"><span class="ph">[ANALYSE TEXT — short note]</span></div>
+          <div class="om-mono" style="font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#9a9389;margin-top:12px;border-top:1px solid rgba(42,74,60,.1);padding-top:9px"><span class="ph">[DATA — date]</span> · <a class="om-src" href="[LINK]" target="_blank" rel="noopener"><span class="ph">[DATA SOURCE]</span> ↗</a></div>
+        </div>
+
+        <div class="om-card" style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:22px;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:14px">
+            <span class="om-ic" style="width:20px;height:20px;color:#b0432b;-webkit-mask-image:url('icons/heart-pulse.svg');mask-image:url('icons/heart-pulse.svg')"></span>
+            <span class="om-mono" style="font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:#4a544e"><span class="ph">[DATA — category]</span></span>
+          </div>
+          <div style="font-size:15.5px;font-weight:600;line-height:1.32;color:#1a1f1c;margin-bottom:18px;min-height:42px"><span class="ph">[TITLE — indicator name]</span></div>
+          <div style="margin-bottom:10px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px"><span style="font-size:12.5px;color:#1a1f1c"><span class="ph">[DATA — label]</span></span><span style="font-family:'Newsreader',serif;font-size:19px;color:#b0432b"><span class="ph">[FIGURE]</span></span></div>
+            <div style="height:8px;background:rgba(42,74,60,.08);border-radius:2px;overflow:hidden"><div style="height:100%;width:85%;background:#b0432b"></div></div>
+          </div>
+          <div style="margin-bottom:14px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px"><span style="font-size:12.5px;color:#4a544e"><span class="ph">[DATA — benchmark label]</span></span><span style="font-family:'Newsreader',serif;font-size:19px;color:#3f6b56"><span class="ph">[FIGURE]</span></span></div>
+            <div style="height:8px;background:rgba(42,74,60,.08);border-radius:2px;overflow:hidden"><div style="height:100%;width:55%;background:#3f6b56"></div></div>
+          </div>
+          <div style="font-size:12.5px;color:#4a544e;line-height:1.4;margin-top:auto"><span class="ph">[ANALYSE TEXT — short note]</span></div>
+          <div class="om-mono" style="font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#9a9389;margin-top:12px;border-top:1px solid rgba(42,74,60,.1);padding-top:9px"><span class="ph">[DATA — date]</span> · <a class="om-src" href="[LINK]" target="_blank" rel="noopener"><span class="ph">[DATA SOURCE]</span> ↗</a></div>
+        </div>
+
+        <div class="om-card" style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:22px;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:14px">
+            <span class="om-ic" style="width:20px;height:20px;color:#b08a3e;-webkit-mask-image:url('icons/coins.svg');mask-image:url('icons/coins.svg')"></span>
+            <span class="om-mono" style="font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:#4a544e"><span class="ph">[DATA — category]</span></span>
+          </div>
+          <div style="font-size:15.5px;font-weight:600;line-height:1.32;color:#1a1f1c;margin-bottom:18px;min-height:42px"><span class="ph">[TITLE — indicator name]</span></div>
+          <div style="margin-bottom:10px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px"><span style="font-size:12.5px;color:#1a1f1c"><span class="ph">[DATA — label]</span></span><span style="font-family:'Newsreader',serif;font-size:19px;color:#b0432b"><span class="ph">[FIGURE]</span></span></div>
+            <div style="height:8px;background:rgba(42,74,60,.08);border-radius:2px;overflow:hidden"><div style="height:100%;width:60%;background:#b0432b"></div></div>
+          </div>
+          <div style="margin-bottom:14px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px"><span style="font-size:12.5px;color:#4a544e"><span class="ph">[DATA — benchmark label]</span></span><span style="font-family:'Newsreader',serif;font-size:19px;color:#3f6b56"><span class="ph">[FIGURE]</span></span></div>
+            <div style="height:8px;background:rgba(42,74,60,.08);border-radius:2px;overflow:hidden"><div style="height:100%;width:40%;background:#3f6b56"></div></div>
+          </div>
+          <div style="font-size:12.5px;color:#4a544e;line-height:1.4;margin-top:auto"><span class="ph">[ANALYSE TEXT — short note]</span></div>
+          <div class="om-mono" style="font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#9a9389;margin-top:12px;border-top:1px solid rgba(42,74,60,.1);padding-top:9px"><span class="ph">[DATA — date]</span> · <a class="om-src" href="[LINK]" target="_blank" rel="noopener"><span class="ph">[DATA SOURCE]</span> ↗</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PLACEHOLDER — AWAITING QUALITATIVE DATA ===================== -->
+  <section style="padding:80px 32px;background:#2a4a3c;color:#f4f3f0">
+    <div style="max-width:1080px;margin:0 auto">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start">
+        <div>
+          <div style="font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#cda85f;margin-bottom:18px"><span class="ph">[TITLE — section label]</span></div>
+          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.05;margin:0 0 22px"><span class="ph">[TITLE — section headline]</span></h2>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="border-left:2px solid #cda85f;padding-left:18px"><div style="font-size:16px;font-weight:600"><span class="ph">[TITLE — item name]</span></div><div style="font-size:14px;color:rgba(244,243,240,.75);line-height:1.45;margin-top:3px"><span class="ph">[ANALYSE TEXT — one line about it]</span></div></div>
+            <div style="border-left:2px solid #cda85f;padding-left:18px"><div style="font-size:16px;font-weight:600"><span class="ph">[TITLE — item name]</span></div><div style="font-size:14px;color:rgba(244,243,240,.75);line-height:1.45;margin-top:3px"><span class="ph">[ANALYSE TEXT — one line about it]</span></div></div>
+            <div style="border-left:2px solid #cda85f;padding-left:18px"><div style="font-size:16px;font-weight:600"><span class="ph">[TITLE — item name]</span></div><div style="font-size:14px;color:rgba(244,243,240,.75);line-height:1.45;margin-top:3px"><span class="ph">[ANALYSE TEXT — one line about it]</span></div></div>
+          </div>
+        </div>
+
+        <div style="border:2px dashed #e6007e;border-radius:6px;padding:30px;background:rgba(230,0,126,.04)">
+          <div class="om-mono" style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#e6007e;margin-bottom:14px">○ Awaiting data not yet collected</div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:26px;line-height:1.1;margin:0 0 14px;color:#f4f3f0"><span class="ph">[TITLE — placeholder heading]</span></h3>
+          <p style="font-size:15px;line-height:1.55;color:rgba(244,243,240,.8);margin:0 0 18px"><span class="ph">[ANALYSE TEXT — describe what will go here later]</span></p>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="height:14px;width:90%;background:repeating-linear-gradient(45deg,rgba(230,0,126,.12),rgba(230,0,126,.12) 8px,transparent 8px,transparent 16px);border-radius:3px"></div>
+            <div style="height:14px;width:70%;background:repeating-linear-gradient(45deg,rgba(230,0,126,.12),rgba(230,0,126,.12) 8px,transparent 8px,transparent 16px);border-radius:3px"></div>
+            <div style="height:14px;width:80%;background:repeating-linear-gradient(45deg,rgba(230,0,126,.12),rgba(230,0,126,.12) 8px,transparent 8px,transparent 16px);border-radius:3px"></div>
+          </div>
+          <div class="om-mono" style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#e6007e;margin-top:18px">Placeholder — to be replaced with collected data</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SOURCES ===================== -->
+  <section style="padding:64px 32px;background:#f4f3f0;border-top:1px solid rgba(42,74,60,.12)">
+    <div style="max-width:1080px;margin:0 auto">
+      <div style="display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:start">
+        <div>
+          <div style="font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b0432b;margin-bottom:16px"><span class="ph">[TITLE — section label]</span></div>
+          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(26px,3vw,38px);line-height:1.08;margin:0 0 18px"><span class="ph">[TITLE — section headline]</span></h2>
+          <p style="font-size:16px;line-height:1.6;color:#4a544e;margin:0 0 14px"><span class="ph">[ANALYSE TEXT — note on where the data comes from and how it is kept up to date]</span></p>
+        </div>
+        <div>
+          <div class="om-mono" style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#9a9389;margin-bottom:14px">Public data sources — click to open</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 24px">
+            <a class="om-src" href="[LINK]" target="_blank" rel="noopener" style="font-size:13.5px;line-height:1.4;color:#2a4a3c;opacity:.85;padding:4px 0"><span class="ph">[DATA SOURCE]</span> ↗</a>
+            <a class="om-src" href="[LINK]" target="_blank" rel="noopener" style="font-size:13.5px;line-height:1.4;color:#2a4a3c;opacity:.85;padding:4px 0"><span class="ph">[DATA SOURCE]</span> ↗</a>
+            <a class="om-src" href="[LINK]" target="_blank" rel="noopener" style="font-size:13.5px;line-height:1.4;color:#2a4a3c;opacity:.85;padding:4px 0"><span class="ph">[DATA SOURCE]</span> ↗</a>
+            <a class="om-src" href="[LINK]" target="_blank" rel="noopener" style="font-size:13.5px;line-height:1.4;color:#2a4a3c;opacity:.85;padding:4px 0"><span class="ph">[DATA SOURCE]</span> ↗</a>
+            <a class="om-src" href="[LINK]" target="_blank" rel="noopener" style="font-size:13.5px;line-height:1.4;color:#2a4a3c;opacity:.85;padding:4px 0"><span class="ph">[DATA SOURCE]</span> ↗</a>
+            <a class="om-src" href="[LINK]" target="_blank" rel="noopener" style="font-size:13.5px;line-height:1.4;color:#2a4a3c;opacity:.85;padding:4px 0"><span class="ph">[DATA SOURCE]</span> ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer style="padding:48px 32px 64px;background:#1a1f1c;color:rgba(244,243,240,.7)">
+    <div style="max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-end">
+      <div style="max-width:54ch">
+        <div style="font-family:'Newsreader',serif;font-size:22px;color:#f4f3f0;margin-bottom:12px"><span class="ph">[TITLE — the story title, repeated]</span></div>
+        <p style="font-size:14px;line-height:1.6;margin:0 0 16px"><span class="ph">[ANALYSE TEXT — one line about the project]</span></p>
+        <div style="display:flex;align-items:center;gap:10px;font-size:12.5px"><span style="width:14px;height:14px;border:2px dashed #e6007e;border-radius:3px;flex:none"></span><span class="om-mono" style="text-transform:uppercase;letter-spacing:.06em;font-size:10px;color:#e6007e">Magenta = placeholder, awaiting data not yet collected</span></div>
+      </div>
+      <div class="om-mono" style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,243,240,.4)"><span class="ph">[DATA — organisation]</span> · <span class="ph">[DATA — date]</span></div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

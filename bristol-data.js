@@ -35,7 +35,26 @@
     census:   { name: "Census 2021 (ONS)",                      url: "https://www.ons.gov.uk/census" },
     milburn:  { name: "Youth participation review (gov.uk)",    url: "https://www.gov.uk/government/publications" },
     dfe:      { name: "DfE — Explore education statistics",     url: "https://explore-education-statistics.service.gov.uk/" },
-    ncmp:     { name: "NHS — National Child Measurement Programme", url: "https://digital.nhs.uk/data-and-information/publications/statistical/national-child-measurement-programme" }
+    ncmp:     { name: "NHS — National Child Measurement Programme", url: "https://digital.nhs.uk/data-and-information/publications/statistical/national-child-measurement-programme" },
+
+    // ---- Early-years sub-page ----
+    ey_overcrowd:  { name: "Census 2021 · TS052 Occupancy rating (Nomis)",        url: "https://www.nomisweb.co.uk/datasets/c2021ts052",                                                                                          g: "LSOA" },
+    ey_clif:       { name: "DWP · Children in Low Income Families (FYE 2025)",     url: "https://www.gov.uk/government/statistics/children-in-low-income-families-local-area-statistics-2022-to-2025/children-in-low-income-families-local-area-statistics-financial-year-ending-2025", g: "LSOA" },
+    ey_idaci:      { name: "Indices of Deprivation 2025 · IDACI (Bristol LSOAs)",  url: "https://open-data-bristol-bcc.hub.arcgis.com/datasets/indices-of-deprivation-2025/explore",                                            g: "LSOA" },
+    ey_earlyhelp:  { name: "Bristol Ward Profiles · Children's Services",          url: "https://www.bristol.gov.uk/council/statistics-census-information/ward-profile-data",                                                     g: "Ward" },
+    ey_asq:        { name: "OHID · Child development at 2–2½ years (2023/24)",     url: "https://www.gov.uk/government/statistics/child-development-outcomes-at-2-to-2-and-a-half-years-april-2023-to-march-2024-annual-2023-to-2024", g: "LA" },
+    ey_eyfsp:      { name: "Open Data Bristol · Good Level of Development by ward", url: "https://opendata.bristol.gov.uk/explore/dataset/early-years-pupils-achieving-a-good-level-of-development-in-bristol/",                   g: "Ward" },
+    ey_rba:        { name: "DfE · Reception Baseline Assessment",                  url: "https://www.gov.uk/government/collections/reception-baseline-assessment",                                                                g: "None" },
+    ey_funded:     { name: "Bristol · Childcare Sufficiency Assessment 2024",      url: "https://www.bristol.gov.uk/files/documents/9901-bristol-city-council-childcare-sufficiency-assessment-2024-final/file",                  g: "Ward" },
+    ey_lbw:        { name: "OHID Fingertips · Child & Maternal Health",            url: "https://fingertips.phe.org.uk/profile/child-health-profiles",                                                                            g: "LA" },
+    ey_satod:      { name: "NHS England · Smoking at Time of Delivery (SATOD)",    url: "https://digital.nhs.uk/data-and-information/data-collections-and-data-sets/data-collections/smoking-status-at-time-of-delivery-satod-data-collection", g: "LA" },
+    ey_socialcare: { name: "Open Data Bristol · Children in social care by ward",  url: "https://opendata.bristol.gov.uk/maps/bcc::children-in-social-care-within-bristol-by-ward",                                              g: "Ward" },
+    ey_ncmp:       { name: "OHID Fingertips · NCMP small-area (ward/MSOA)",        url: "https://fingertips.phe.org.uk/profile/obesity-physical-activity-nutrition",                                                              g: "Ward" },
+    ey_play:       { name: "Bristol Quality of Life Survey · ward view",          url: "https://opendata.bristol.gov.uk/pages/quality_of_life_results_202021/ward-view",                                                         g: "Ward" },
+    ey_hle:        { name: "LG Inform · Healthy life expectancy at birth (Bristol)", url: "https://lginform.local.gov.uk/reports/lgastandard?mod-area=E06000023&mod-metric=3156&mod-group=AllSingleTierAndCountyLaInCountry_England&mod-type=namedComparisonGroup", g: "LA" },
+    ey_prem:       { name: "OHID Fingertips · Pregnancy & birth (preterm)",        url: "https://fingertips.phe.org.uk/profile/child-health-profiles/supporting-information/pregnancy-and-birth",                                g: "LA" },
+    ey_dental:     { name: "OHID · Oral health survey of 5-year-olds (2024)",      url: "https://www.gov.uk/government/statistics/oral-health-survey-of-5-year-old-schoolchildren-2024",                                          g: "LA" },
+    ey_kindred:    { name: "Kindred² · School Readiness Survey (Jan 2026)",        url: "https://kindredsquared.org.uk/wp-content/uploads/2026/01/School-Readiness-Survey-January-2026-Kindred-Squared.pdf",                       g: "National" }
   };
 
   // ---- every figure used in the narrative ------------------------------------
@@ -141,6 +160,29 @@
     degree_w:     { title:"Adults with a degree (%)",                 unit:"%",     src:"census", wards:[ {n:"Redland",v:67,t:"aff"}, {n:"Hartcliffe & Withywood",v:15.8,t:"dep"} ] }
   };
 
+  // ---- EARLY-YEARS SUB-PAGE (ages 0–5) --------------------------------------
+  //  Every topic from the early-years brief, each local figure paired with its
+  //  benchmark ("the median" — England, a neighbour LA, or the prior year), and
+  //  each wired to its source at the SMALLEST geography that source publishes.
+  //  v:null  → value not yet confirmed; the live source link is still shown so
+  //            the number can be read straight from the publisher (smallest grain).
+  var EARLY = [
+    // ---------------- Economic circumstances ----------------
+    { id:"ey_pov",       icon:"coins",         cluster:"Economic circumstances", theme:"health",     label:"Children in relative poverty (after housing costs)", a:{p:"Bristol",v:25.6}, b:{p:"Bath & NES",v:16.3}, unit:"%", src:"ey_clif", asOf:"FYE 2025", note:"DWP local child-poverty stats; LSOA + after-housing-costs via Stat-Xplore." },
+    { id:"ey_idaci",     icon:"scale-balance", cluster:"Economic circumstances", theme:"health",     label:"Children in income-deprived households (IDACI)", a:{p:"Bristol",v:37}, b:{p:"England avg",v:null}, unit:"%", src:"ey_idaci", asOf:"IoD 2025", note:"Over 30,400 children. IDACI score by LSOA — the city's small-area backbone." },
+
+    // ---------------- Education & learning ----------------
+    { id:"ey_eyfsp",     icon:"seedling",      cluster:"Education & learning",   theme:"education",  label:"Good Level of Development (EYFSP)",           a:{p:"Bristol",v:68.7}, b:{p:"England",v:67.7}, unit:"%",  src:"ey_eyfsp", asOf:"2024/25", note:"School-readiness at reception. Published to ward on Open Data Bristol." },
+    { id:"ey_ready",     icon:"blocks",        cluster:"Education & learning",   theme:"education",  label:"Children not “school ready” at reception", a:{p:"South West",v:36}, b:{p:"Year before",v:33}, unit:"%", src:"ey_kindred", asOf:"Jan 2026", note:"National survey of reception teachers — not localisable below region." },
+    { id:"ey_toilet",    icon:"alert",         cluster:"Education & learning",   theme:"education",  label:"Not toilet-trained when starting reception", a:{p:"This year",v:26}, b:{p:"Year before",v:24}, unit:"%", src:"ey_kindred", asOf:"Jan 2026", note:"Teacher-reported national estimate; no Bristol breakdown." },
+
+    // ---------------- Health & wellbeing ----------------
+    { id:"ey_social",    icon:"shield",        cluster:"Health & wellbeing",     theme:"health",     label:"Children known to social care (in care)",    a:{p:"Bristol",v:81}, b:{p:"England",v:67}, unit:"per10k", src:"ey_socialcare", asOf:"2025", note:"753 children in care, March 2025. Ward breakdown on Open Data Bristol." },
+    { id:"ey_obesity",   icon:"weight",        cluster:"Health & wellbeing",     theme:"health",     label:"Overweight/obese at reception",              a:{p:"Bristol",v:10.8}, b:{p:"England",v:9.9}, unit:"%",  src:"ey_ncmp", asOf:"2023/24", note:"NCMP. Small-area estimates to ward/MSOA on Fingertips (3-yr pooled)." },
+    { id:"ey_hle",       icon:"heart",         cluster:"Health & wellbeing",     theme:"health",     label:"Healthy life expectancy at birth (female)",  a:{p:"Bristol",v:60.1}, b:{p:"Bath & NES",v:65.6}, unit:"yrs", src:"ey_hle", asOf:"2022-24", note:"Years lived in good health. Local-authority level (ONS via LG Inform)." },
+    { id:"ey_prem",      icon:"heart-pulse",   cluster:"Health & wellbeing",     theme:"health",     label:"Premature births (per 1,000)",               a:{p:"South West",v:74.8}, b:{p:"England",v:null}, unit:"per1k", src:"ey_prem", asOf:"2022-24", note:"Births under 37 weeks. A regional bright spot — the SW rate is England's lowest." }
+  ];
+
   window.BRISTOL_DATA = {
     updated: "June 2026",
     liveUrl: null,          // ← set to a CORS-enabled JSON URL to auto-pull updates
@@ -149,6 +191,7 @@
     charts: CHARTS,
     dumbbells: DUMBBELLS,
     indicators: INDICATORS,
-    wards: WARDS
+    wards: WARDS,
+    early: EARLY
   };
 })();
