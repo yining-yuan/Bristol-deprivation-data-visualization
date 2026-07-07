@@ -1,0 +1,195 @@
+{
+  "_comment": "Agent-collected 10-yr series (DfE/ONS/DWP) not available from the Nomis API. Folded into bristol_trends.csv by compile_trends.py. 'year' = academic-year END year or rolling-period END year. england = benchmark line (see notes for UK/GB comparators).",
+  "indicators": [
+    {
+      "id": "le_male",
+      "label": "Life expectancy at birth, males",
+      "unit": "yrs",
+      "source": "ONS — Life expectancy for local areas of Great Britain",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/healthandlifeexpectancies/datasets/lifeexpectancyforlocalareasofgreatbritain",
+      "notes": "Rolling 3-year periods (year = end year); period LE at birth. Bristol vs England, read directly from the ONS file.",
+      "points": [
+        {"year": 2013, "bristol": 78.21, "england": 79.28},
+        {"year": 2014, "bristol": 78.35, "england": 79.42},
+        {"year": 2015, "bristol": 78.51, "england": 79.43},
+        {"year": 2016, "bristol": 78.88, "england": 79.48},
+        {"year": 2017, "bristol": 78.86, "england": 79.49},
+        {"year": 2018, "bristol": 78.62, "england": 79.55},
+        {"year": 2019, "bristol": 78.71, "england": 79.66},
+        {"year": 2020, "bristol": 78.75, "england": 79.29},
+        {"year": 2021, "bristol": 78.56, "england": 79.02},
+        {"year": 2022, "bristol": 78.16, "england": 78.85},
+        {"year": 2023, "bristol": 78.14, "england": 79.11}
+      ]
+    },
+    {
+      "id": "le_female",
+      "label": "Life expectancy at birth, females",
+      "unit": "yrs",
+      "source": "ONS — Life expectancy for local areas of Great Britain",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/healthandlifeexpectancies/datasets/lifeexpectancyforlocalareasofgreatbritain",
+      "notes": "Rolling 3-year periods (year = end year); period LE at birth. Bristol vs England, read directly from the ONS file.",
+      "points": [
+        {"year": 2013, "bristol": 82.70, "england": 83.01},
+        {"year": 2014, "bristol": 82.81, "england": 83.10},
+        {"year": 2015, "bristol": 82.72, "england": 83.09},
+        {"year": 2016, "bristol": 82.82, "england": 83.11},
+        {"year": 2017, "bristol": 82.76, "england": 83.09},
+        {"year": 2018, "bristol": 82.65, "england": 83.16},
+        {"year": 2019, "bristol": 82.81, "england": 83.31},
+        {"year": 2020, "bristol": 82.74, "england": 83.07},
+        {"year": 2021, "bristol": 82.70, "england": 82.94},
+        {"year": 2022, "bristol": 82.63, "england": 82.82},
+        {"year": 2023, "bristol": 82.69, "england": 83.05}
+      ]
+    },
+    {
+      "id": "child_pov",
+      "label": "Children in relative low income families",
+      "unit": "%",
+      "source": "DWP — Children in low income families: local area statistics 2014–2024",
+      "source_url": "https://www.gov.uk/government/statistics/children-in-low-income-families-local-area-statistics-2014-to-2024",
+      "notes": "Relative low income, before housing costs, under 16. Single 2014–2024 vintage (no series break). England value derived by aggregating the 9 English regions (validated to ~0.1pp).",
+      "points": [
+        {"year": 2015, "bristol": 16.2, "england": 16.1},
+        {"year": 2016, "bristol": 17.4, "england": 17.2},
+        {"year": 2017, "bristol": 17.7, "england": 17.1},
+        {"year": 2018, "bristol": 20.6, "england": 19.4},
+        {"year": 2019, "bristol": 19.4, "england": 18.2},
+        {"year": 2020, "bristol": 22.4, "england": 21.1},
+        {"year": 2021, "bristol": 20.0, "england": 18.6},
+        {"year": 2022, "bristol": 20.5, "england": 19.3},
+        {"year": 2023, "bristol": 22.4, "england": 21.3},
+        {"year": 2024, "bristol": 23.0, "england": 22.1}
+      ]
+    },
+    {
+      "id": "gdhi",
+      "label": "Household income (GDHI) per head",
+      "unit": "£",
+      "source": "ONS — Regional gross disposable household income (GDHI), 1997–2023",
+      "source_url": "https://www.ons.gov.uk/economy/regionalaccounts/grossdisposablehouseholdincome/bulletins/regionalgrossdisposablehouseholdincomegdhi/1997to2023",
+      "notes": "GDHI per head, current basic prices. Benchmark line is the UK average (ONS headline comparator); the England average runs ~£0.5–0.7k higher each year.",
+      "points": [
+        {"year": 2013, "bristol": 16294, "england": 17506},
+        {"year": 2014, "bristol": 16909, "england": 18061},
+        {"year": 2015, "bristol": 17729, "england": 19004},
+        {"year": 2016, "bristol": 18197, "england": 19228},
+        {"year": 2017, "bristol": 18883, "england": 19677},
+        {"year": 2018, "bristol": 19518, "england": 20407},
+        {"year": 2019, "bristol": 20442, "england": 21016},
+        {"year": 2020, "bristol": 20455, "england": 20978},
+        {"year": 2021, "bristol": 21370, "england": 21729},
+        {"year": 2022, "bristol": 22741, "england": 22907},
+        {"year": 2023, "bristol": 24696, "england": 24836}
+      ]
+    },
+    {
+      "id": "ks2_rwm",
+      "label": "KS2 reading, writing & maths (expected standard)",
+      "unit": "%",
+      "source": "DfE — Key stage 2 attainment",
+      "source_url": "https://explore-education-statistics.service.gov.uk/find-statistics/key-stage-2-attainment/2024-25-revised",
+      "notes": "% meeting expected standard, state-funded schools. Break: no assessments 2019/20 & 2020/21 (COVID). Year = academic-year end.",
+      "points": [
+        {"year": 2016, "bristol": 54, "england": 54},
+        {"year": 2017, "bristol": 61, "england": 62},
+        {"year": 2018, "bristol": 63, "england": 65},
+        {"year": 2019, "bristol": 65, "england": 65},
+        {"year": 2022, "bristol": 58, "england": 59},
+        {"year": 2023, "bristol": 56, "england": 60},
+        {"year": 2024, "bristol": 56, "england": 61},
+        {"year": 2025, "bristol": 59, "england": 63}
+      ]
+    },
+    {
+      "id": "attainment8",
+      "label": "GCSE Average Attainment 8 score",
+      "unit": "score",
+      "source": "DfE — Key stage 4 performance",
+      "source_url": "https://explore-education-statistics.service.gov.uk/find-statistics/key-stage-4-performance/2024-25",
+      "notes": "Average Attainment 8 per pupil, state-funded schools. 2019/20 & 2020/21 grades (centre/teacher-assessed) are inflated — DfE warns against cross-year comparison.",
+      "points": [
+        {"year": 2017, "bristol": 44.0, "england": 46.3},
+        {"year": 2018, "bristol": 45.5, "england": 46.5},
+        {"year": 2019, "bristol": 44.7, "england": 46.7},
+        {"year": 2020, "bristol": 48.6, "england": 50.2},
+        {"year": 2021, "bristol": 49.6, "england": 50.9},
+        {"year": 2022, "bristol": 48.2, "england": 48.8},
+        {"year": 2023, "bristol": 45.4, "england": 46.3},
+        {"year": 2024, "bristol": 45.2, "england": 45.9},
+        {"year": 2025, "bristol": 46.4, "england": 46.0}
+      ]
+    },
+    {
+      "id": "progress8",
+      "label": "GCSE Average Progress 8 score",
+      "unit": "score",
+      "source": "DfE — Key stage 4 performance",
+      "source_url": "https://explore-education-statistics.service.gov.uk/find-statistics/key-stage-4-performance/2023-24",
+      "notes": "Average Progress 8, state-funded schools. No exams 2019/20 & 2020/21. Not published for 2024/25+ (2020 KS2 baseline missing). 0 = in line with pupils nationally.",
+      "points": [
+        {"year": 2017, "bristol": -0.22, "england": -0.03},
+        {"year": 2018, "bristol": -0.09, "england": -0.02},
+        {"year": 2019, "bristol": -0.05, "england": -0.03},
+        {"year": 2022, "bristol": -0.05, "england": -0.03},
+        {"year": 2023, "bristol": -0.03, "england": -0.03},
+        {"year": 2024, "bristol": -0.01, "england": -0.03}
+      ]
+    },
+    {
+      "id": "eyfsp_gld",
+      "label": "EYFSP Good Level of Development",
+      "unit": "%",
+      "source": "DfE — Early years foundation stage profile results",
+      "source_url": "https://explore-education-statistics.service.gov.uk/find-statistics/early-years-foundation-stage-profile-results",
+      "notes": "% achieving a Good Level of Development. Framework reformed in 2021/22 — figures from 2022 on are NOT comparable with earlier years. No data 2019/20 & 2020/21.",
+      "points": [
+        {"year": 2016, "bristol": 66.3, "england": 69.3},
+        {"year": 2017, "bristol": 67.7, "england": 70.7},
+        {"year": 2018, "bristol": 69.0, "england": 71.5},
+        {"year": 2019, "bristol": 70.6, "england": 71.8},
+        {"year": 2022, "bristol": 64.7, "england": 65.2},
+        {"year": 2023, "bristol": 66.0, "england": 67.2},
+        {"year": 2024, "bristol": 68.4, "england": 67.7},
+        {"year": 2025, "bristol": 68.7, "england": 68.3}
+      ]
+    },
+    {
+      "id": "absence",
+      "label": "Persistent absence (10%+ of sessions)",
+      "unit": "%",
+      "source": "DfE — Pupil absence in schools in England",
+      "source_url": "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-absence-in-schools-in-england",
+      "notes": "% of enrolments missing 10%+ of sessions. Bristol 2017/18–2021/22 read from the Bristol JSNA chart (whole numbers); 2015/16, 2016/17 and Bristol 2024/25 unverifiable (omitted).",
+      "points": [
+        {"year": 2018, "bristol": 14, "england": 11.2},
+        {"year": 2019, "bristol": 14, "england": 10.9},
+        {"year": 2021, "bristol": 16, "england": 12.1},
+        {"year": 2022, "bristol": 26, "england": 22.5},
+        {"year": 2023, "bristol": 26.0, "england": 21.2},
+        {"year": 2024, "bristol": 24.79, "england": 19.95},
+        {"year": 2025, "bristol": null, "england": 18.14}
+      ]
+    },
+    {
+      "id": "suspensions",
+      "label": "Suspension rate (per 100 pupils)",
+      "unit": "per 100 pupils",
+      "source": "DfE — Suspensions and permanent exclusions in England",
+      "source_url": "https://explore-education-statistics.service.gov.uk/find-statistics/suspensions-and-permanent-exclusions-in-england/2023-24",
+      "notes": "Suspensions as a % of the pupil population. 2019/20 & 2020/21 are COVID-depressed (school closures). 'Fixed-period exclusion' renamed 'suspension' in 2021/22 (same measure).",
+      "points": [
+        {"year": 2016, "bristol": 7.31, "england": 4.29},
+        {"year": 2017, "bristol": 8.70, "england": 4.76},
+        {"year": 2018, "bristol": 8.85, "england": 5.08},
+        {"year": 2019, "bristol": 7.51, "england": 5.36},
+        {"year": 2020, "bristol": 5.56, "england": 3.76},
+        {"year": 2021, "bristol": 6.02, "england": 4.25},
+        {"year": 2022, "bristol": 10.62, "england": 6.91},
+        {"year": 2023, "bristol": 14.46, "england": 9.33},
+        {"year": 2024, "bristol": 14.95, "england": 11.31}
+      ]
+    }
+  ]
+}

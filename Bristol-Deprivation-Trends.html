@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ten years of change — Bristol vs the England average</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="bristol-trends.js"></script>
+<script src="indicator-colours.js"></script>
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#f4f3f0;color:#1a1f1c;font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:#b08a3e;color:#fff}
+  .mono{font-family:'IBM Plex Mono',monospace}
+  .serif{font-family:'Newsreader',serif}
+  .card{transition:transform .25s ease, box-shadow .25s ease}
+  .card:hover{transform:translateY(-3px);box-shadow:0 16px 34px -20px rgba(26,31,28,.4)}
+  .src{color:inherit;opacity:.62;text-decoration:none;border-bottom:1px dotted currentColor;transition:opacity .15s ease}
+  .src:hover{opacity:1}
+  a.plain{color:inherit;text-decoration:none}
+  .chip{display:inline-flex;align-items:center;gap:7px;padding:8px 15px;border-radius:999px;border:1px solid rgba(42,74,60,.22);background:transparent;color:#4a544e;font:500 13px/1 'IBM Plex Sans';cursor:pointer;white-space:nowrap;transition:all .15s ease}
+  .chip.on{background:#2a4a3c;border-color:#2a4a3c;color:#fbfaf7}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+  @media(max-width:900px){.grid{grid-template-columns:1fr !important}}
+  @media(max-width:640px){.grid{grid-template-columns:1fr !important}}
+</style>
+</head>
+<body>
+
+<div style="position:fixed;top:0;left:0;right:0;height:3px;background:transparent;z-index:90"><div id="prog" style="height:100%;width:0%;background:#b0432b;transition:width .12s linear"></div></div>
+
+<!-- ===================== HERO ===================== -->
+<header style="background:#2a4a3c;color:#f4f3f0;padding:44px 32px 56px">
+  <div style="max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;font:500 12px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:rgba(244,243,240,.62)">
+    <a class="plain" href="index.html">← Policy Bristol</a>
+    <span>A data story · <span id="h-updated"></span></span>
+  </div>
+  <div style="max-width:1120px;margin:56px auto 0">
+    <div style="font:500 13px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#cda85f;margin-bottom:26px">The direction of travel</div>
+    <h1 class="serif" style="font-weight:500;font-size:clamp(42px,7vw,98px);line-height:.98;letter-spacing:-.015em;margin:0 0 26px;max-width:16ch">Ten years of change, one line at a time</h1>
+    <p style="font-size:clamp(16px,1.7vw,19px);line-height:1.5;max-width:60ch;color:rgba(244,243,240,.82);margin:0 0 40px">
+      For each indicator we can track over time, this page follows <b style="color:#fff">Bristol</b> against the <b style="color:#fff">England average</b> — so you can see not just where the city stands today, but which way it has been moving.
+    </p>
+    <div id="hero-stats" style="display:flex;gap:44px;flex-wrap:wrap"></div>
+  </div>
+  <div style="max-width:1120px;margin:40px auto 0;display:flex;justify-content:center;color:rgba(244,243,240,.5)">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span class="mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase">Scroll</span><div style="animation:bob 1.8s ease-in-out infinite;font-size:18px">↓</div></div>
+  </div>
+</header>
+
+<!-- ===================== LEGEND + FILTER ===================== -->
+<section style="padding:40px 32px 8px;position:sticky;top:0;background:rgba(244,243,240,.94);backdrop-filter:blur(6px);z-index:70;border-bottom:1px solid rgba(42,74,60,.1)">
+  <div style="max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap">
+    <div id="cat-chips" style="display:flex;flex-wrap:wrap;gap:9px"></div>
+    <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+      <span style="display:flex;align-items:center;gap:7px;font-size:13px;color:#4a544e"><span style="width:22px;height:3px;border-radius:2px;background:#3f6b56;display:inline-block"></span>Bristol — better than average</span>
+      <span style="display:flex;align-items:center;gap:7px;font-size:13px;color:#4a544e"><span style="width:22px;height:3px;border-radius:2px;background:#b0432b;display:inline-block"></span>Bristol — worse / unclear</span>
+      <span style="display:flex;align-items:center;gap:7px;font-size:13px;color:#4a544e"><span style="width:22px;height:0;border-top:3px dashed #8a8d86;display:inline-block"></span>England average</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TREND CARDS ===================== -->
+<main id="cats" style="padding:16px 32px 40px"></main>
+
+<!-- ===================== SOURCES ===================== -->
+<section style="padding:56px 32px;background:#f4f3f0;border-top:1px solid rgba(42,74,60,.12)">
+  <div style="max-width:1120px;margin:0 auto">
+    <div style="font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b0432b;margin-bottom:16px">Sources &amp; method</div>
+    <h2 class="serif" style="font-weight:500;font-size:clamp(24px,3vw,34px);line-height:1.1;margin:0 0 18px;max-width:26ch">Every line is drawn from published, machine-readable data.</h2>
+    <p style="font-size:14.5px;line-height:1.6;max-width:70ch;color:#4a544e;margin:0 0 26px">
+      Labour-market and pay series are pulled live from the ONS via the Nomis API; education, life-expectancy and income series come from DfE, ONS and DWP releases. Each is stored in <span class="mono" style="font-size:13px">bristol_trends.csv</span> before being drawn here. Where a national measure or definition changed mid-series (e.g. the EYFSP framework, or absence recording), it is noted on the card. "England average" is the benchmark line; some series compare against Great Britain or the UK where England is not published — see each source.
+    </p>
+    <div id="src-list" style="display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;max-width:900px"></div>
+  </div>
+</section>
+
+<footer style="padding:44px 32px 60px;background:#1a1f1c;color:rgba(244,243,240,.7)">
+  <div style="max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-end">
+    <div class="serif" style="font-size:22px;color:#f4f3f0;max-width:40ch">Ten years of change in Bristol</div>
+    <div class="mono" style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,243,240,.4)">Policy Bristol · <span id="f-updated"></span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var C={ink:'#1a1f1c',soft:'#4a544e',green:'#2a4a3c',green2:'#3f6b56',gold:'#b08a3e',brick:'#b0432b',line:'rgba(42,74,60,.12)',cream:'#fbfaf7'};
+  var state={cat:'all'};
+  var charts={};
+
+  var IC=window.INDICATOR_COLOURS;
+  function ready(cb){ var ok=function(){return window.Chart&&window.BRISTOL_TRENDS&&window.INDICATOR_COLOURS;}; if(ok()){cb();return;} var t=setInterval(function(){ if(ok()){IC=window.INDICATOR_COLOURS;clearInterval(t);cb();} },60); setTimeout(function(){clearInterval(t);},8000); }
+  // latest year where BOTH Bristol and the mean exist -> decides the compare colour
+  function latestPair(ind){ for(var i=ind.years.length-1;i>=0;i--){ if(ind.bristol[i]!=null&&ind.england[i]!=null) return {b:ind.bristol[i],e:ind.england[i]}; } return null; }
+  function bristolCol(ind){ var p=latestPair(ind); return p?IC.bristol(ind.id,p.b,p.e):IC.RED; }
+  function el(id){ return document.getElementById(id); }
+  function esc(s){ return (''+s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function lastVal(arr){ for(var i=arr.length-1;i>=0;i--){ if(arr[i]!=null) return {v:arr[i],i:i}; } return null; }
+  function firstVal(arr){ for(var i=0;i<arr.length;i++){ if(arr[i]!=null) return {v:arr[i],i:i}; } return null; }
+  function fmt(v,f){ if(v==null) return '—';
+    if(f==='pct') return (Math.round(v*10)/10)+'%';
+    if(f==='gbp') return '£'+Math.round(v).toLocaleString();
+    if(f==='yrs') return (Math.round(v*10)/10)+' yrs';
+    if(f==='num2') return (v>0?'+':'')+(Math.round(v*100)/100).toFixed(2);
+    return (''+(Math.round(v*10)/10)); }
+  function fmtDelta(d,f){
+    if(f==='gbp') return (d>0?'+£':'-£')+Math.abs(Math.round(d)).toLocaleString();
+    if(f==='num2') return (d>0?'+':'')+(Math.round(d*100)/100).toFixed(2);
+    var s=(d>0?'+':'')+(Math.round(d*10)/10);
+    return s+(f==='pct'?' pp':(f==='yrs'?' yrs':''));
+  }
+  function yearLabel(D,ind,i){ return ind.years[i]; }
+
+  // arrow + colour for the change, respecting whether up or down is "good"
+  function movement(ind){
+    var f=firstVal(ind.bristol), l=lastVal(ind.bristol);
+    if(!f||!l||f.i===l.i) return {txt:'',good:null,delta:null};
+    var d=l.v-f.v; var rising=d>0;
+    var good = ind.direction==='up_good' ? rising : (ind.direction==='down_good' ? !rising : null);
+    return {txt:fmtDelta(d,ind.format), good:good, arrow: rising?'↗':(d<0?'↘':'→'), fromYear:ind.years[f.i], toYear:ind.years[l.i]};
+  }
+
+  function heroStats(D){
+    // surface the starkest signals: indicators where Bristol is furthest BEHIND
+    // the England average today (respecting whether up or down is the good direction)
+    var picks=[];
+    D.indicators.forEach(function(ind){
+      var lb=lastVal(ind.bristol), le=lastVal(ind.england);
+      if(!lb||!le||!le.v) return;
+      var diff=lb.v-le.v;                       // Bristol minus England
+      var adverse = ind.direction==='up_good' ? -diff : (ind.direction==='down_good' ? diff : 0);
+      picks.push({ind:ind, adverse:adverse/Math.abs(le.v), lb:lb.v, le:le.v});
+    });
+    picks.sort(function(a,b){ return b.adverse-a.adverse; });
+    picks=picks.slice(0,4);
+    el('hero-stats').innerHTML=picks.map(function(p){
+      var m=movement(p.ind);
+      var col = m.good===true?'#8fd6a6':(m.good===false?'#e8a08f':'rgba(244,243,240,.7)');
+      return "<div style='max-width:20ch'><div class='serif' style='font-size:clamp(32px,4vw,50px);line-height:1;color:#fff'>"+fmt(p.lb,p.ind.format)+"</div>"+
+        "<div class='mono' style='font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,243,240,.6);margin-top:8px;line-height:1.4'>"+esc(p.ind.label)+"</div>"+
+        (m.txt?"<div style='margin-top:7px;font-size:12.5px;color:"+col+"'>"+m.arrow+" "+esc(m.txt)+" since "+m.fromYear+"</div>":"")+
+        "</div>";
+    }).join('');
+  }
+
+  function catList(D){
+    var cats=[]; D.indicators.forEach(function(i){ if(cats.indexOf(i.category)<0) cats.push(i.category); });
+    return cats;
+  }
+
+  function renderChips(D){
+    var cats=catList(D); var defs=[['all','All indicators']].concat(cats.map(function(c){return [c,c];}));
+    el('cat-chips').innerHTML=defs.map(function(d){ return "<button class='chip"+(state.cat===d[0]?' on':'')+"' data-c='"+esc(d[0])+"'>"+esc(d[1])+"</button>"; }).join('');
+    [].forEach.call(el('cat-chips').querySelectorAll('button'),function(b){ b.onclick=function(){ state.cat=b.getAttribute('data-c'); renderChips(D); renderCats(D); }; });
+  }
+
+  function trendCard(D,ind){
+    var m=movement(ind);
+    var lb=lastVal(ind.bristol), le=lastVal(ind.england);
+    var bcol=bristolCol(ind);
+    var bristolNow = lb?fmt(lb.v,ind.format):'—';
+    var engNow = le?fmt(le.v,ind.format):'—';
+    var gapTxt='';
+    if(lb&&le){ var g=lb.v-le.v;
+      gapTxt = "<span style='color:"+bcol+"'>"+fmtDelta(g,ind.format)+"</span> vs England"; }
+    var moveCol = m.good===true?'#3f6b56':(m.good===false?'#b0432b':'#4a544e');
+    var badge = m.txt? "<span class='mono' style='font-size:11px;padding:3px 9px;border-radius:999px;background:"+(m.good===true?'rgba(63,107,86,.12)':(m.good===false?'rgba(176,67,43,.1)':'rgba(74,84,78,.1)'))+";color:"+moveCol+"'>"+m.arrow+" "+esc(m.txt)+"</span>" : "";
+    var note = ind.notes? "<div class='mono' style='font-size:10px;color:#9a9389;margin-top:8px;line-height:1.4'>▲ "+esc(ind.notes)+"</div>":"";
+    return "<div class='card' style='background:"+C.cream+";border:1px solid rgba(42,74,60,.14);border-radius:6px;padding:22px 22px 18px;display:flex;flex-direction:column'>"+
+      "<div style='display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:4px'>"+
+        "<div style='font-size:15.5px;font-weight:600;line-height:1.3;color:#1a1f1c;max-width:26ch'>"+esc(ind.label)+"</div>"+badge+
+      "</div>"+
+      "<div class='mono' style='font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#9a9389;margin-bottom:14px'>"+(ind.years&&ind.years.length?(ind.years[0]+'–'+ind.years[ind.years.length-1]):'')+"</div>"+
+      "<div style='position:relative;height:150px;margin-bottom:12px'><canvas id='c-"+ind.id+"'></canvas></div>"+
+      "<div style='display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-top:1px solid rgba(42,74,60,.1);padding-top:12px'>"+
+        "<div><div class='serif' style='font-size:24px;line-height:1;color:"+bcol+"'>"+bristolNow+"</div><div class='mono' style='font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;color:#9a9389;margin-top:4px'>Bristol · "+(lb?ind.years[lb.i]:'')+"</div></div>"+
+        "<div style='text-align:center;font-size:12px;color:#4a544e'>"+gapTxt+"</div>"+
+        "<div style='text-align:right'><div class='serif' style='font-size:24px;line-height:1;color:"+IC.GRAY+"'>"+engNow+"</div><div class='mono' style='font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;color:#9a9389;margin-top:4px'>England</div></div>"+
+      "</div>"+note+
+      "<div class='mono' style='font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;color:#9a9389;margin-top:12px'>Source · <a class='src' href='"+esc(ind.source_url)+"' target='_blank' rel='noopener'>"+esc(ind.source)+" ↗</a></div>"+
+    "</div>";
+  }
+
+  function renderCats(D){
+    var cats=catList(D).filter(function(c){ return state.cat==='all'||c===state.cat; });
+    el('cats').innerHTML="<div style='max-width:1120px;margin:0 auto'>"+cats.map(function(c){
+      var list=D.indicators.filter(function(i){ return i.category===c; });
+      return "<section style='padding:40px 0 8px'>"+
+        "<div style='display:flex;align-items:baseline;gap:14px;margin-bottom:22px;border-bottom:1px solid rgba(42,74,60,.14);padding-bottom:12px'>"+
+          "<h2 class='serif' style='font-weight:500;font-size:clamp(22px,2.6vw,30px);margin:0'>"+esc(c)+"</h2>"+
+          "<span class='mono' style='font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#9a9389'>"+list.length+" indicators</span>"+
+        "</div>"+
+        "<div class='grid' style='display:grid;grid-template-columns:repeat(3,1fr);gap:18px'>"+list.map(function(i){return trendCard(D,i);}).join('')+"</div>"+
+      "</section>";
+    }).join('')+"</div>";
+    // draw charts after DOM insert
+    cats.forEach(function(c){ D.indicators.filter(function(i){return i.category===c;}).forEach(function(ind){ drawChart(D,ind); }); });
+  }
+
+  function drawChart(D,ind){
+    var e=el('c-'+ind.id); if(!e) return; var Ch=window.Chart;
+    var ex=Ch.getChart(e); if(ex) ex.destroy();
+    var labels=ind.years; var bcol=bristolCol(ind), mcol=IC.GRAY;
+    Ch.defaults.font.family="'IBM Plex Sans', sans-serif";
+    charts[ind.id]=new Ch(e.getContext('2d'),{
+      type:'line',
+      data:{labels:labels,datasets:[
+        {label:'Bristol',data:ind.bristol,borderColor:bcol,backgroundColor:'rgba(0,0,0,.04)',borderWidth:2.4,pointRadius:2.2,pointHoverRadius:4,pointBackgroundColor:bcol,tension:.28,spanGaps:false,fill:false},
+        {label:'England average',data:ind.england,borderColor:mcol,borderWidth:2,borderDash:[5,4],pointRadius:0,pointHoverRadius:4,pointBackgroundColor:mcol,tension:.28,spanGaps:false,fill:false}
+      ]},
+      options:{
+        maintainAspectRatio:false,animation:{duration:600},
+        interaction:{mode:'index',intersect:false},
+        plugins:{legend:{display:false},
+          tooltip:{backgroundColor:'#1a1f1c',padding:10,cornerRadius:4,titleFont:{family:"'IBM Plex Mono'"},
+            callbacks:{label:function(x){ return x.dataset.label+': '+fmt(x.parsed.y,ind.format); }}}},
+        scales:{
+          y:{grid:{color:C.line},ticks:{maxTicksLimit:4,font:{size:10},color:'#9a9389',callback:function(v){ var n=Math.round(v*100)/100; return ind.format==='gbp'?('£'+n.toLocaleString()):(ind.format==='pct'?(n+'%'):n); }}},
+          x:{grid:{display:false},ticks:{maxTicksLimit:6,font:{size:10},color:'#9a9389'}}
+        }
+      }
+    });
+  }
+
+  function renderSources(D){
+    var seen={}; var items=[];
+    D.indicators.forEach(function(i){ var k=i.source+'|'+i.source_url; if(!seen[k]){ seen[k]=1; items.push(i); } });
+    el('src-list').innerHTML=items.map(function(i){ return "<a class='src' href='"+esc(i.source_url)+"' target='_blank' rel='noopener' style='font-size:13.5px;line-height:1.4;color:#2a4a3c;opacity:.85;padding:4px 0'>"+esc(i.source)+" ↗</a>"; }).join('');
+  }
+
+  function initScroll(){ var bar=el('prog'); var on=function(){ var h=document.documentElement.scrollHeight-window.innerHeight; var p=h>0?(window.scrollY/h*100):0; if(bar)bar.style.width=p+'%'; }; window.addEventListener('scroll',on,{passive:true}); on(); }
+
+  ready(function(){
+    var D=window.BRISTOL_TRENDS;
+    ['h-updated','f-updated'].forEach(function(id){ if(el(id)) el(id).textContent=D.updated||''; });
+    heroStats(D); renderChips(D); renderCats(D); renderSources(D); initScroll();
+    window.addEventListener('resize',function(){ clearTimeout(window.__rz); window.__rz=setTimeout(function(){ renderCats(D); },200); });
+  });
+})();
+</script>
+</body>
+</html>
