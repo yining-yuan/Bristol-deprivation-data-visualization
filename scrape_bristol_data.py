@@ -144,9 +144,9 @@ SPEC = [
   dict(id="overcrowd",   method="nomis", src="ts052", table="c2021ts052", geo="la", cell=["-1 or less"]),
   dict(id="social_rent", method="nomis", src="ts054", table="c2021ts054", geo="la", cell=["social rented"], calc="total"),
   dict(id="own_outright",method="nomis", src="ts054", table="c2021ts054", geo="la", cell=["owns outright"]),
-  dict(id="no_heating",  method="nomis", src="ts046", table="c2021ts046", geo="la", cell=["no central heating"]),        # caveat #2 fixed
-  dict(id="lone_parent", method="nomis", src="ts003", table="c2021ts003", geo="la", cell=["one-parent"], calc="total"),   # caveat #2 fixed
-  dict(id="nssec_rout",  method="nomis", src="ts062", table="c2021ts062", geo="la", cell=["routine", "semi-routine"], calc="total"),  # caveat #1 fixed
+  dict(id="no_heating",  method="nomis", src="ts046", table="c2021ts046", geo="la", cell=["no central heating"]),     
+  dict(id="lone_parent", method="nomis", src="ts003", table="c2021ts003", geo="la", cell=["one-parent"], calc="total"),   
+  dict(id="nssec_rout",  method="nomis", src="ts062", table="c2021ts062", geo="la", cell=["routine", "semi-routine"], calc="total"),  
   dict(id="median_age",  method="nomis", src="ts007", table="c2021ts007a",geo="la", cell=["median age"]),
   dict(id="deprived_34", method="nomis", src="ts011", table="c2021ts011", geo="la", cell=["three dimensions", "four dimensions"], calc="total"),
   dict(id="deprived_any",method="nomis", src="ts011", table="c2021ts011", geo="la", cell=["not deprived in any dimension"], calc="one_or_more"),
