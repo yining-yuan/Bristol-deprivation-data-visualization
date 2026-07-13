@@ -1,0 +1,61 @@
+time_period,area,RWM_expected_standard_pct
+201516,London region,59
+201516,England,54
+201516,Manchester,52
+201516,"Bristol, City of",54
+201516,Central Bedfordshire,51
+201516,Richmond upon Thames,67
+201617,London region,67
+201617,England,62
+201617,Manchester,60
+201617,"Bristol, City of",61
+201617,Richmond upon Thames,76
+201617,Central Bedfordshire,58
+201718,London region,70
+201718,England,65
+201718,"Bristol, City of",63
+201718,Manchester,62
+201718,Central Bedfordshire,62
+201718,Richmond upon Thames,81
+201819,Manchester,61
+201819,Central Bedfordshire,61
+201819,Richmond upon Thames,81
+201819,"Bristol, City of",65
+201819,England,65
+201819,London region,71
+201920,London region,x
+201920,England,x
+201920,"Bristol, City of",x
+201920,Manchester,x
+201920,Central Bedfordshire,x
+201920,Richmond upon Thames,x
+202021,London region,x
+202021,England,x
+202021,"Bristol, City of",x
+202021,Manchester,x
+202021,Central Bedfordshire,x
+202021,Richmond upon Thames,x
+202122,London region,66
+202122,England,59
+202122,Manchester,52
+202122,Richmond upon Thames,76
+202122,"Bristol, City of",58
+202122,Central Bedfordshire,53
+202223,Manchester,54
+202223,Central Bedfordshire,51
+202223,Richmond upon Thames,74
+202223,"Bristol, City of",56
+202223,England,60
+202223,London region,67
+202324,London region,69
+202324,England,61
+202324,Manchester,56
+202324,"Bristol, City of",56
+202324,Central Bedfordshire,53
+202324,Richmond upon Thames,76
+202425,London region,70
+202425,England,63
+202425,Manchester,58
+202425,Central Bedfordshire,50
+202425,Richmond upon Thames,78
+202425,"Bristol, City of",59

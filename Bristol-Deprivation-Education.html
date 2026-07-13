@@ -10,6 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script src="bristol-data-ons-census.js"></script>
 <script src="indicator-colours.js"></script>
+<script src="bristol-comparators.js"></script>
 <style>
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -139,6 +140,8 @@
         <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="width:22px;height:9px;border-radius:2px;background:#3f6b56"></span>Bristol better than average</span>
         <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="width:22px;height:9px;border-radius:2px;background:#b0432b"></span>Bristol worse / unclear</span>
         <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="width:22px;height:9px;border-radius:2px;background:#8a8d86"></span>England / benchmark</span>
+        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="display:inline-flex"><span style="width:11px;height:9px;border-radius:2px 0 0 2px;background:#1f6b43"></span><span style="width:11px;height:9px;border-radius:0 2px 2px 0;background:#8f2f1c"></span></span>Highest / lowest LA</span>
+        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="display:inline-flex"><span style="width:11px;height:9px;border-radius:2px 0 0 2px;background:#74a98d"></span><span style="width:11px;height:9px;border-radius:0 2px 2px 0;background:#cf9384"></span></span>London / Manchester</span>
       </div>
     </div>
   </section>
@@ -206,6 +209,33 @@
   var charts={};
 
   function ready(cb){ var ok=function(){return window.Chart&&window.BRISTOL_DATA&&window.BRISTOL_DATA.education&&window.INDICATOR_COLOURS;}; if(ok()){cb();return;} var t=setInterval(function(){ if(ok()){IC=window.INDICATOR_COLOURS;clearInterval(t);cb();} },60); setTimeout(function(){clearInterval(t);},8000); }
+
+  // ---- comparator strip: highest/lowest English LA, London region, Manchester LA ----
+  function cmpStrip(i){
+    var CO=window.BRISTOL_COMPARATORS; if(!CO) return '';
+    var key=(CO.ALIAS&&CO.ALIAS[i.id])||i.id; var d=CO.DATA&&CO.DATA[key]; if(!d) return '';
+    var unit=d.unit||i.unit||'';
+    var ref=(d.eng!=null)?d.eng:(i.a?i.a.v:null);
+    var pool=[]; if(i.a&&i.a.v!=null)pool.push(Math.abs(i.a.v)); if(i.b&&i.b.v!=null)pool.push(Math.abs(i.b.v));
+    ['highest','lowest','london','manchester'].forEach(function(g){ var x=d[g]; if(x&&x.v!=null)pool.push(Math.abs(x.v)); });
+    var max=pool.length?Math.max.apply(null,pool):1; if(!(max>0))max=1;
+    var rows=[['highest','High',IC.cityExtreme(key,true)],['lowest','Low',IC.cityExtreme(key,false)],['london','London',null],['manchester','Manch',null]];
+    var body=rows.map(function(r){
+      var x=d[r[0]]; var has=x&&x.v!=null; var col=has?(r[2]||IC.benchShade(key,x.v,ref)):IC.MISSING;
+      var val=has?indFmt(x.v,unit):'n/a';
+      var w=has?Math.max(3,Math.min(100,Math.abs(x.v)/max*100)).toFixed(1):0;
+      var v2=(has&&x.v2!=null)?"<span style='color:#9a9389'> · "+indFmt(x.v2,unit)+" "+esc(x.v2lab||'')+"</span>":'';
+      return "<div class='om-fig' title='"+(x?esc(x.note||''):'')+"' style='margin-bottom:7px'>"+
+        "<div style='display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:3px'>"+
+          "<span style='font-size:11px;color:#4a544e'><span class='om-mono' style='font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:"+col+"'>"+r[1]+"</span> "+esc(x?x.area:'')+"</span>"+
+          "<span style='font-family:\"Newsreader\",serif;font-size:14px;color:"+col+";white-space:nowrap'>"+val+v2+"</span>"+
+        "</div>"+
+        "<div style='height:5px;background:rgba(42,74,60,.07);border-radius:2px;overflow:hidden'><div style='height:100%;width:"+w+"%;background:"+col+"'></div></div>"+
+      "</div>";
+    }).join('');
+    return "<div style='margin:2px 0 12px;border-top:1px dashed rgba(42,74,60,.16);padding-top:11px'>"+
+      "<div class='om-mono' style='font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:#9a9389;margin-bottom:9px'>Across England</div>"+body+"</div>";
+  }
   function el(id){ return document.getElementById(id); }
   function esc(s){ return (''+s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
   function src(D,k){ return D.sources[k]||{name:'',url:'#'}; }
@@ -227,6 +257,7 @@
       "<div style='height:8px;background:rgba(42,74,60,.08);border-radius:2px;overflow:hidden'><div style='height:100%;width:"+aw+"%;background:"+aCol+"'></div></div></div>"+
       "<div style='margin-bottom:14px'><div style='display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px'><span style='font-size:12.5px;color:#4a544e'>"+esc(i.b.p)+"</span><span style='font-family:\"Newsreader\",serif;font-size:19px;color:"+bCol+"'>"+indFmt(i.b.v,i.unit)+"</span></div>"+
       "<div style='height:8px;background:rgba(42,74,60,.08);border-radius:2px;overflow:hidden'><div style='height:100%;width:"+bw+"%;background:"+bCol+"'></div></div></div>"+
+      cmpStrip(i)+
       "<div class='om-mono' style='font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#9a9389;margin-top:auto;border-top:1px solid rgba(42,74,60,.1);padding-top:9px'>"+esc(i.asOf||'')+" · <a class='om-src' href='"+s.url+"' target='_blank' rel='noopener'>"+esc(s.name)+" ↗</a></div>"+
     "</div>";
   }

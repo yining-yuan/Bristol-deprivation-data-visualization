@@ -22,6 +22,41 @@ window.INDICATOR_COLOURS = (function () {
   var GRAY  = '#8a8d86';   // the mean / England benchmark
   var MISSING = '#c9c4bb'; // a value we don't have
 
+  // ---- Comparator shades (highest/lowest English LA, London, Manchester) -----
+  // Same green=good / red=bad logic, but two extra tonal families so the four
+  // comparator geographies are distinguishable from Bristol/England on a card:
+  //   • max/min city  = DEEP shades (the national extremes)
+  //   • London/Manch. = SOFT shades (a second reading vs the England mean)
+  var CITY_GOOD = '#1f6b43';  // national extreme at the GOOD end (by polarity)
+  var CITY_BAD  = '#8f2f1c';  // national extreme at the BAD end
+  var LM_GOOD   = '#74a98d';  // London/Manchester better than the mean
+  var LM_BAD    = '#cf9384';  // London/Manchester worse than the mean
+
+  // A few indicators are stored/shown as the DISADVANTAGED attainment level even
+  // though their headline polarity is the (lower-is-better) gap. For colouring the
+  // comparator bars — which carry the disadvantaged level — treat them as
+  // higher-is-better.
+  var CPOL_OVERRIDE = { ks2_gap:'higher_better', eyfsp_gap:'higher_better' };
+  function cpolarity(id){ return CPOL_OVERRIDE[id] || polarity(id); }
+
+  // Colour for a national extreme bar. isMax = this is the highest value.
+  function cityExtreme(id, isMax){
+    var pol = cpolarity(id);
+    if (pol === 'lower_better') return isMax ? CITY_BAD : CITY_GOOD;
+    if (pol === 'higher_better') return isMax ? CITY_GOOD : CITY_BAD;
+    return CITY_BAD; // ambiguous -> treat like "worse/unclear"
+  }
+  // Colour for a London/Manchester bar vs a reference (England mean where known,
+  // else the Bristol value). GREEN-ish when better than the reference.
+  function benchShade(id, val, ref){
+    if (val == null) return MISSING;
+    var pol = cpolarity(id);
+    if (pol === 'ambiguous' || ref == null) return LM_BAD;
+    if (pol === 'higher_better') return val > ref ? LM_GOOD : LM_BAD;
+    if (pol === 'lower_better')  return val < ref ? LM_GOOD : LM_BAD;
+    return LM_BAD;
+  }
+
   // ---- POLARITY: edit these to change how an indicator is judged ----------
   var POLARITY = {
     // ── Work & income ──────────────────────────────────────────────
@@ -37,6 +72,9 @@ window.INDICATOR_COLOURS = (function () {
     quals_l4:    'higher_better',
     quals_none:  'lower_better',
     degree_ward: 'higher_better',
+    he_part:     'higher_better',   // young HE participation (TUNDRA), by ward
+    child_pov_ward:'lower_better',  // children in relative low income, by ward
+    suspensions_ward:'lower_better',
     ks2_rwm:     'higher_better',
     ks2_gap:     'lower_better',     // a smaller disadvantage gap is better
     attainment8: 'higher_better',
@@ -89,7 +127,28 @@ window.INDICATOR_COLOURS = (function () {
     nssec_rout:  'lower_better',
     lone_parent: 'ambiguous',
     median_age:  'ambiguous',
-    child_share: 'ambiguous'
+    child_share: 'ambiguous',
+
+    // ── Economy of deprivation (Bristol-Deprivation-Economy.html) ─────────
+    child_low_income:     'lower_better',
+    child_low_income_abs: 'lower_better',
+    idaci:                'lower_better',
+    fsm:                  'lower_better',
+    fuel_poverty:         'lower_better',
+    imd_income:           'lower_better',
+    gdhi:                 'higher_better',   // (also used by the ONS-Census page)
+    imd_employment:       'lower_better',
+    nssec_routine:        'lower_better',
+    house_price_earnings: 'lower_better',    // higher ratio = less affordable
+    employment_rate:      'higher_better',
+    econ_inactivity:      'lower_better',
+    pay_median:           'higher_better',
+    low_pay:              'lower_better',
+    claimant_count:       'lower_better',
+    neet:                 'lower_better',    // (shared id with education)
+    gva_head:             'higher_better',
+    imd_decile:           'lower_better',
+    inactivity_sick:      'lower_better'
   };
 
   function polarity(id) { return POLARITY[id] || 'ambiguous'; }
@@ -115,8 +174,10 @@ window.INDICATOR_COLOURS = (function () {
 
   return {
     GREEN: GREEN, RED: RED, GRAY: GRAY, MISSING: MISSING,
-    POLARITY: POLARITY, polarity: polarity,
+    CITY_GOOD: CITY_GOOD, CITY_BAD: CITY_BAD, LM_GOOD: LM_GOOD, LM_BAD: LM_BAD,
+    POLARITY: POLARITY, polarity: polarity, cpolarity: cpolarity,
     mean: function () { return GRAY; },
-    bristol: bristol, byPolarity: byPolarity, isBetter: isBetter
+    bristol: bristol, byPolarity: byPolarity, isBetter: isBetter,
+    cityExtreme: cityExtreme, benchShade: benchShade
   };
 })();

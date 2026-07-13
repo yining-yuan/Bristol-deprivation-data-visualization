@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How deprivation shapes Bristol's economy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="bristol-economic.js"></script>
+<script src="indicator-colours.js"></script>
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#f4f3f0;color:#1a1f1c;font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:#b08a3e;color:#fff}
+  .om-mono{font-family:'IBM Plex Mono',monospace}
+  .om-card{transition:transform .25s ease, box-shadow .25s ease}
+  .om-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(26,31,28,.35)}
+  .om-src{color:inherit;opacity:.62;text-decoration:none;border-bottom:1px dotted currentColor;transition:opacity .15s ease}
+  .om-src:hover{opacity:1}
+  .om-fig{cursor:help}
+  .om-ic{display:inline-block;flex:none;background-color:currentColor;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain}
+  @keyframes ombob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+  @media(max-width:820px){ .om-grid3{grid-template-columns:1fr 1fr!important} .om-2col{grid-template-columns:1fr!important} }
+  @media(max-width:560px){ .om-grid3{grid-template-columns:1fr!important} }
+</style>
+</head>
+<body>
+
+<div id="econ-root" style="position:relative">
+
+  <div style="position:fixed;top:0;left:0;right:0;height:3px;background:transparent;z-index:90"><div id="om-prog" style="height:100%;width:0%;background:#b0432b;transition:width .12s linear"></div></div>
+
+  <nav style="position:fixed;left:22px;top:50%;transform:translateY(-50%);z-index:80;display:flex;flex-direction:column;gap:14px">
+    <button data-nav="early"      style="display:flex;align-items:center;gap:9px;background:none;border:none;cursor:pointer;padding:0;text-align:left;color:rgba(74,84,78,.6);font:500 11px/1 'IBM Plex Mono';letter-spacing:.06em;text-transform:uppercase"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(74,84,78,.4)"></span>Born into</button>
+    <button data-nav="primary"    style="display:flex;align-items:center;gap:9px;background:none;border:none;cursor:pointer;padding:0;text-align:left;color:rgba(74,84,78,.6);font:500 11px/1 'IBM Plex Mono';letter-spacing:.06em;text-transform:uppercase"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(74,84,78,.4)"></span>Growing up</button>
+    <button data-nav="secondary"  style="display:flex;align-items:center;gap:9px;background:none;border:none;cursor:pointer;padding:0;text-align:left;color:rgba(74,84,78,.6);font:500 11px/1 'IBM Plex Mono';letter-spacing:.06em;text-transform:uppercase"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(74,84,78,.4)"></span>Household</button>
+    <button data-nav="transition" style="display:flex;align-items:center;gap:9px;background:none;border:none;cursor:pointer;padding:0;text-align:left;color:rgba(74,84,78,.6);font:500 11px/1 'IBM Plex Mono';letter-spacing:.06em;text-transform:uppercase"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(74,84,78,.4)"></span>Into work</button>
+    <button data-nav="cross"      style="display:flex;align-items:center;gap:9px;background:none;border:none;cursor:pointer;padding:0;text-align:left;color:rgba(74,84,78,.6);font:500 11px/1 'IBM Plex Mono';letter-spacing:.06em;text-transform:uppercase"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(74,84,78,.4)"></span>The adult city</button>
+    <button data-nav="explore"    style="display:flex;align-items:center;gap:9px;background:none;border:none;cursor:pointer;padding:0;text-align:left;color:rgba(74,84,78,.6);font:500 11px/1 'IBM Plex Mono';letter-spacing:.06em;text-transform:uppercase"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(74,84,78,.4)"></span>Explore</button>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <header style="background:#2a4a3c;color:#f4f3f0;min-height:92vh;display:flex;flex-direction:column;justify-content:space-between;padding:48px 32px 40px">
+    <div style="max-width:1080px;margin:0 auto;width:100%;display:flex;justify-content:space-between;align-items:center;font:500 12px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:rgba(244,243,240,.62)">
+      <span>Policy Bristol</span>
+      <span>A data story · <span id="h-updated"></span></span>
+    </div>
+    <div style="max-width:1080px;margin:0 auto;width:100%">
+      <div style="font:500 13px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#cda85f;margin-bottom:28px">The economy of deprivation</div>
+      <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(44px,7vw,100px);line-height:.98;letter-spacing:-.015em;margin:0 0 22px;max-width:15ch">A wealthy city that doesn't share its wealth</h1>
+    </div>
+    <div style="max-width:1080px;margin:0 auto;width:100%;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+      <div id="h-figs" style="display:flex;gap:44px;flex-wrap:wrap"></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(244,243,240,.55)">
+        <span class="om-mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase">Scroll</span>
+        <div style="animation:ombob 1.8s ease-in-out infinite;font-size:18px">↓</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== THE PARADOX ===================== -->
+  <section style="padding:96px 32px 72px">
+    <div style="max-width:1080px;margin:0 auto">
+      <div class="om-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+        <div>
+          <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b0432b;margin-bottom:20px"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/gauge.svg');mask-image:url('icons/gauge.svg')"></span>The Bristol paradox</div>
+          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1.06;letter-spacing:-.01em;margin:0 0 20px">Top of the table for output and jobs. Below the line for what households keep.</h2>
+        </div>
+        <div style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:26px 26px 22px">
+          <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:4px">Bristol relative to England</div>
+          <div style="font-size:13.5px;color:#4a544e;margin-bottom:16px">England = 100</div>
+          <div style="position:relative;height:250px"><canvas id="chart-paradox"></canvas></div>
+          <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#9a9389;margin-top:14px">Source · <a class="om-src" id="src-paradox" href="#" target="_blank" rel="noopener">ONS ↗</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONCENTRATION ===================== -->
+  <section style="padding:64px 32px;border-top:1px solid rgba(42,74,60,.12)">
+    <div style="max-width:1080px;margin:0 auto">
+      <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+        <span style="font-family:'Newsreader',serif;font-size:clamp(40px,6vw,84px);line-height:1;color:rgba(42,74,60,.22)">00</span>
+        <div>
+          <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b08a3e"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/map-pin.svg');mask-image:url('icons/map-pin.svg')"></span>Where the wealth doesn't reach</div>
+          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.04;margin:8px 0 0">Prosperity averages out. Deprivation concentrates.</h2>
+        </div>
+      </div>
+      <div class="om-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch;margin-top:36px">
+        <div style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:26px 26px 22px">
+          <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:4px">Neighbourhoods in England's poorest 10%</div>
+          <div style="font-size:13.5px;color:#4a544e;margin-bottom:16px">% of an area's LSOAs · IMD 2019</div>
+          <div id="tc-conc"></div>
+          <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#9a9389;margin-top:8px">Source · <a class="om-src" id="src-conc" href="#" target="_blank" rel="noopener">↗</a></div>
+        </div>
+        <div style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:26px 26px 22px">
+          <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:4px">The divide within one city</div>
+          <div style="font-size:13.5px;color:#4a544e;margin-bottom:16px">Children in relative low income, by Bristol ward</div>
+          <div id="tc-ward"></div>
+          <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#9a9389;margin-top:8px">Source · <a class="om-src" id="src-ward" href="#" target="_blank" rel="noopener">↗</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LIFE-STAGE ACTS (rendered by JS) ===================== -->
+  <div id="acts"></div>
+
+  <!-- ===================== EXPLORER ===================== -->
+  <section id="explore" style="padding:80px 32px 30px;background:#2a4a3c;color:#f4f3f0;border-top:1px solid rgba(42,74,60,.12)">
+    <div style="max-width:1080px;margin:0 auto">
+      <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#cda85f;margin-bottom:18px"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/layout-dashboard.svg');mask-image:url('icons/layout-dashboard.svg')"></span>Explore the evidence</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,3.8vw,48px);line-height:1.04;margin:0 0 24px;max-width:22ch">Every economic indicator, across the life course.</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:22px;align-items:center;background:rgba(244,243,240,.06);border:1px solid rgba(244,243,240,.16);border-radius:6px;padding:16px 20px">
+        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="width:22px;height:9px;border-radius:2px;background:#3f6b56"></span>Bristol better than average</span>
+        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="width:22px;height:9px;border-radius:2px;background:#b0432b"></span>Bristol worse / unclear</span>
+        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="width:22px;height:9px;border-radius:2px;background:#8a8d86"></span>Benchmark (England / peer)</span>
+        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="display:inline-flex"><span style="width:11px;height:9px;border-radius:2px 0 0 2px;background:#1f6b43"></span><span style="width:11px;height:9px;border-radius:0 2px 2px 0;background:#8f2f1c"></span></span>Highest / lowest LA</span>
+        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="display:inline-flex"><span style="width:11px;height:9px;border-radius:2px 0 0 2px;background:#74a98d"></span><span style="width:11px;height:9px;border-radius:0 2px 2px 0;background:#cf9384"></span></span>London / Manchester</span>
+      </div>
+    </div>
+  </section>
+  <section style="padding:40px 32px 36px;background:#f4f3f0">
+    <div style="max-width:1080px;margin:0 auto">
+      <div style="margin-bottom:14px"><span class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e">Filter by life stage</span></div>
+      <div id="stage-chips" style="display:flex;flex-wrap:wrap;gap:9px;margin-bottom:26px"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px;border-bottom:1px solid rgba(42,74,60,.14);padding-bottom:12px">
+        <span style="font-family:'Newsreader',serif;font-size:22px"><span id="ind-count">0</span> indicators</span>
+        <button id="sort-toggle" style="display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;border:1px solid rgba(42,74,60,.22);background:transparent;color:#4a544e;font:500 12.5px/1 'IBM Plex Mono';letter-spacing:.03em;text-transform:uppercase;cursor:pointer">High → Low&nbsp;&nbsp;⇅</button>
+      </div>
+      <div id="ind-grid" class="om-grid3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px"></div>
+    </div>
+  </section>
+
+  <!-- ===================== SOURCES ===================== -->
+  <section style="padding:64px 32px;background:#f4f3f0;border-top:1px solid rgba(42,74,60,.12)">
+    <div style="max-width:1080px;margin:0 auto">
+      <div class="om-2col" style="display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:start">
+        <div>
+          <div style="font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b0432b;margin-bottom:16px">Sources &amp; how this updates</div>
+          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(26px,3vw,38px);line-height:1.08;margin:0 0 18px">Sources</h2>
+          <p style="font-size:14.5px;line-height:1.6;color:#4a544e;margin:0 0 8px">Every figure is a published official statistic — ONS, Nomis, DWP, DESNZ and the Indices of Deprivation — read at the smallest geography each source offers. Hover any card for the exact reading and its caveats; the process is documented in <span class="om-mono" style="font-size:12.5px;color:#2a4a3c">bristol-economic-sources.md</span>.</p>
+          <div class="om-mono" style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#4a544e;margin-top:18px">Data last reviewed · <span id="s-updated"></span></div>
+        </div>
+        <div>
+          <div class="om-mono" style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#9a9389;margin-bottom:14px">Sources — click to open</div>
+          <div id="src-list" style="display:grid;grid-template-columns:1fr 1fr;gap:10px 24px"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding:48px 32px 64px;background:#1a1f1c;color:rgba(244,243,240,.7)">
+    <div style="max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-end">
+      <div style="max-width:56ch">
+        <div style="font-family:'Newsreader',serif;font-size:22px;color:#f4f3f0;margin-bottom:12px">How deprivation shapes Bristol's economy</div>
+        <div style="font-size:13px;line-height:1.55">One of three companion stories — alongside <a href="Bristol-Deprivation-Education.html" style="color:#cda85f">education</a> and <a href="Bristol-Deprivation-Housing.html" style="color:#cda85f">housing &amp; health</a> — on how deprivation is made, and reproduced, across a life in Bristol.</div>
+      </div>
+      <div class="om-mono" style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,243,240,.4)">Policy Bristol · <span id="f-updated"></span></div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var C={ink:'#1a1f1c',soft:'#4a544e',green:'#2a4a3c',green2:'#3f6b56',gold:'#b08a3e',brick:'#b0432b',gray:'#8a8d86',line:'rgba(42,74,60,.14)'};
+  var IC=window.INDICATOR_COLOURS;
+  var SM={ early:'Born into', primary:'Growing up', secondary:'Household', transition:'Into work', cross:'The adult city' };
+  var state={stage:'all', sortDir:'desc'};
+  var charts={};
+
+  // London boroughs — a borough that is itself the national extreme stands in for the London row
+  var LONDON_BOROUGHS={}; "barking and dagenham,barnet,bexley,brent,bromley,camden,croydon,ealing,enfield,greenwich,hackney,hammersmith and fulham,haringey,harrow,havering,hillingdon,hounslow,islington,kensington and chelsea,kingston upon thames,lambeth,lewisham,merton,newham,redbridge,richmond upon thames,southwark,sutton,tower hamlets,waltham forest,wandsworth,westminster,city of london".split(",").forEach(function(b){ LONDON_BOROUGHS[b]=1; });
+  function normA(a){ return (''+a).toLowerCase().replace(/&/g,'and').replace(/\s+/g,' ').trim(); }
+  function isBorough(a){ return LONDON_BOROUGHS[normA(a)]===1; }
+
+  function ready(cb){ var ok=function(){return window.Chart&&window.BRISTOL_ECONOMY&&window.INDICATOR_COLOURS;}; if(ok()){cb();return;} var t=setInterval(function(){ if(ok()){IC=window.INDICATOR_COLOURS;clearInterval(t);cb();} },60); setTimeout(function(){clearInterval(t);},8000); }
+
+  function el(id){ return document.getElementById(id); }
+  function esc(s){ return (''+s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function src(E,k){ return E.sources[k]||{name:'',url:'#'}; }
+  function indFmt(v,u){ if(v==null)return '—'; if(u==='%')return v+'%'; if(u==='×')return v+'×'; if(u==='£')return '£'+Number(v).toLocaleString(); return ''+v; }
+  function icon(name,color,size){ size=size||20; return "<span class='om-ic' style='width:"+size+"px;height:"+size+"px;color:"+color+";-webkit-mask-image:url(\"icons/"+(name||'layout-dashboard')+".svg\");mask-image:url(\"icons/"+(name||'layout-dashboard')+".svg\")'></span>"; }
+  function chip(label,active,accent){ accent=accent||'#2a4a3c'; return "display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;border:1px solid "+(active?accent:'rgba(42,74,60,.22)')+";background:"+(active?accent:'transparent')+";color:"+(active?'#fbfaf7':'#4a544e')+";font:500 13px/1 'IBM Plex Sans';cursor:pointer;white-space:nowrap;transition:all .15s ease"; }
+
+  // ---- ranked comparator list: every geography for an indicator, one sortable list ----
+  function geoRows(i){
+    var d=i.comp||{};
+    // England / UK benchmark row (fall back to the benchmark bar where it is England/UK)
+    var ed=(d.england&&d.england.v!=null)?d.england
+           :((i.b&&/england|uk/i.test(i.b.p||''))?{v:i.b.v,area:i.b.p,note:''}:null);
+    var eng=(ed&&ed.v!=null)?ed.v:null;
+    var ref=(eng!=null)?eng:i.a.v;                       // reference for London/Manchester shading
+    var bristolRow={role:'bristol',tag:'',area:i.a.p,v:i.a.v,
+      note:i.note||'Bristol — the subject of this dashboard', col:IC.bristol(i.id,i.a.v,i.b.v)};
+    var englandRow=null;
+    if(eng!=null){ var isUK=/uk/i.test(ed.area||'');
+      englandRow={role:'england',tag:isUK?'UK':'Avg',area:isUK?'United Kingdom':'England average',
+        v:eng,note:ed.note||'England / benchmark',col:IC.GRAY}; }
+    function mk(g,tag,isMax){ var x=d[g];
+      if((!x||x.v==null)&&g==='manchester'&&i.b&&/manchester/i.test(i.b.p||''))
+        x={v:i.b.v,area:'Manchester',note:'Benchmark peer (no England IMD score published).'};
+      if(!x||x.v==null) return null;
+      return {role:g,tag:tag,area:x.area,v:x.v,note:x.note,
+        col:(g==='highest'||g==='lowest')?IC.cityExtreme(i.id,isMax):IC.benchShade(i.id,x.v,ref),
+        isM:/^manchester$/i.test((''+x.area).trim()), isL:isBorough(x.area)}; }
+    var hi=mk('highest','High',true), lo=mk('lowest','Low',false), ld=mk('london','',false), mc=mk('manchester','',false);
+    // Manchester is itself the highest/lowest LA -> show one row (tagged)
+    var em=(hi&&hi.isM)?hi:((lo&&lo.isM)?lo:null); if(em){ mc=null; }
+    // A London borough is the highest/lowest LA -> it stands in for the London row
+    var elx=(hi&&hi.isL)?hi:((lo&&lo.isL)?lo:null); if(elx){ elx.area=elx.area+' (London)'; ld=null; }
+    var rows=[bristolRow]; if(englandRow) rows.push(englandRow);
+    [hi,lo,ld,mc].forEach(function(r){ if(r) rows.push(r); });
+    return {rows:rows};
+  }
+  function rankRow(r,unit,max){
+    var has=r.v!=null, bris=r.role==='bristol';
+    var val=has?indFmt(r.v,unit):'n/a';
+    var w=has?Math.max(3,Math.min(100,Math.abs(r.v)/max*100)).toFixed(1):'0';
+    var wrap=bris?"background:rgba(176,138,62,.14);border-radius:3px;padding:5px 8px;margin:0 -8px 8px":"margin-bottom:8px";
+    return "<div class='om-fig' title='"+esc(r.note||'')+"' style='"+wrap+"'>"+
+      "<div style='display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:3px'>"+
+        "<span style='font-size:11.5px;color:"+(bris?'#1a1f1c':'#4a544e')+";font-weight:"+(bris?'700':'400')+"'>"+(r.tag?"<span class='om-mono' style='font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:"+r.col+"'>"+esc(r.tag)+"</span> ":"")+esc(r.area)+"</span>"+
+        "<span style='font-family:\"Newsreader\",serif;font-size:15px;color:"+r.col+";white-space:nowrap;font-weight:"+(bris?'600':'400')+"'>"+val+"</span>"+
+      "</div>"+
+      "<div style='height:"+(bris?'7px':'5px')+";background:rgba(42,74,60,.07);border-radius:2px;overflow:hidden'><div style='height:100%;width:"+w+"%;background:"+r.col+"'></div></div>"+
+    "</div>";
+  }
+  function rankedHTML(g,unit){
+    if(!g||!g.rows.length) return '';
+    var dir=(state.sortDir||'desc'), rows=g.rows.slice();
+    var vals=rows.filter(function(r){return r.v!=null;}).map(function(r){return Math.abs(r.v);});
+    var mx=vals.length?Math.max.apply(null,vals):1; if(!(mx>0))mx=1;
+    rows.sort(function(a,b){ if(a.v==null)return 1; if(b.v==null)return -1; return dir==='asc'?a.v-b.v:b.v-a.v; });
+    return "<div class='om-mono' style='font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:#9a9389;margin-bottom:10px'>Ranked · "+(dir==='asc'?'low → high':'high → low')+"</div>"+
+      rows.map(function(r){return rankRow(r,unit,mx);}).join('');
+  }
+
+  // ---- shared indicator card (ranked) ----
+  function indCard(E,i){
+    var s=src(E,i.src); var tc=IC.bristol(i.id,i.a.v,i.b.v);
+    return "<div class='om-card om-fig' title='"+esc(i.note||'')+"' style='background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:22px;display:flex;flex-direction:column'>"+
+      "<div style='display:flex;align-items:center;gap:9px;margin-bottom:14px'>"+icon(i.icon,tc,20)+"<span class='om-mono' style='font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:#4a544e'>"+(SM[i.stage]||'')+"</span></div>"+
+      "<div style='font-size:15.5px;font-weight:600;line-height:1.32;color:#1a1f1c;margin-bottom:16px;min-height:42px'>"+esc(i.label)+"</div>"+
+      rankedHTML(geoRows(i),i.unit||'')+
+      "<div class='om-mono' style='font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#9a9389;margin-top:auto;border-top:1px solid rgba(42,74,60,.1);padding-top:9px'>"+esc(i.asOf||'')+" · <a class='om-src' href='"+s.url+"' target='_blank' rel='noopener'>"+esc(s.name)+" ↗</a></div>"+
+    "</div>";
+  }
+
+  // ---- hero ----
+  function renderHero(E){
+    el('h-figs').innerHTML=E.hero.map(function(h){
+      var ind=E.indicators.filter(function(i){return i.id===h.key;})[0]||{};
+      return "<div class='om-fig' title='"+esc(ind.note||'')+"'><div style='font-family:\"Newsreader\",serif;font-size:clamp(34px,4vw,52px);line-height:1;color:#fff'>"+esc(h.v)+"</div><div class='om-mono' style='font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,243,240,.6);margin-top:6px;max-width:26ch;line-height:1.5'>"+esc(h.label)+"</div></div>";
+    }).join('');
+  }
+
+  // ---- horizontal bars (concentration + ward) ----
+  function hbars(rows,maxV,unit){ return rows.map(function(r){ var w=Math.max(3,Math.min(100,(r.v/maxV*100))).toFixed(1);
+    return "<div style='display:flex;align-items:baseline;gap:14px;margin-bottom:11px'><span style='width:120px;font-size:13px;color:#1a1f1c'>"+esc(r.n)+"</span><div style='flex:1;height:18px;background:rgba(42,74,60,.08);border-radius:3px;overflow:hidden'><div style='height:100%;width:"+w+"%;background:"+r.c+"'></div></div><span style='width:52px;text-align:right;font-family:\"Newsreader\",serif;font-size:19px'>"+r.v+(unit==='%'?'%':'')+"</span></div>"; }).join(''); }
+  function renderConc(E){
+    var m=E.concentration, col={dep:C.brick,city:C.gold,eng:C.gray,aff:C.green2};
+    var rows=m.rows.map(function(r){return {n:r.n,v:r.v,c:col[r.t]||C.gray};});
+    el('tc-conc').innerHTML=hbars(rows,Math.max.apply(null,m.rows.map(function(r){return r.v;})),m.unit);
+    var s=src(E,m.src); el('src-conc').href=s.url; el('src-conc').innerHTML=esc(s.name)+" ↗";
+    var w=E.wardPov, col2={dep:C.brick,aff:C.green2};
+    var wrows=w.rows.map(function(r){return {n:r.n,v:r.v,c:col2[r.t]||C.gray};});
+    el('tc-ward').innerHTML=hbars(wrows,Math.max.apply(null,w.rows.map(function(r){return r.v;})),w.unit);
+    var s2=src(E,w.src); el('src-ward').href=s2.url; el('src-ward').innerHTML=esc(s2.name)+" ↗";
+  }
+
+  // ---- acts ----
+  var ACTS=[
+    {stage:'early',num:'01',icon:'baby',kicker:'Born into · ages 0–5',title:'The household a child is born into.',intro:''},
+    {stage:'primary',num:'02',icon:'book-open',kicker:'Growing up · ages 5–11',title:'The economy around the primary-school gate.',intro:''},
+    {stage:'secondary',num:'03',icon:'coins',kicker:'Household · ages 11–16',title:'The working household behind the teenager.',intro:''},
+    {stage:'transition',num:'04',icon:'signpost',kicker:'Into work · ages 16–25',title:'The moment the city’s advantage should pay off.',intro:''},
+    {stage:'cross',num:'05',icon:'barchart',kicker:'The adult city · outcomes',title:'A high-output economy, unevenly shared.',intro:''}
+  ];
+  function renderActs(E){
+    el('acts').innerHTML=ACTS.map(function(A){
+      var cards=E.indicators.filter(function(i){ return i.stage===A.stage; });
+      var ico=A.icon; var have=true; // all act icons exist
+      return "<section id='"+A.stage+"' style='padding:64px 32px;border-top:1px solid rgba(42,74,60,.12)'>"+
+        "<div style='max-width:1080px;margin:0 auto'>"+
+          "<div style='display:flex;align-items:baseline;gap:18px;margin-bottom:8px'>"+
+            "<span style='font-family:\"Newsreader\",serif;font-size:clamp(40px,6vw,84px);line-height:1;color:rgba(42,74,60,.22)'>"+A.num+"</span>"+
+            "<div><div style='display:flex;align-items:center;gap:9px;font:500 12px/1 \"IBM Plex Mono\";letter-spacing:.16em;text-transform:uppercase;color:#b08a3e'>"+icon(A.icon,'#b08a3e',17)+esc(A.kicker)+"</div>"+
+            "<h2 style='font-family:\"Newsreader\",serif;font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.04;margin:8px 0 0'>"+esc(A.title)+"</h2></div>"+
+          "</div>"+
+          (A.intro?"<p style='font-size:15.5px;line-height:1.6;color:#4a544e;max-width:64ch;margin:18px 0 30px'>"+A.intro+"</p>":"")+
+          "<div class='om-grid3' style='display:grid;grid-template-columns:repeat(3,1fr);gap:18px'>"+cards.map(function(i){return indCard(E,i);}).join('')+"</div>"+
+        "</div></section>";
+    }).join('');
+  }
+
+  // ---- explorer + stage filter ----
+  function renderStageChips(E){
+    var defs=[['all','All stages'],['early','Born into'],['primary','Growing up'],['secondary','Household'],['transition','Into work'],['cross','The adult city']];
+    el('stage-chips').innerHTML=defs.map(function(d){ return "<button data-stage='"+d[0]+"' style='"+chip(d[1],state.stage===d[0],'#b08a3e')+"'>"+d[1]+"</button>"; }).join('');
+    [].forEach.call(el('stage-chips').querySelectorAll('button'),function(b){ b.onclick=function(){ state.stage=b.getAttribute('data-stage'); renderStageChips(E); renderIndicators(E); }; });
+  }
+  function renderIndicators(E){
+    var list=E.indicators.filter(function(i){ return state.stage==='all'||i.stage===state.stage; });
+    el('ind-count').textContent=list.length;
+    el('ind-grid').innerHTML=list.map(function(i){ return indCard(E,i); }).join('');
+  }
+
+  // ---- charts ----
+  function buildCharts(E){
+    var Ch=window.Chart; Ch.defaults.font.family="'IBM Plex Sans', sans-serif"; Ch.defaults.font.size=12.5; Ch.defaults.color=C.soft;
+    var g=function(id){ var e=el(id); if(!e)return null; var ex=Ch.getChart(e); if(ex)ex.destroy(); return e.getContext('2d'); };
+    var p=E.paradox, c=g('chart-paradox');
+    if(c){
+      var cols=p.rows.map(function(r){ return IC.byPolarity(r.pol,r.idx,100); });
+      charts.p=new Ch(c,{type:'bar',data:{labels:p.rows.map(function(r){return r.label;}),datasets:[{data:p.rows.map(function(r){return r.idx;}),backgroundColor:cols,borderRadius:3,barThickness:34}]},
+        options:{maintainAspectRatio:false,animation:{duration:500},
+          plugins:{legend:{display:false},tooltip:{backgroundColor:'#1a1f1c',padding:10,cornerRadius:4,callbacks:{label:function(x){var r=p.rows[x.dataIndex];return r.idx+' (England=100) · '+r.raw;}}}},
+          scales:{y:{min:80,max:125,grid:{color:function(ctx){return ctx.tick.value===100?'#1a1f1c':C.line;},lineWidth:function(ctx){return ctx.tick.value===100?1.5:1;}},ticks:{callback:function(v){return v===100?'100 · England':v;}}},x:{grid:{display:false},ticks:{font:{size:11},maxRotation:0,autoSkip:false,callback:function(v){var l=this.getLabelForValue(v);return l.length>14?l.split(' '):l;}}}}}});
+      el('src-paradox').href=src(E,p.src).url; el('src-paradox').innerHTML=esc(src(E,p.src).name)+" ↗";
+    }
+    renderConc(E);
+  }
+
+  // ---- sources ----
+  function renderSources(E){
+    var used={};
+    E.indicators.forEach(function(i){ if(i.src)used[i.src]=1; });
+    if(E.paradox&&E.paradox.src)used[E.paradox.src]=1; if(E.concentration&&E.concentration.src)used[E.concentration.src]=1; if(E.wardPov&&E.wardPov.src)used[E.wardPov.src]=1;
+    el('src-list').innerHTML=Object.keys(used).map(function(k){ var s=src(E,k); return "<a class='om-src' href='"+s.url+"' target='_blank' rel='noopener' style='font-size:13.5px;line-height:1.4;color:#2a4a3c;opacity:.85;padding:4px 0'>"+esc(s.name)+" ↗</a>"; }).join('');
+  }
+
+  function goTo(id){ var e=el(id); if(e) window.scrollTo({top:e.getBoundingClientRect().top+window.scrollY-16,behavior:'smooth'}); }
+  function initScroll(){ var bar=el('om-prog'); var on=function(){ var h=document.documentElement.scrollHeight-window.innerHeight; var pct=h>0?(window.scrollY/h*100):0; if(bar)bar.style.width=pct+'%'; }; window.addEventListener('scroll',on,{passive:true}); on(); }
+
+  ready(function(){
+    var E=window.BRISTOL_ECONOMY;
+    ['h-updated','s-updated','f-updated'].forEach(function(id){ el(id).textContent=E.updated||''; });
+    renderHero(E);
+    renderActs(E);
+    renderStageChips(E); renderIndicators(E);
+    renderSources(E);
+    buildCharts(E); setTimeout(function(){ buildCharts(E); },300);
+    initScroll();
+    var st=el('sort-toggle'); if(st) st.onclick=function(){ state.sortDir=(state.sortDir==='desc'?'asc':'desc'); st.innerHTML=(state.sortDir==='desc'?'High → Low':'Low → High')+'&nbsp;&nbsp;⇅'; renderActs(E); renderIndicators(E); };
+    [].forEach.call(document.querySelectorAll('[data-nav]'),function(l){ l.onclick=function(){ goTo(l.getAttribute('data-nav')); }; });
+  });
+})();
+</script>
+</body>
+</html>
