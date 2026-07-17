@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Early years · Bristol deprivation indicators</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="bristol-data-ons-census.js"></script>
+<script src="bristol-economic.js"></script>
+<script src="indicator-colours.js"></script>
+<script src="bristol-comparators.js"></script>
+<script src="bristol-themes.js"></script>
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#ffffff;color:#1a1f1c;font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:#C02F38;color:#fff}
+  .om-mono{font-family:'IBM Plex Mono',monospace}
+  .om-card{transition:transform .25s ease, box-shadow .25s ease}
+  .om-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(26,31,28,.35)}
+  .om-src{color:inherit;opacity:.62;text-decoration:none;border-bottom:1px dotted currentColor;transition:opacity .15s ease}
+  .om-src:hover{opacity:1}
+  .om-fig{cursor:help}
+  .om-ic{display:inline-block;flex:none;background-color:currentColor;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain}
+  .ey-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:820px){ .ey-grid{grid-template-columns:1fr 1fr} }
+  @media(max-width:560px){ .ey-grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<header style="background:#C02F38;color:#ffffff;padding:48px 32px 56px">
+  <div style="max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;font:500 12px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72)">
+    <a href="index.html" style="color:inherit;text-decoration:none">← Policy Bristol</a>
+    <span>A data story · <span id="h-updated"></span></span>
+  </div>
+  <div style="max-width:1080px;margin:56px auto 0">
+    <div style="font:500 13px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:26px">Ages 0–5</div>
+    <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(42px,7vw,96px);line-height:.98;letter-spacing:-.015em;margin:0 0 18px;max-width:16ch">Early years</h1>
+    <p style="font-size:14px;color:rgba(255,255,255,.8);margin:0"><span id="ey-count">0</span> indicators across four themes</p>
+  </div>
+</header>
+
+<!-- ===================== THEME SECTIONS (rendered by JS) ===================== -->
+<main id="themes" style="padding:24px 32px 48px"></main>
+
+<!-- ===================== SOURCES ===================== -->
+<section style="padding:56px 32px;background:#ffffff;border-top:1px solid rgba(26,31,28,.12)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div style="font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#C02F38;margin-bottom:16px">Sources</div>
+    <div id="src-list" style="display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;max-width:900px"></div>
+  </div>
+</section>
+
+<footer style="padding:44px 32px 60px;background:#1a1f1c;color:rgba(255,255,255,.7)">
+  <div style="max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-end">
+    <div style="font-family:'Newsreader',serif;font-size:22px;color:#ffffff">Early years · Bristol deprivation indicators</div>
+    <div class="om-mono" style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4)">Policy Bristol · <span id="f-updated"></span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var IC=window.INDICATOR_COLOURS;
+  var state={sortDir:'desc'};
+
+  function ready(cb){ var ok=function(){return window.BRISTOL_DATA&&window.BRISTOL_ECONOMY&&window.INDICATOR_COLOURS&&window.BRISTOL_THEMES;}; if(ok()){cb();return;} var t=setInterval(function(){ if(ok()){IC=window.INDICATOR_COLOURS;clearInterval(t);cb();} },60); setTimeout(function(){clearInterval(t);},8000); }
+
+  function el(id){ return document.getElementById(id); }
+  function esc(s){ return (''+s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function indFmt(v,u){ if(v==null)return '—'; if(u==='%')return v+'%'; if(u==='yrs')return v+' yrs'; if(u==='×')return v+'×'; if(u==='£')return '£'+Number(v).toLocaleString(); return ''+v; }
+  function icon(name,color,size){ size=size||20; return "<span class='om-ic' style='width:"+size+"px;height:"+size+"px;color:"+color+";-webkit-mask-image:url(\"icons/"+(name||'layout-dashboard')+".svg\");mask-image:url(\"icons/"+(name||'layout-dashboard')+".svg\")'></span>"; }
+
+  // ---- ranked comparator rows (census/DfE indicators via BRISTOL_COMPARATORS) ----
+  var LONDON_BOROUGHS={}; "barking and dagenham,barnet,bexley,brent,bromley,camden,croydon,ealing,enfield,greenwich,hackney,hammersmith and fulham,haringey,harrow,havering,hillingdon,hounslow,islington,kensington and chelsea,kingston upon thames,lambeth,lewisham,merton,newham,redbridge,richmond upon thames,southwark,sutton,tower hamlets,waltham forest,wandsworth,westminster,city of london".split(",").forEach(function(b){ LONDON_BOROUGHS[b]=1; });
+  function isBorough(a){ return LONDON_BOROUGHS[(''+a).toLowerCase().trim()]===1; }
+  var GAPIDS={eyfsp_gap:1,ks2_gap:1,gcse5_em:1,progress8:1};
+  var ENG_LABEL={ eyfsp_gap:'England (FSM)', ks2_gap:'England (disadvantaged)', he_prog:'England (FSM)', fsm_bristol:'England (FSM)' };
+  function geoRows(i){
+    var CO=window.BRISTOL_COMPARATORS; if(!CO) return null;
+    var key=(CO.ALIAS&&CO.ALIAS[i.id])||i.id; var d=CO.DATA&&CO.DATA[key]; if(!d) return null;
+    var pa=(i.a&&i.a.p)||'', isBris=/bristol/i.test(pa)||/disadvantaged/i.test(pa)||GAPIDS[key];
+    var bV=isBris?i.a.v:null, bArea=/bristol/i.test(pa)?i.a.p:'Bristol', bV2=GAPIDS[key]?(i.b?i.b.v:null):null;
+    var eng=(i.b&&/england/i.test(i.b.p||''))?i.b.v:(d.eng!=null?d.eng:null);
+    var ref=(eng!=null)?eng:bV;
+    function sameArea(a,b){ return (''+a).toLowerCase().trim()===(''+b).toLowerCase().trim(); }
+    var bristolRow=(bV!=null)?{role:'bristol',tag:'',area:bArea,v:bV,v2:bV2,v2lab:'peers',note:'Bristol — the subject of this dashboard',col:IC.byPolarity(IC.cpolarity(key),bV,ref)}:null;
+    var engLab=ENG_LABEL[key];
+    var englandRow=(eng!=null)?{role:'england',tag:engLab?'':'Avg',area:engLab||'England average',v:eng,v2:null,note:engLab?(engLab+' — a subgroup benchmark, not the all-pupil England average'):'England / benchmark',col:IC.GRAY}:null;
+    function mk(g,tag,isMax){ var x=d[g]; if(!x||x.v==null) return null;
+      return {role:g,tag:tag,area:x.area,v:x.v,v2:x.v2,v2lab:x.v2lab,note:x.note,
+        col:(g==='highest'||g==='lowest')?IC.cityExtreme(key,isMax):IC.benchShade(key,x.v,ref),
+        isM:(''+x.area).toLowerCase().trim()==='manchester', isL:isBorough(x.area)}; }
+    var hi=mk('highest','High',true), lo=mk('lowest','Low',false), ld=mk('london','',false), mc=mk('manchester','',false);
+    if(bristolRow){
+      if(hi&&sameArea(hi.area,bArea)){ bristolRow.tag='High'; bristolRow.col=IC.cityExtreme(key,true); hi=null; }
+      else if(lo&&sameArea(lo.area,bArea)){ bristolRow.tag='Low'; bristolRow.col=IC.cityExtreme(key,false); lo=null; }
+    }
+    var em=(hi&&hi.isM)?hi:((lo&&lo.isM)?lo:null); if(em){ mc=null; }
+    var elx=(hi&&hi.isL)?hi:((lo&&lo.isL)?lo:null); if(elx){ elx.area=elx.area+' (London)'; ld=null; }
+    var rows=[];
+    if(bristolRow) rows.push(bristolRow);
+    if(englandRow) rows.push(englandRow);
+    [hi,lo,ld,mc].forEach(function(r){ if(r) rows.push(r); });
+    if(!rows.some(function(r){return r.v!=null;})) return null;
+    return {rows:rows, unified:(bV!=null)};
+  }
+
+  // ---- ranked comparator rows (economy indicators carry their own comp block) ----
+  function econGeoRows(i){
+    var d=i.comp||{};
+    var ed=(d.england&&d.england.v!=null)?d.england
+           :((i.b&&/england|uk/i.test(i.b.p||''))?{v:i.b.v,area:i.b.p,note:''}:null);
+    var eng=(ed&&ed.v!=null)?ed.v:null;
+    var ref=(eng!=null)?eng:i.a.v;
+    var bristolRow={role:'bristol',tag:'',area:i.a.p,v:i.a.v,
+      note:i.note||'Bristol — the subject of this dashboard', col:IC.bristol(i.id,i.a.v,i.b.v)};
+    var englandRow=null;
+    if(eng!=null){ var isUK=/uk/i.test(ed.area||'');
+      englandRow={role:'england',tag:isUK?'UK':'Avg',area:isUK?'United Kingdom':'England average',
+        v:eng,note:ed.note||'England / benchmark',col:IC.GRAY}; }
+    function mk(g,tag,isMax){ var x=d[g];
+      if((!x||x.v==null)&&g==='manchester'&&i.b&&/manchester/i.test(i.b.p||''))
+        x={v:i.b.v,area:'Manchester',note:'Benchmark peer.'};
+      if(!x||x.v==null) return null;
+      return {role:g,tag:tag,area:x.area,v:x.v,note:x.note,
+        col:(g==='highest'||g==='lowest')?IC.cityExtreme(i.id,isMax):IC.benchShade(i.id,x.v,ref),
+        isM:/^manchester$/i.test((''+x.area).trim()), isL:isBorough(x.area)}; }
+    var hi=mk('highest','High',true), lo=mk('lowest','Low',false), ld=mk('london','',false), mc=mk('manchester','',false);
+    var em=(hi&&hi.isM)?hi:((lo&&lo.isM)?lo:null); if(em){ mc=null; }
+    var elx=(hi&&hi.isL)?hi:((lo&&lo.isL)?lo:null); if(elx){ elx.area=elx.area+' (London)'; ld=null; }
+    var rows=[bristolRow]; if(englandRow) rows.push(englandRow);
+    [hi,lo,ld,mc].forEach(function(r){ if(r) rows.push(r); });
+    return {rows:rows, unified:true};
+  }
+
+  function rankRow(r,unit,max){
+    var has=r.v!=null, bris=r.role==='bristol';
+    var val=has?indFmt(r.v,unit):'n/a';
+    var w=has?Math.max(3,Math.min(100,Math.abs(r.v)/max*100)).toFixed(1):'0';
+    var v2=(has&&r.v2!=null)?"<span style='color:#9a9389;font-weight:400'> · "+indFmt(r.v2,unit)+" "+esc(r.v2lab||'')+"</span>":'';
+    var wrap=bris?"background:rgba(192,47,56,.08);border-radius:3px;padding:4px 7px;margin:0 -7px 7px":"margin-bottom:7px";
+    return "<div class='om-fig' title='"+esc(r.note||'')+"' style='"+wrap+"'>"+
+      "<div style='display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:3px'>"+
+        "<span style='font-size:11px;color:"+(bris?'#1a1f1c':'#4a544e')+";font-weight:"+(bris?'700':'400')+"'>"+(r.tag?"<span class='om-mono' style='font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:"+r.col+"'>"+esc(r.tag)+"</span> ":"")+esc(r.area)+"</span>"+
+        "<span style='font-family:\"Newsreader\",serif;font-size:14px;color:"+r.col+";white-space:nowrap;font-weight:"+(bris?'600':'400')+"'>"+val+v2+"</span>"+
+      "</div>"+
+      "<div style='height:"+(bris?'6px':'5px')+";background:rgba(26,31,28,.07);border-radius:2px;overflow:hidden'><div style='height:100%;width:"+w+"%;background:"+r.col+"'></div></div>"+
+    "</div>";
+  }
+  function rankedHTML(g,unit){
+    if(!g||!g.rows.length) return '';
+    var dir=(state.sortDir||'desc'), rows=g.rows.slice();
+    var vals=rows.filter(function(r){return r.v!=null;}).map(function(r){return Math.abs(r.v);});
+    var mx=vals.length?Math.max.apply(null,vals):1; if(!(mx>0))mx=1;
+    rows.sort(function(a,b){ if(a.v==null)return 1; if(b.v==null)return -1; return dir==='asc'?a.v-b.v:b.v-a.v; });
+    return "<div style='margin:2px 0 12px;border-top:1px dashed rgba(26,31,28,.16);padding-top:11px'>"+
+      "<div class='om-mono' style='font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:#9a9389;margin-bottom:9px'>Across England · "+(dir==='asc'?'low → high':'high → low')+"</div>"+
+      rows.map(function(r){return rankRow(r,unit,mx);}).join('')+"</div>";
+  }
+  function barRow(p,v,unit,col,max,bold){
+    var w=(v!=null?Math.max(3,Math.min(100,Math.abs(v)/max*100)):0).toFixed(1);
+    var wrap=bold?"background:rgba(192,47,56,.08);border-radius:3px;padding:4px 7px;margin:0 -7px 12px":"margin-bottom:12px";
+    return "<div style='"+wrap+"'><div style='display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px'>"+
+      "<span style='font-size:12.5px;color:"+(bold?'#1a1f1c':'#4a544e')+";font-weight:"+(bold?'700':'400')+"'>"+esc(p)+"</span>"+
+      "<span style='font-family:\"Newsreader\",serif;font-size:19px;color:"+col+";font-weight:"+(bold?'600':'400')+"'>"+indFmt(v,unit)+"</span></div>"+
+      "<div style='height:8px;background:rgba(26,31,28,.08);border-radius:2px;overflow:hidden'><div style='height:100%;width:"+w+"%;background:"+col+"'></div></div></div>";
+  }
+
+  // ---- one card, whatever the indicator's home file ----
+  function indCard(i){
+    var s=i._sources[i.src]||{name:'',url:'#'};
+    var tc=IC.bristol(i.id,i.a?i.a.v:null,i.b?i.b.v:null);
+    var g=i.comp?econGeoRows(i):geoRows(i), unit=i.unit||'';
+    var head="<div style='display:flex;align-items:center;gap:9px;margin-bottom:14px'>"+icon(i.icon,tc,20)+"<span class='om-mono' style='font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:#4a544e'>Early years</span></div>"+
+      "<div style='font-size:15.5px;font-weight:600;line-height:1.32;color:#1a1f1c;margin-bottom:18px;min-height:42px'>"+esc(i.label)+"</div>";
+    var mid;
+    if(g&&g.unified){ mid=rankedHTML(g,unit); }
+    else {
+      var aCol=IC.bristol(i.id,i.a.v,i.b.v), bCol=(i.b.v!=null?IC.GRAY:IC.MISSING);
+      var max=Math.max(Math.abs(i.a.v||0),Math.abs(i.b.v||0))||1;
+      var aBold=/bristol/i.test(i.a.p||'');
+      mid=barRow(i.a.p,i.a.v,unit,aCol,max,aBold)+barRow(i.b.p,i.b.v,unit,bCol,max,false)+(g?rankedHTML(g,unit):'');
+    }
+    return "<div class='om-card om-fig' title='"+esc(i.note||'')+"' style='background:#ffffff;border:1px solid rgba(26,31,28,.14);border-radius:5px;padding:22px;display:flex;flex-direction:column'>"+
+      head+mid+
+      "<div class='om-mono' style='font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#9a9389;margin-top:auto;border-top:1px solid rgba(26,31,28,.1);padding-top:9px'>"+esc(i.asOf||'')+" · <a class='om-src' href='"+s.url+"' target='_blank' rel='noopener'>"+esc(s.name)+" ↗</a></div>"+
+    "</div>";
+  }
+
+  function collect(){
+    var TH=window.BRISTOL_THEMES, D=window.BRISTOL_DATA, E=window.BRISTOL_ECONOMY;
+    var list=[];
+    function add(arr,sources){ (arr||[]).forEach(function(i){ var x=Object.create(i); x._sources=sources; list.push(x); }); }
+    add(E.indicators.filter(function(i){ return i.stage==='early'; }), E.sources);
+    add(D.indicators.filter(function(i){ return i.stage==='early'; }), D.sources);
+    add(D.education.indicators.filter(function(i){ return i.stage==='early'; }), D.sources);
+    // health indicators for the youngest live in the early-years detail set
+    add((D.early||[]).filter(function(i){ return TH.themeKey(i.id)==='health'; }), D.sources);
+    return list;
+  }
+
+  function render(){
+    var TH=window.BRISTOL_THEMES, list=collect();
+    el('ey-count').textContent=list.length;
+    var order=['economic','health','education','employment'];
+    el('themes').innerHTML="<div style='max-width:1080px;margin:0 auto'>"+order.map(function(k){
+      var t=TH.THEMES[k];
+      var cards=list.filter(function(i){ return TH.themeKey(i.id)===k; });
+      var body=cards.length
+        ? "<div class='ey-grid'>"+cards.map(indCard).join('')+"</div>"
+        : "<div style='border:1.5px dashed rgba(26,31,28,.2);border-radius:6px;min-height:180px'></div>";
+      return "<section style='padding:44px 0 8px'>"+
+        "<div style='display:flex;align-items:baseline;gap:14px;margin-bottom:22px;border-bottom:1px solid rgba(26,31,28,.14);padding-bottom:12px'>"+
+          "<h2 style='font-family:\"Newsreader\",serif;font-weight:500;font-size:clamp(24px,2.8vw,34px);margin:0'>"+esc(t.label)+"</h2>"+
+          "<span class='om-mono' style='font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#9a9389'>"+cards.length+" indicators</span>"+
+        "</div>"+body+"</section>";
+    }).join('')+"</div>";
+    // sources actually used
+    var used={}, items=[];
+    list.forEach(function(i){ var s=i._sources[i.src]; if(s&&!used[s.url]){ used[s.url]=1; items.push(s); } });
+    el('src-list').innerHTML=items.map(function(s){ return "<a class='om-src' href='"+s.url+"' target='_blank' rel='noopener' style='font-size:13.5px;line-height:1.4;color:#C02F38;opacity:.85;padding:4px 0'>"+esc(s.name)+" ↗</a>"; }).join('');
+  }
+
+  ready(function(){
+    var D=window.BRISTOL_DATA;
+    ['h-updated','f-updated'].forEach(function(id){ if(el(id)) el(id).textContent=D.updated||''; });
+    render();
+  });
+})();
+</script>
+</body>
+</html>

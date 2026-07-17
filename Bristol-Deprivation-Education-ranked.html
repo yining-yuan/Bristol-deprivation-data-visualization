@@ -11,10 +11,11 @@
 <script src="bristol-data-ons-census.js"></script>
 <script src="indicator-colours.js"></script>
 <script src="bristol-comparators.js"></script>
+<script src="bristol-themes.js"></script>
 <style>
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;background:#f4f3f0;color:#1a1f1c;font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body{margin:0;background:#ffffff;color:#1a1f1c;font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   ::selection{background:#b08a3e;color:#fff}
   .om-mono{font-family:'IBM Plex Mono',monospace}
   .om-card{transition:transform .25s ease, box-shadow .25s ease}
@@ -34,27 +35,26 @@
 
   <nav style="position:fixed;left:22px;top:50%;transform:translateY(-50%);z-index:80;display:flex;flex-direction:column;gap:14px">
     <button data-nav="early"      style="display:flex;align-items:center;gap:9px;background:none;border:none;cursor:pointer;padding:0;text-align:left;color:rgba(74,84,78,.6);font:500 11px/1 'IBM Plex Mono';letter-spacing:.06em;text-transform:uppercase"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(74,84,78,.4)"></span>Early years</button>
-    <button data-nav="primary"    style="display:flex;align-items:center;gap:9px;background:none;border:none;cursor:pointer;padding:0;text-align:left;color:rgba(74,84,78,.6);font:500 11px/1 'IBM Plex Mono';letter-spacing:.06em;text-transform:uppercase"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(74,84,78,.4)"></span>Primary</button>
-    <button data-nav="secondary"  style="display:flex;align-items:center;gap:9px;background:none;border:none;cursor:pointer;padding:0;text-align:left;color:rgba(74,84,78,.6);font:500 11px/1 'IBM Plex Mono';letter-spacing:.06em;text-transform:uppercase"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(74,84,78,.4)"></span>Secondary</button>
-    <button data-nav="transition" style="display:flex;align-items:center;gap:9px;background:none;border:none;cursor:pointer;padding:0;text-align:left;color:rgba(74,84,78,.6);font:500 11px/1 'IBM Plex Mono';letter-spacing:.06em;text-transform:uppercase"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(74,84,78,.4)"></span>Transition</button>
+    <button data-nav="primary"    style="display:flex;align-items:center;gap:9px;background:none;border:none;cursor:pointer;padding:0;text-align:left;color:rgba(74,84,78,.6);font:500 11px/1 'IBM Plex Mono';letter-spacing:.06em;text-transform:uppercase"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(74,84,78,.4)"></span>Primary phase</button>
+    <button data-nav="secondary"  style="display:flex;align-items:center;gap:9px;background:none;border:none;cursor:pointer;padding:0;text-align:left;color:rgba(74,84,78,.6);font:500 11px/1 'IBM Plex Mono';letter-spacing:.06em;text-transform:uppercase"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(74,84,78,.4)"></span>Secondary phase</button>
+    <button data-nav="transition" style="display:flex;align-items:center;gap:9px;background:none;border:none;cursor:pointer;padding:0;text-align:left;color:rgba(74,84,78,.6);font:500 11px/1 'IBM Plex Mono';letter-spacing:.06em;text-transform:uppercase"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(74,84,78,.4)"></span>Transition to adulthood</button>
     <button data-nav="wards"      style="display:flex;align-items:center;gap:9px;background:none;border:none;cursor:pointer;padding:0;text-align:left;color:rgba(74,84,78,.6);font:500 11px/1 'IBM Plex Mono';letter-spacing:.06em;text-transform:uppercase"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(74,84,78,.4)"></span>Wards</button>
     <button data-nav="explore"    style="display:flex;align-items:center;gap:9px;background:none;border:none;cursor:pointer;padding:0;text-align:left;color:rgba(74,84,78,.6);font:500 11px/1 'IBM Plex Mono';letter-spacing:.06em;text-transform:uppercase"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(74,84,78,.4)"></span>Explore</button>
   </nav>
 
   <!-- ===================== HERO ===================== -->
-  <header style="background:#2a4a3c;color:#f4f3f0;min-height:92vh;display:flex;flex-direction:column;justify-content:space-between;padding:48px 32px 40px">
-    <div style="max-width:1080px;margin:0 auto;width:100%;display:flex;justify-content:space-between;align-items:center;font:500 12px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:rgba(244,243,240,.62)">
+  <header style="background:#C02F38;color:#ffffff;min-height:92vh;display:flex;flex-direction:column;justify-content:space-between;padding:48px 32px 40px">
+    <div style="max-width:1080px;margin:0 auto;width:100%;display:flex;justify-content:space-between;align-items:center;font:500 12px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.62)">
       <span>Policy Bristol</span>
       <span>A data story · <span id="h-updated"></span></span>
     </div>
     <div style="max-width:1080px;margin:0 auto;width:100%">
-      <div style="font:500 13px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#cda85f;margin-bottom:28px">The geography of learning</div>
-      <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(44px,7vw,100px);line-height:.98;letter-spacing:-.015em;margin:0 0 22px;max-width:16ch">The gap opens early, and rarely closes</h1>
-      <p style="font-size:clamp(16px,1.9vw,21px);line-height:1.5;max-width:60ch;color:rgba(244,243,240,.82);margin:0">Attainment gaps shaped by disadvantage open early and rarely close.</p>
+      <div style="font:500 13px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#ffffff;margin-bottom:28px">Education and learning</div>
+      <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(44px,7vw,100px);line-height:.98;letter-spacing:-.015em;margin:0 0 22px;max-width:16ch">How deprivation shapes education in Bristol</h1>
     </div>
     <div style="max-width:1080px;margin:0 auto;width:100%;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
       <div id="h-figs" style="display:flex;gap:44px;flex-wrap:wrap"></div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(244,243,240,.55)">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.55)">
         <span class="om-mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase">Scroll</span>
         <div style="animation:ombob 1.8s ease-in-out infinite;font-size:18px">↓</div>
       </div>
@@ -66,20 +66,19 @@
     <div style="max-width:1080px;margin:0 auto">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start">
         <div>
-          <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b0432b;margin-bottom:20px"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/book-open.svg');mask-image:url('icons/book-open.svg')"></span>A tale of two classrooms</div>
-          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1.06;letter-spacing:-.01em;margin:0 0 24px">The most qualified core city, and some of England's steepest learning gaps.</h2>
-          <p style="font-size:15.5px;line-height:1.6;color:#4a544e;margin:0">Bristol is the most highly qualified core city in the UK, but it is also a place where extreme educational inequality persists.</p>
+          <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b0432b;margin-bottom:20px"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/book-open.svg');mask-image:url('icons/book-open.svg')"></span>By ward</div>
+          
         </div>
         <div style="display:flex;flex-direction:column;gap:18px">
-          <div style="border:1px solid rgba(42,74,60,.16);border-radius:4px;padding:22px 24px;background:#fbfaf7">
+          <div style="border:1px solid rgba(26,31,28,.16);border-radius:4px;padding:22px 24px;background:#ffffff">
             <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:14px">Adults with a Level 4+ qualification, by ward</div>
             <div id="tc-deg"></div>
-            <p style="font-size:13px;line-height:1.55;color:#4a544e;margin:14px 0 0">Stark within-city disparities can be seen in the number of adults achieving Level 4+ qualifications in Bristol's lowest (Redland) and highest (Hartcliffe &amp; Withywood) areas of deprivation.</p>
+            
           </div>
-          <div style="border:1px solid rgba(42,74,60,.16);border-radius:4px;padding:22px 24px;background:#fbfaf7">
+          <div style="border:1px solid rgba(26,31,28,.16);border-radius:4px;padding:22px 24px;background:#ffffff">
             <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:14px">Children in relative low income, by ward</div>
             <div id="tc-pov"></div>
-            <p style="font-size:13px;line-height:1.55;color:#4a544e;margin:14px 0 0">Some of the city's most deprived areas are home to the highest proportions of children. Growing up in low-income households and deprived areas affects young people's access to opportunities.</p>
+            
           </div>
         </div>
       </div>
@@ -87,23 +86,23 @@
   </section>
 
   <!-- ===================== JOURNEY + GAP CHARTS ===================== -->
-  <section style="padding:64px 32px;border-top:1px solid rgba(42,74,60,.12)">
+  <section style="padding:64px 32px;border-top:1px solid rgba(26,31,28,.12)">
     <div style="max-width:1080px;margin:0 auto">
       <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
-        <span style="font-family:'Newsreader',serif;font-size:clamp(40px,6vw,84px);line-height:1;color:rgba(42,74,60,.22)">00</span>
+        <span style="font-family:'Newsreader',serif;font-size:clamp(40px,6vw,84px);line-height:1;color:rgba(26,31,28,.22)">00</span>
         <div>
-          <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b08a3e"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/trending-up.svg');mask-image:url('icons/trending-up.svg')"></span>The attainment journey</div>
-          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.04;margin:8px 0 0">Level at reception, behind by the end of primary.</h2>
+          <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b08a3e"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/trending-up.svg');mask-image:url('icons/trending-up.svg')"></span>Attainment</div>
+          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.04;margin:8px 0 0">Bristol and England compared</h2>
         </div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch;margin-top:36px">
-        <div style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:26px 26px 22px">
+        <div style="background:#ffffff;border:1px solid rgba(26,31,28,.14);border-radius:5px;padding:26px 26px 22px">
           <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:4px">Meeting the standard — Bristol vs England</div>
           <div style="font-size:13.5px;color:#4a544e;margin-bottom:16px">% reaching the expected level · DfE</div>
           <div style="position:relative;height:230px"><canvas id="chart-journey"></canvas></div>
           <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#9a9389;margin-top:14px">Source · <a class="om-src" id="src-journey" href="#" target="_blank" rel="noopener">DfE ↗</a></div>
         </div>
-        <div style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:26px 26px 22px">
+        <div style="background:#ffffff;border:1px solid rgba(26,31,28,.14);border-radius:5px;padding:26px 26px 22px">
           <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:4px">Grade 5+ in English &amp; maths, by disadvantage</div>
           <div style="font-size:13.5px;color:#4a544e;margin-bottom:16px">% of Bristol pupils · 2024/25</div>
           <div style="position:relative;height:230px"><canvas id="chart-gap"></canvas></div>
@@ -117,8 +116,8 @@
   <div id="acts"></div>
 
   <!-- ===================== WARD COMPARATOR ===================== -->
-  <section id="wards" style="padding:80px 32px;background:#f4f3f0;border-top:1px solid rgba(42,74,60,.12)">
-    <div style="max-width:1080px;margin:0 auto;background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:6px;padding:34px">
+  <section id="wards" style="padding:80px 32px;background:#ffffff;border-top:1px solid rgba(26,31,28,.12)">
+    <div style="max-width:1080px;margin:0 auto;background:#ffffff;border:1px solid rgba(26,31,28,.14);border-radius:6px;padding:34px">
       <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;margin-bottom:20px">
         <div>
           <div style="font:500 12px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:#b0432b;margin-bottom:10px">Compare wards</div>
@@ -136,32 +135,32 @@
   </section>
 
   <!-- ===================== EXPLORER ===================== -->
-  <section id="explore" style="padding:80px 32px 30px;background:#2a4a3c;color:#f4f3f0;border-top:1px solid rgba(42,74,60,.12)">
+  <section id="explore" style="padding:80px 32px 30px;background:#C02F38;color:#ffffff;border-top:1px solid rgba(26,31,28,.12)">
     <div style="max-width:1080px;margin:0 auto">
-      <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#cda85f;margin-bottom:18px"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/layout-dashboard.svg');mask-image:url('icons/layout-dashboard.svg')"></span>Explore the evidence</div>
+      <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#ffffff;margin-bottom:18px"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/layout-dashboard.svg');mask-image:url('icons/layout-dashboard.svg')"></span>Explore the evidence</div>
       <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,3.8vw,48px);line-height:1.04;margin:0 0 24px;max-width:22ch">Every education indicator, across the school years.</h2>
-      <div style="display:flex;flex-wrap:wrap;gap:22px;align-items:center;background:rgba(244,243,240,.06);border:1px solid rgba(244,243,240,.16);border-radius:6px;padding:16px 20px">
-        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="width:22px;height:9px;border-radius:2px;background:#3f6b56"></span>Bristol better than average</span>
-        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="width:22px;height:9px;border-radius:2px;background:#b0432b"></span>Bristol worse / unclear</span>
-        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="width:22px;height:9px;border-radius:2px;background:#8a8d86"></span>England / benchmark</span>
-        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="display:inline-flex"><span style="width:11px;height:9px;border-radius:2px 0 0 2px;background:#1f6b43"></span><span style="width:11px;height:9px;border-radius:0 2px 2px 0;background:#8f2f1c"></span></span>Highest / lowest LA</span>
-        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="display:inline-flex"><span style="width:11px;height:9px;border-radius:2px 0 0 2px;background:#74a98d"></span><span style="width:11px;height:9px;border-radius:0 2px 2px 0;background:#cf9384"></span></span>London / Manchester</span>
+      <div style="display:flex;flex-wrap:wrap;gap:22px;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:6px;padding:16px 20px">
+        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.85)"><span style="width:22px;height:9px;border-radius:2px;background:#3f6b56"></span>Bristol better than average</span>
+        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.85)"><span style="width:22px;height:9px;border-radius:2px;background:#b0432b"></span>Bristol worse / unclear</span>
+        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.85)"><span style="width:22px;height:9px;border-radius:2px;background:#8a8d86"></span>England / benchmark</span>
+        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.85)"><span style="display:inline-flex"><span style="width:11px;height:9px;border-radius:2px 0 0 2px;background:#1f6b43"></span><span style="width:11px;height:9px;border-radius:0 2px 2px 0;background:#8f2f1c"></span></span>Highest / lowest LA</span>
+        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.85)"><span style="display:inline-flex"><span style="width:11px;height:9px;border-radius:2px 0 0 2px;background:#74a98d"></span><span style="width:11px;height:9px;border-radius:0 2px 2px 0;background:#cf9384"></span></span>London / Manchester</span>
       </div>
     </div>
   </section>
-  <section style="padding:40px 32px 36px;background:#f4f3f0">
+  <section style="padding:40px 32px 36px;background:#ffffff">
     <div style="max-width:1080px;margin:0 auto">
-      <div style="margin-bottom:14px"><span class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e">Filter by life stage</span></div>
+      <div style="margin-bottom:14px"><span class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e">Filter by phase</span></div>
       <div id="stage-chips" style="display:flex;flex-wrap:wrap;gap:9px;margin-bottom:26px"></div>
-      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px;border-bottom:1px solid rgba(42,74,60,.14);padding-bottom:12px">
-        <span style="font-family:'Newsreader',serif;font-size:22px"><span id="ind-count">0</span> indicators</span><button id="sort-toggle" style="display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;border:1px solid rgba(42,74,60,.22);background:transparent;color:#4a544e;font:500 12.5px/1 'IBM Plex Mono';letter-spacing:.03em;text-transform:uppercase;cursor:pointer">High → Low  ⇅</button>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px;border-bottom:1px solid rgba(26,31,28,.14);padding-bottom:12px">
+        <span style="font-family:'Newsreader',serif;font-size:22px"><span id="ind-count">0</span> indicators</span><button id="sort-toggle" style="display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;border:1px solid rgba(26,31,28,.22);background:transparent;color:#4a544e;font:500 12.5px/1 'IBM Plex Mono';letter-spacing:.03em;text-transform:uppercase;cursor:pointer">High → Low  ⇅</button>
       </div>
       <div id="ind-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px"></div>
     </div>
   </section>
 
   <!-- ===================== SOURCES ===================== -->
-  <section style="padding:64px 32px;background:#f4f3f0;border-top:1px solid rgba(42,74,60,.12)">
+  <section style="padding:64px 32px;background:#ffffff;border-top:1px solid rgba(26,31,28,.12)">
     <div style="max-width:1080px;margin:0 auto">
       <div style="display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:start">
         <div>
@@ -177,27 +176,27 @@
     </div>
   </section>
 
-  <footer style="padding:48px 32px 64px;background:#1a1f1c;color:rgba(244,243,240,.7)">
+  <footer style="padding:48px 32px 64px;background:#1a1f1c;color:rgba(255,255,255,.7)">
     <div style="max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-end">
       <div style="max-width:56ch">
-        <div style="font-family:'Newsreader',serif;font-size:22px;color:#f4f3f0;margin-bottom:12px">How deprivation shapes education in Bristol</div>
+        <div style="font-family:'Newsreader',serif;font-size:22px;color:#ffffff;margin-bottom:12px">How deprivation shapes education in Bristol</div>
       </div>
-      <div class="om-mono" style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,243,240,.4)">Policy Bristol · <span id="f-updated"></span></div>
+      <div class="om-mono" style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4)">Policy Bristol · <span id="f-updated"></span></div>
     </div>
   </footer>
 
   <!-- ===================== EARLY-YEARS SUB-PAGE (overlay) ===================== -->
-  <div id="ey-sub" style="display:none;position:fixed;inset:0;z-index:120;background:#f4f3f0;overflow-y:auto;overflow-x:hidden">
-    <button id="ey-close" title="Close (Esc)" style="position:fixed;top:20px;right:24px;z-index:130;width:46px;height:46px;border-radius:50%;border:1px solid rgba(42,74,60,.22);background:#fbfaf7;color:#1a1f1c;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center">×</button>
+  <div id="ey-sub" style="display:none;position:fixed;inset:0;z-index:120;background:#ffffff;overflow-y:auto;overflow-x:hidden">
+    <button id="ey-close" title="Close (Esc)" style="position:fixed;top:20px;right:24px;z-index:130;width:46px;height:46px;border-radius:50%;border:1px solid rgba(26,31,28,.22);background:#ffffff;color:#1a1f1c;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center">×</button>
     <div style="max-width:1080px;margin:0 auto;padding:60px 32px 88px">
       <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b08a3e;margin-bottom:18px"><span class="om-ic" style="width:18px;height:18px;-webkit-mask-image:url('icons/baby.svg');mask-image:url('icons/baby.svg')"></span>Ages 0–5 · Early years</div>
-      <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(34px,5vw,64px);line-height:1.02;letter-spacing:-.01em;margin:0 0 20px;max-width:20ch">Before school even starts, the gap is already open.</h1>
+      <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(34px,5vw,64px);line-height:1.02;letter-spacing:-.01em;margin:0 0 20px;max-width:20ch">Early years</h1>
       <p style="font-size:14px;color:#4a544e;margin:0 0 24px"><span id="ey-count">0</span> topics</p>
 
       <div id="ey-clusters"></div>
 
-      <div style="display:flex;justify-content:flex-end;align-items:center;gap:18px;flex-wrap:wrap;border-top:1px solid rgba(42,74,60,.16);padding-top:22px;margin-top:8px">
-        <button id="ey-back" style="display:inline-flex;align-items:center;gap:9px;background:#2a4a3c;color:#f4f3f0;border:none;border-radius:999px;padding:11px 20px;font:500 12.5px/1 'IBM Plex Mono';letter-spacing:.06em;text-transform:uppercase;cursor:pointer">← Back to the story</button>
+      <div style="display:flex;justify-content:flex-end;align-items:center;gap:18px;flex-wrap:wrap;border-top:1px solid rgba(26,31,28,.16);padding-top:22px;margin-top:8px">
+        <button id="ey-back" style="display:inline-flex;align-items:center;gap:9px;background:#C02F38;color:#ffffff;border:none;border-radius:999px;padding:11px 20px;font:500 12.5px/1 'IBM Plex Mono';letter-spacing:.06em;text-transform:uppercase;cursor:pointer">← Back to the story</button>
       </div>
     </div>
   </div>
@@ -206,9 +205,9 @@
 
 <script>
 (function(){
-  var C={ink:'#1a1f1c',soft:'#4a544e',green:'#2a4a3c',green2:'#3f6b56',gold:'#b08a3e',brick:'#b0432b',line:'rgba(42,74,60,.14)'};
+  var C={ink:'#1a1f1c',soft:'#4a544e',green:'#C02F38',green2:'#3f6b56',gold:'#b08a3e',brick:'#b0432b',line:'rgba(26,31,28,.14)'};
   var IC=window.INDICATOR_COLOURS;
-  var SM={ early:'Early years', primary:'Primary', secondary:'Secondary', transition:'Transition', cross:'Cross-cutting' };
+  var SM={ early:'Early years', primary:'Primary phase', secondary:'Secondary phase', transition:'Transition to adulthood', cross:'Cross-cutting' };
   var state={stage:'all', wardMetric:'degree_w', sortDir:'desc'};
   var charts={};
 
@@ -263,7 +262,7 @@
         "<span style='font-size:11px;color:"+(bris?'#1a1f1c':'#4a544e')+";font-weight:"+(bris?'700':'400')+"'>"+(r.tag?"<span class='om-mono' style='font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:"+r.col+"'>"+esc(r.tag)+"</span> ":"")+esc(r.area)+"</span>"+
         "<span style='font-family:\"Newsreader\",serif;font-size:14px;color:"+r.col+";white-space:nowrap;font-weight:"+(bris?'600':'400')+"'>"+val+v2+"</span>"+
       "</div>"+
-      "<div style='height:"+(bris?'6px':'5px')+";background:rgba(42,74,60,.07);border-radius:2px;overflow:hidden'><div style='height:100%;width:"+w+"%;background:"+r.col+"'></div></div>"+
+      "<div style='height:"+(bris?'6px':'5px')+";background:rgba(26,31,28,.07);border-radius:2px;overflow:hidden'><div style='height:100%;width:"+w+"%;background:"+r.col+"'></div></div>"+
     "</div>";
   }
   function rankedHTML(g,unit){
@@ -272,7 +271,7 @@
     var vals=rows.filter(function(r){return r.v!=null;}).map(function(r){return Math.abs(r.v);});
     var mx=vals.length?Math.max.apply(null,vals):1; if(!(mx>0))mx=1;
     rows.sort(function(a,b){ if(a.v==null)return 1; if(b.v==null)return -1; return dir==='asc'?a.v-b.v:b.v-a.v; });
-    return "<div style='margin:2px 0 12px;border-top:1px dashed rgba(42,74,60,.16);padding-top:11px'>"+
+    return "<div style='margin:2px 0 12px;border-top:1px dashed rgba(26,31,28,.16);padding-top:11px'>"+
       "<div class='om-mono' style='font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:#9a9389;margin-bottom:9px'>Across England · "+(dir==='asc'?'low → high':'high → low')+"</div>"+
       rows.map(function(r){return rankRow(r,unit,mx);}).join('')+"</div>";
   }
@@ -282,7 +281,7 @@
     return "<div style='"+wrap+"'><div style='display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px'>"+
       "<span style='font-size:12.5px;color:"+(bold?'#1a1f1c':'#4a544e')+";font-weight:"+(bold?'700':'400')+"'>"+esc(p)+"</span>"+
       "<span style='font-family:\"Newsreader\",serif;font-size:19px;color:"+col+";font-weight:"+(bold?'600':'400')+"'>"+indFmt(v,unit)+"</span></div>"+
-      "<div style='height:8px;background:rgba(42,74,60,.08);border-radius:2px;overflow:hidden'><div style='height:100%;width:"+w+"%;background:"+col+"'></div></div></div>";
+      "<div style='height:8px;background:rgba(26,31,28,.08);border-radius:2px;overflow:hidden'><div style='height:100%;width:"+w+"%;background:"+col+"'></div></div></div>";
   }
   function el(id){ return document.getElementById(id); }
   function esc(s){ return (''+s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -290,13 +289,13 @@
   function figDisp(f){ return f.v==null?'—':(''+f.v+(f.unit||'')); }
   function indFmt(v,u){ if(v==null)return '—'; if(u==='%')return v+'%'; if(u==='yrs')return v+' yrs'; if(u==='£')return '£'+Number(v).toLocaleString(); return ''+v; }
   function icon(name,color,size){ size=size||20; return "<span class='om-ic' style='width:"+size+"px;height:"+size+"px;color:"+color+";-webkit-mask-image:url(\"icons/"+(name||'layout-dashboard')+".svg\");mask-image:url(\"icons/"+(name||'layout-dashboard')+".svg\")'></span>"; }
-  function chip(label,active,accent){ accent=accent||'#2a4a3c'; return "display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;border:1px solid "+(active?accent:'rgba(42,74,60,.22)')+";background:"+(active?accent:'transparent')+";color:"+(active?'#fbfaf7':'#4a544e')+";font:500 13px/1 'IBM Plex Sans';cursor:pointer;white-space:nowrap;transition:all .15s ease"; }
+  function chip(label,active,accent){ accent=accent||'#C02F38'; return "display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;border:1px solid "+(active?accent:'rgba(26,31,28,.22)')+";background:"+(active?accent:'transparent')+";color:"+(active?'#ffffff':'#4a544e')+";font:500 13px/1 'IBM Plex Sans';cursor:pointer;white-space:nowrap;transition:all .15s ease"; }
 
   // ---- shared indicator card ----
   function indCard(D,i){
     var s=src(D,i.src); var tc=IC.bristol(i.id,i.a.v,i.b.v);
     var g=geoRows(i), unit=i.unit||'';
-    var head="<div style='display:flex;align-items:center;gap:9px;margin-bottom:14px'>"+icon(i.icon,tc,20)+"<span class='om-mono' style='font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:#4a544e'>"+(SM[i.stage]||'')+"</span></div>"+
+    var head="<div style='display:flex;align-items:center;gap:9px;margin-bottom:14px'>"+icon(i.icon,tc,20)+"<span class='om-mono' style='font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:#4a544e'>"+(SM[i.stage]||'')+(window.BRISTOL_THEMES&&window.BRISTOL_THEMES.themeLabel(i.id)?" · "+window.BRISTOL_THEMES.themeLabel(i.id):"")+"</span></div>"+
       "<div style='font-size:15.5px;font-weight:600;line-height:1.32;color:#1a1f1c;margin-bottom:18px;min-height:42px'>"+esc(i.label)+"</div>";
     var mid;
     if(g&&g.unified){ mid=rankedHTML(g,unit); }
@@ -306,19 +305,19 @@
       var aBold=/bristol/i.test(i.a.p||'');
       mid=barRow(i.a.p,i.a.v,unit,aCol,max,aBold)+barRow(i.b.p,i.b.v,unit,bCol,max,false)+(g?rankedHTML(g,unit):'');
     }
-    return "<div class='om-card om-fig' title='"+esc(i.note||'')+"' style='background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:22px;display:flex;flex-direction:column'>"+
+    return "<div class='om-card om-fig' title='"+esc(i.note||'')+"' style='background:#ffffff;border:1px solid rgba(26,31,28,.14);border-radius:5px;padding:22px;display:flex;flex-direction:column'>"+
       head+mid+
-      "<div class='om-mono' style='font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#9a9389;margin-top:auto;border-top:1px solid rgba(42,74,60,.1);padding-top:9px'>"+esc(i.asOf||'')+" · <a class='om-src' href='"+s.url+"' target='_blank' rel='noopener'>"+esc(s.name)+" ↗</a></div>"+
+      "<div class='om-mono' style='font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#9a9389;margin-top:auto;border-top:1px solid rgba(26,31,28,.1);padding-top:9px'>"+esc(i.asOf||'')+" · <a class='om-src' href='"+s.url+"' target='_blank' rel='noopener'>"+esc(s.name)+" ↗</a></div>"+
     "</div>";
   }
 
   function renderHero(E,D){
     var keys=[['heroKs2','of Bristol pupils meet the expected standard at the end of primary'],['heroFsm','of white FSM pupils in Bristol NW hold a degree by 22'],['degHW','degree-qualified adults in Hartcliffe & Withywood — against 67% in Redland']];
-    el('h-figs').innerHTML=keys.map(function(k){ var f=E.figures[k[0]]; if(!f)return ''; return "<div class='om-fig' title='"+esc(f.about||'')+"'><div style='font-family:\"Newsreader\",serif;font-size:clamp(34px,4vw,52px);line-height:1;color:#fff'>"+figDisp(f)+"</div><div class='om-mono' style='font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,243,240,.6);margin-top:6px;max-width:22ch'>"+k[1]+"</div></div>"; }).join('');
+    el('h-figs').innerHTML=keys.map(function(k){ var f=E.figures[k[0]]; if(!f)return ''; return "<div class='om-fig' title='"+esc(f.about||'')+"'><div style='font-family:\"Newsreader\",serif;font-size:clamp(34px,4vw,52px);line-height:1;color:#fff'>"+figDisp(f)+"</div><div class='om-mono' style='font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:6px;max-width:22ch'>"+k[1]+"</div></div>"; }).join('');
   }
 
   function bars(rows,maxV){ return rows.map(function(r){ var w=Math.max(3,Math.min(100,(r.v/maxV*100))).toFixed(1);
-    return "<div style='display:flex;align-items:baseline;gap:14px;margin-bottom:10px'><span style='width:150px;font-size:14px;color:#1a1f1c'>"+esc(r.n)+"</span><div style='flex:1;height:18px;background:rgba(42,74,60,.08);border-radius:3px;overflow:hidden'><div style='height:100%;width:"+w+"%;background:"+r.c+"'></div></div><span class='om-fig' title='"+esc(r.about||'')+"' style='width:52px;text-align:right;font-family:\"Newsreader\",serif;font-size:20px'>"+r.v+"%</span></div>"; }).join(''); }
+    return "<div style='display:flex;align-items:baseline;gap:14px;margin-bottom:10px'><span style='width:150px;font-size:14px;color:#1a1f1c'>"+esc(r.n)+"</span><div style='flex:1;height:18px;background:rgba(26,31,28,.08);border-radius:3px;overflow:hidden'><div style='height:100%;width:"+w+"%;background:"+r.c+"'></div></div><span class='om-fig' title='"+esc(r.about||'')+"' style='width:52px;text-align:right;font-family:\"Newsreader\",serif;font-size:20px'>"+r.v+"%</span></div>"; }).join(''); }
   function renderTwoCities(E,D){
     var f=E.figures, s1=src(D,f.degRedland.src);
     el('tc-deg').innerHTML=bars([{n:'Redland',v:f.degRedland.v,c:C.green2,about:f.degRedland.about},{n:'Hartcliffe & Withywood',v:f.degHW.v,c:C.brick,about:f.degHW.about}],70)+"<div class='om-mono' style='font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:8px;color:#9a9389'>Source · <a class='om-src' href='"+s1.url+"' target='_blank' rel='noopener'>"+esc(s1.name)+" ↗</a></div>";
@@ -329,19 +328,19 @@
 
   // ---- acts ----
   var ACTS=[
-    {stage:'early',num:'01',icon:'baby',id:'early',kicker:'Ages 0–5 · Early years',title:'The gap is open before school begins.',intro:'Bristol’s children arrive at reception roughly level with England — but disadvantaged children are already 19 months behind, and the poorest families are least likely to reach funded early education.',sub:true},
-    {stage:'primary',num:'02',icon:'pencil',id:'primary',kicker:'Ages 5–11 · Primary',title:'Through primary, Bristol slips below the line.',intro:'By the end of primary, Bristol sits six points below England on reading, writing and maths, with fewer good or outstanding schools — and the disadvantage gap is wider than before the pandemic.'},
-    {stage:'secondary',num:'03',icon:'book-open',id:'secondary',kicker:'Ages 11–16 · Secondary',title:'The city average hides the disadvantage penalty.',intro:'Bristol’s average GCSE score is level with England — but its disadvantage gap is far wider: disadvantaged pupils score 18.6 points lower on Attainment 8, are less than half as likely to pass English and maths, and miss far more school.'},
-    {stage:'transition',num:'04',icon:'graduation-cap',id:'transition',kicker:'Ages 16–25 · Transition',title:'The doors that open, and the ones that close.',intro:'The gap ends in university access: Bristol’s FSM pupils are far less likely to progress to HE, in Bristol North West just 3% hold a degree by 22 — the lowest rate in England — and for excluded pupils the door closes almost entirely.'}
+    {stage:'early',num:'01',icon:'baby',id:'early',kicker:'Ages 0–5',title:'Early years',intro:'',sub:true},
+    {stage:'primary',num:'02',icon:'pencil',id:'primary',kicker:'Ages 5–11',title:'Primary phase',intro:''},
+    {stage:'secondary',num:'03',icon:'book-open',id:'secondary',kicker:'Ages 11–16',title:'Secondary phase',intro:''},
+    {stage:'transition',num:'04',icon:'graduation-cap',id:'transition',kicker:'Ages 16–25',title:'Transition to adulthood',intro:''}
   ];
   function renderActs(E,D){
     el('acts').innerHTML=ACTS.map(function(A){
       var cards=E.indicators.filter(function(i){ return i.stage===A.stage; });
-      var btn=A.sub?"<div style='margin:0 0 34px'><button id='ey-open' style='display:inline-flex;align-items:center;gap:9px;background:#2a4a3c;color:#f4f3f0;border:none;border-radius:999px;padding:11px 20px;font:500 12.5px/1 \"IBM Plex Mono\";letter-spacing:.06em;text-transform:uppercase;cursor:pointer'>"+icon('layout-dashboard','#f4f3f0',15)+"Open the full early-years dataset</button></div>":"";
-      return "<section id='"+A.id+"' style='padding:64px 32px;border-top:1px solid rgba(42,74,60,.12)'>"+
+      var btn=A.sub?"<div style='margin:0 0 34px'><button id='ey-open' style='display:inline-flex;align-items:center;gap:9px;background:#C02F38;color:#ffffff;border:none;border-radius:999px;padding:11px 20px;font:500 12.5px/1 \"IBM Plex Mono\";letter-spacing:.06em;text-transform:uppercase;cursor:pointer'>"+icon('layout-dashboard','#ffffff',15)+"Open the full early-years dataset</button></div>":"";
+      return "<section id='"+A.id+"' style='padding:64px 32px;border-top:1px solid rgba(26,31,28,.12)'>"+
         "<div style='max-width:1080px;margin:0 auto'>"+
           "<div style='display:flex;align-items:baseline;gap:18px;margin-bottom:8px'>"+
-            "<span style='font-family:\"Newsreader\",serif;font-size:clamp(40px,6vw,84px);line-height:1;color:rgba(42,74,60,.22)'>"+A.num+"</span>"+
+            "<span style='font-family:\"Newsreader\",serif;font-size:clamp(40px,6vw,84px);line-height:1;color:rgba(26,31,28,.22)'>"+A.num+"</span>"+
             "<div><div style='display:flex;align-items:center;gap:9px;font:500 12px/1 \"IBM Plex Mono\";letter-spacing:.16em;text-transform:uppercase;color:#b08a3e'>"+icon(A.icon,'#b08a3e',17)+esc(A.kicker)+"</div>"+
             "<h2 style='font-family:\"Newsreader\",serif;font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.04;margin:8px 0 0'>"+esc(A.title)+"</h2></div>"+
           "</div>"+
@@ -359,7 +358,7 @@
     var icons={'Reaching the standard':'seedling','Access to early education':'coins','Home conditions':'house'};
     el('ey-clusters').innerHTML=order.map(function(c){
       var cards=early.filter(function(e){ return e.cluster===c; }); if(!cards.length) return '';
-      return "<div style='display:flex;align-items:baseline;gap:12px;border-top:1px solid rgba(42,74,60,.16);padding-top:22px;margin-bottom:18px'>"+icon(icons[c]||'book-open','#b0432b',18)+"<h2 style='font-family:\"Newsreader\",serif;font-weight:500;font-size:clamp(22px,2.6vw,30px);line-height:1;margin:0'>"+esc(c)+"</h2></div>"+
+      return "<div style='display:flex;align-items:baseline;gap:12px;border-top:1px solid rgba(26,31,28,.16);padding-top:22px;margin-bottom:18px'>"+icon(icons[c]||'book-open','#b0432b',18)+"<h2 style='font-family:\"Newsreader\",serif;font-weight:500;font-size:clamp(22px,2.6vw,30px);line-height:1;margin:0'>"+esc(c)+"</h2></div>"+
         "<div style='display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:48px'>"+cards.map(function(i){return indCard(D,i);}).join('')+"</div>";
     }).join('');
   }
@@ -368,7 +367,7 @@
 
   // ---- explorer + stage filter ----
   function renderStageChips(E,D){
-    var defs=[['all','All stages'],['early','Early years'],['primary','Primary'],['secondary','Secondary'],['transition','Transition'],['cross','Cross-cutting']];
+    var defs=[['all','All phases'],['early','Early years'],['primary','Primary phase'],['secondary','Secondary phase'],['transition','Transition to adulthood'],['cross','Cross-cutting']];
     el('stage-chips').innerHTML=defs.map(function(d){ return "<button data-stage='"+d[0]+"' style='"+chip(d[1],state.stage===d[0],'#b08a3e')+"'>"+d[1]+"</button>"; }).join('');
     [].forEach.call(el('stage-chips').querySelectorAll('button'),function(b){ b.onclick=function(){ state.stage=b.getAttribute('data-stage'); renderStageChips(E,D); renderIndicators(E,D); }; });
   }
@@ -423,7 +422,7 @@
     E.indicators.forEach(function(i){add(i.src);}); (E.early||[]).forEach(function(i){add(i.src);});
     Object.keys(E.figures).forEach(function(k){add(E.figures[k].src);}); Object.keys(E.charts).forEach(function(k){add(E.charts[k].src);});
     Object.keys(E.wards).forEach(function(k){add(E.wards[k].src);});
-    el('src-list').innerHTML=Object.keys(used).map(function(k){ var s=src(D,k); return "<a class='om-src' href='"+s.url+"' target='_blank' rel='noopener' style='font-size:13.5px;line-height:1.4;color:#2a4a3c;opacity:.85;padding:4px 0'>"+esc(s.name)+" ↗</a>"; }).join('');
+    el('src-list').innerHTML=Object.keys(used).map(function(k){ var s=src(D,k); return "<a class='om-src' href='"+s.url+"' target='_blank' rel='noopener' style='font-size:13.5px;line-height:1.4;color:#C02F38;opacity:.85;padding:4px 0'>"+esc(s.name)+" ↗</a>"; }).join('');
   }
 
   function goTo(id){ var e=el(id); if(e) window.scrollTo({top:e.getBoundingClientRect().top+window.scrollY-16,behavior:'smooth'}); }
