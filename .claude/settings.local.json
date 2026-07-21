@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd:*)",
+      "Bash(for f:*)",
+      "Bash(do echo:*)",
+      "Read(//d/Bristol-deprivation-data-visualization/**)",
+      "Bash(done)",
+      "Bash(grep -Pn \"\"[^\"\"]*[0-9]-[0-9][^\"\"]*\"\" D:/Bristol-deprivation-data-visualization/site/Bristol-Deprivation-Housing.html D:/Bristol-deprivation-data-visualization/site/Bristol-Deprivation-Housing-ranked.html D:/Bristol-deprivation-data-visualization/site/Bristol-Deprivation-Education-ranked.html)"
+    ]
+  }
+}

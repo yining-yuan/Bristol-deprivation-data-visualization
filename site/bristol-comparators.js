@@ -53,7 +53,7 @@ window.BRISTOL_COMPARATORS = {
     "v": 29.4,
     "v2": 74.1,
     "v2lab": "peers",
-    "note": "Lowest disadvantaged GLD of 152 LAs (E06000017='Eligible for FSM'=29.4). CAVEAT: small cohort (~17 children); next lowest Cambridgeshire & West Berkshire both 40.5. File 1_eyfsp_headline_measures_2022_2024.csv."
+    "note": "Lowest disadvantaged GLD of 152 LAs (E06000017='Eligible for FSM'=29.4). CAVEAT: small cohort (~17 children); next lowest Cambridgeshire and West Berkshire both 40.5. File 1_eyfsp_headline_measures_2022_2024.csv."
    },
    "london": {
     "area": "London",
@@ -121,7 +121,7 @@ window.BRISTOL_COMPARATORS = {
     "v": 74,
     "v2": null,
     "v2lab": null,
-    "note": "Lowest standard English LA (E08000003), Year 1 Total; City of London & Isles of Scilly suppressed ('c') and excluded. EES b3bd9901..., =74."
+    "note": "Lowest standard English LA (E08000003), Year 1 Total; City of London and Isles of Scilly suppressed ('c') and excluded. EES b3bd9901..., =74."
    },
    "london": {
     "area": "London",
@@ -216,7 +216,7 @@ window.BRISTOL_COMPARATORS = {
     "v": 100,
     "v2": null,
     "v2lab": null,
-    "note": "Table 5c (primary) %Outstanding+%Good=100.0. Tied at 100% across several LAs; Warrington (E06000007) has the largest inspected base (69 schools). Others at 100%: Lewisham, Richmond upon Thames, Camden, Hammersmith & Fulham, Kingston upon Thames, Slough, Bracknell Forest, Rutland, City of London."
+    "note": "Table 5c (primary) %Outstanding+%Good=100.0. Tied at 100% across several LAs; Warrington (E06000007) has the largest inspected base (69 schools). Others at 100%: Lewisham, Richmond upon Thames, Camden, Hammersmith and Fulham, Kingston upon Thames, Slough, Bracknell Forest, Rutland, City of London."
    },
    "lowest": {
     "area": "Isle of Wight",

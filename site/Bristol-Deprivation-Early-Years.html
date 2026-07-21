@@ -78,7 +78,7 @@
   var LONDON_BOROUGHS={}; "barking and dagenham,barnet,bexley,brent,bromley,camden,croydon,ealing,enfield,greenwich,hackney,hammersmith and fulham,haringey,harrow,havering,hillingdon,hounslow,islington,kensington and chelsea,kingston upon thames,lambeth,lewisham,merton,newham,redbridge,richmond upon thames,southwark,sutton,tower hamlets,waltham forest,wandsworth,westminster,city of london".split(",").forEach(function(b){ LONDON_BOROUGHS[b]=1; });
   function isBorough(a){ return LONDON_BOROUGHS[(''+a).toLowerCase().trim()]===1; }
   var GAPIDS={eyfsp_gap:1,ks2_gap:1,gcse5_em:1,progress8:1};
-  var ENG_LABEL={ eyfsp_gap:'England (FSM)', ks2_gap:'England (disadvantaged)', he_prog:'England (FSM)', fsm_bristol:'England (FSM)' };
+  var ENG_LABEL={ eyfsp_gap:'England (Free School Meals)', ks2_gap:'England (disadvantaged)', he_prog:'England (Free School Meals)', fsm_bristol:'England (Free School Meals)' };
   function geoRows(i){
     var CO=window.BRISTOL_COMPARATORS; if(!CO) return null;
     var key=(CO.ALIAS&&CO.ALIAS[i.id])||i.id; var d=CO.DATA&&CO.DATA[key]; if(!d) return null;

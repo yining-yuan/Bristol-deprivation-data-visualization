@@ -9,7 +9,7 @@ window.BRISTOL_TRENDS = {
    "source": "DfE — Pupil absence in schools in England",
    "source_url": "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-absence-in-schools-in-england",
    "notes": "% of enrolments missing 10%+ of sessions. Bristol 2017/18–2021/22 read from the Bristol JSNA chart (whole numbers); 2015/16, 2016/17 and Bristol 2024/25 unverifiable (omitted).",
-   "category": "Education & skills",
+   "category": "Education and skills",
    "direction": "down_good",
    "format": "pct",
    "years": [
@@ -49,8 +49,8 @@ window.BRISTOL_TRENDS = {
    "unit": "score",
    "source": "DfE — Key stage 4 performance",
    "source_url": "https://explore-education-statistics.service.gov.uk/find-statistics/key-stage-4-performance/2024-25",
-   "notes": "Average Attainment 8 per pupil, state-funded schools. 2019/20 & 2020/21 grades (centre/teacher-assessed) are inflated — DfE warns against cross-year comparison.",
-   "category": "Education & skills",
+   "notes": "Average Attainment 8 per pupil, state-funded schools. 2019/20 and 2020/21 grades (centre/teacher-assessed) are inflated — DfE warns against cross-year comparison.",
+   "category": "Education and skills",
    "direction": "up_good",
    "format": "num",
    "years": [
@@ -94,7 +94,7 @@ window.BRISTOL_TRENDS = {
    "source": "DWP — Children in low income families: local area statistics 2014–2024",
    "source_url": "https://www.gov.uk/government/statistics/children-in-low-income-families-local-area-statistics-2014-to-2024",
    "notes": "Relative low income, before housing costs, under 16. Single 2014–2024 vintage (no series break). England value derived by aggregating the 9 English regions (validated to ~0.1pp).",
-   "category": "Work & income",
+   "category": "Work and income",
    "direction": "down_good",
    "format": "pct",
    "years": [
@@ -141,7 +141,7 @@ window.BRISTOL_TRENDS = {
    "source": "ONS Annual Population Survey (via Nomis)",
    "source_url": "https://www.nomisweb.co.uk/datasets/apsnew",
    "notes": "",
-   "category": "Work & income",
+   "category": "Work and income",
    "direction": "up_good",
    "format": "pct",
    "years": [
@@ -190,8 +190,8 @@ window.BRISTOL_TRENDS = {
    "unit": "%",
    "source": "DfE — Early years foundation stage profile results",
    "source_url": "https://explore-education-statistics.service.gov.uk/find-statistics/early-years-foundation-stage-profile-results",
-   "notes": "% achieving a Good Level of Development. Framework reformed in 2021/22 — figures from 2022 on are NOT comparable with earlier years. No data 2019/20 & 2020/21.",
-   "category": "Education & skills",
+   "notes": "% achieving a Good Level of Development. Framework reformed in 2021/22 — figures from 2022 on are NOT comparable with earlier years. No data 2019/20 and 2020/21.",
+   "category": "Education and skills",
    "direction": "up_good",
    "format": "pct",
    "years": [
@@ -238,7 +238,7 @@ window.BRISTOL_TRENDS = {
    "source": "ONS — Regional gross disposable household income (GDHI), 1997–2023",
    "source_url": "https://www.ons.gov.uk/economy/regionalaccounts/grossdisposablehouseholdincome/bulletins/regionalgrossdisposablehouseholdincomegdhi/1997to2023",
    "notes": "GDHI per head, current basic prices. Benchmark line is the UK average (ONS headline comparator); the England average runs ~£0.5–0.7k higher each year.",
-   "category": "Work & income",
+   "category": "Work and income",
    "direction": "up_good",
    "format": "gbp",
    "years": [
@@ -283,12 +283,12 @@ window.BRISTOL_TRENDS = {
   },
   {
    "id": "ks2_rwm",
-   "label": "KS2 reading, writing & maths (expected standard)",
+   "label": "Key stage 2 reading, writing and maths (expected standard)",
    "unit": "%",
    "source": "DfE — Key stage 2 attainment",
    "source_url": "https://explore-education-statistics.service.gov.uk/find-statistics/key-stage-2-attainment/2024-25-revised",
-   "notes": "% meeting expected standard, state-funded schools. Break: no assessments 2019/20 & 2020/21 (COVID). Year = academic-year end.",
-   "category": "Education & skills",
+   "notes": "% meeting expected standard, state-funded schools. Break: no assessments 2019/20 and 2020/21 (COVID). Year = academic-year end.",
+   "category": "Education and skills",
    "direction": "up_good",
    "format": "pct",
    "years": [
@@ -335,7 +335,7 @@ window.BRISTOL_TRENDS = {
    "source": "ONS — Life expectancy for local areas of Great Britain",
    "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/healthandlifeexpectancies/datasets/lifeexpectancyforlocalareasofgreatbritain",
    "notes": "Rolling 3-year periods (year = end year); period LE at birth. Bristol vs England, read directly from the ONS file.",
-   "category": "Health & wellbeing",
+   "category": "Health and wellbeing",
    "direction": "up_good",
    "format": "yrs",
    "years": [
@@ -385,7 +385,7 @@ window.BRISTOL_TRENDS = {
    "source": "ONS — Life expectancy for local areas of Great Britain",
    "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/healthandlifeexpectancies/datasets/lifeexpectancyforlocalareasofgreatbritain",
    "notes": "Rolling 3-year periods (year = end year); period LE at birth. Bristol vs England, read directly from the ONS file.",
-   "category": "Health & wellbeing",
+   "category": "Health and wellbeing",
    "direction": "up_good",
    "format": "yrs",
    "years": [
@@ -435,7 +435,7 @@ window.BRISTOL_TRENDS = {
    "source": "ONS ASHE resident analysis (via Nomis)",
    "source_url": "https://www.nomisweb.co.uk/datasets/asher",
    "notes": "",
-   "category": "Work & income",
+   "category": "Work and income",
    "direction": "up_good",
    "format": "gbp",
    "years": [
@@ -484,8 +484,8 @@ window.BRISTOL_TRENDS = {
    "unit": "score",
    "source": "DfE — Key stage 4 performance",
    "source_url": "https://explore-education-statistics.service.gov.uk/find-statistics/key-stage-4-performance/2023-24",
-   "notes": "Average Progress 8, state-funded schools. No exams 2019/20 & 2020/21. Not published for 2024/25+ (2020 KS2 baseline missing). 0 = in line with pupils nationally.",
-   "category": "Education & skills",
+   "notes": "Average Progress 8, state-funded schools. No exams 2019/20 and 2020/21. Not published for 2024/25+ (2020 KS2 baseline missing). 0 = in line with pupils nationally.",
+   "category": "Education and skills",
    "direction": "up_good",
    "format": "num2",
    "years": [
@@ -526,7 +526,7 @@ window.BRISTOL_TRENDS = {
    "source": "ONS Annual Population Survey (via Nomis)",
    "source_url": "https://www.nomisweb.co.uk/datasets/apsnew",
    "notes": "",
-   "category": "Education & skills",
+   "category": "Education and skills",
    "direction": "up_good",
    "format": "pct",
    "years": [
@@ -564,7 +564,7 @@ window.BRISTOL_TRENDS = {
    "source": "ONS Annual Population Survey (via Nomis)",
    "source_url": "https://www.nomisweb.co.uk/datasets/apsnew",
    "notes": "",
-   "category": "Education & skills",
+   "category": "Education and skills",
    "direction": "down_good",
    "format": "pct",
    "years": [
@@ -601,8 +601,8 @@ window.BRISTOL_TRENDS = {
    "unit": "per 100 pupils",
    "source": "DfE — Suspensions and permanent exclusions in England",
    "source_url": "https://explore-education-statistics.service.gov.uk/find-statistics/suspensions-and-permanent-exclusions-in-england/2023-24",
-   "notes": "Suspensions as a % of the pupil population. 2019/20 & 2020/21 are COVID-depressed (school closures). 'Fixed-period exclusion' renamed 'suspension' in 2021/22 (same measure).",
-   "category": "Education & skills",
+   "notes": "Suspensions as a % of the pupil population. 2019/20 and 2020/21 are COVID-depressed (school closures). 'Fixed-period exclusion' renamed 'suspension' in 2021/22 (same measure).",
+   "category": "Education and skills",
    "direction": "down_good",
    "format": "num",
    "years": [

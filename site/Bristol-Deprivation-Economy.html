@@ -74,7 +74,7 @@
           <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:4px">Bristol relative to England</div>
           <div style="font-size:13.5px;color:#4a544e;margin-bottom:16px">England = 100</div>
           <div style="position:relative;height:250px"><canvas id="chart-paradox"></canvas></div>
-          <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#9a9389;margin-top:14px">Source · <a class="om-src" id="src-paradox" href="#" target="_blank" rel="noopener">ONS ↗</a></div>
+          <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#9a9389;margin-top:14px">Source · <a class="om-src" id="src-paradox" href="#" target="_blank" rel="noopener">Office for National Statistics ↗</a></div>
         </div>
       </div>
     </div>
@@ -93,7 +93,7 @@
       <div class="om-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch;margin-top:36px">
         <div style="background:#ffffff;border:1px solid rgba(26,31,28,.14);border-radius:5px;padding:26px 26px 22px">
           <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:4px">Neighbourhoods in England's poorest 10%</div>
-          <div style="font-size:13.5px;color:#4a544e;margin-bottom:16px">% of an area's LSOAs · IMD 2019</div>
+          <div style="font-size:13.5px;color:#4a544e;margin-bottom:16px">% of an area's LSOAs · Index of Multiple Deprivation 2019</div>
           <div id="tc-conc"></div>
           <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#9a9389;margin-top:8px">Source · <a class="om-src" id="src-conc" href="#" target="_blank" rel="noopener">↗</a></div>
         </div>
@@ -114,12 +114,12 @@
   <section id="explore" style="padding:80px 32px 30px;background:#C02F38;color:#ffffff;border-top:1px solid rgba(26,31,28,.12)">
     <div style="max-width:1080px;margin:0 auto">
       <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#ffffff;margin-bottom:18px"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/layout-dashboard.svg');mask-image:url('icons/layout-dashboard.svg')"></span>Explore the evidence</div>
-      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,3.8vw,48px);line-height:1.04;margin:0 0 24px;max-width:22ch">Every economic indicator, across the life course.</h2>
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,3.8vw,48px);line-height:1.04;margin:0 0 24px;max-width:22ch">Every economic indicator, across the life course</h2>
       <div style="display:flex;flex-wrap:wrap;gap:22px;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:6px;padding:16px 20px">
         <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.85)"><span style="width:22px;height:9px;border-radius:2px;background:#3f6b56"></span>Bristol better than average</span>
         <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.85)"><span style="width:22px;height:9px;border-radius:2px;background:#b0432b"></span>Bristol worse / unclear</span>
         <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.85)"><span style="width:22px;height:9px;border-radius:2px;background:#8a8d86"></span>Benchmark (England / peer)</span>
-        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.85)"><span style="display:inline-flex"><span style="width:11px;height:9px;border-radius:2px 0 0 2px;background:#1f6b43"></span><span style="width:11px;height:9px;border-radius:0 2px 2px 0;background:#8f2f1c"></span></span>Highest / lowest LA</span>
+        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.85)"><span style="display:inline-flex"><span style="width:11px;height:9px;border-radius:2px 0 0 2px;background:#1f6b43"></span><span style="width:11px;height:9px;border-radius:0 2px 2px 0;background:#8f2f1c"></span></span>Highest / lowest local authority</span>
         <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.85)"><span style="display:inline-flex"><span style="width:11px;height:9px;border-radius:2px 0 0 2px;background:#74a98d"></span><span style="width:11px;height:9px;border-radius:0 2px 2px 0;background:#cf9384"></span></span>London / Manchester</span>
       </div>
     </div>
@@ -143,7 +143,7 @@
         <div>
           <div style="font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b0432b;margin-bottom:16px">Sources &amp; how this updates</div>
           <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(26px,3vw,38px);line-height:1.08;margin:0 0 18px">Sources</h2>
-          <p style="font-size:14.5px;line-height:1.6;color:#4a544e;margin:0 0 8px">Every figure is a published official statistic — ONS, Nomis, DWP, DESNZ and the Indices of Deprivation — read at the smallest geography each source offers. Hover any card for the exact reading and its caveats; the process is documented in <span class="om-mono" style="font-size:12.5px;color:#C02F38">bristol-economic-sources.md</span>.</p>
+          <p style="font-size:14.5px;line-height:1.6;color:#4a544e;margin:0 0 8px">Every figure is a published official statistic — Office for National Statistics, Nomis, Department for Work and Pensions, Department for Energy Security and Net Zero and the Indices of Deprivation — read at the smallest geography each source offers. Hover any card for the exact reading and its caveats; the process is documented in <span class="om-mono" style="font-size:12.5px;color:#C02F38">bristol-economic-sources.md</span>.</p>
           <div class="om-mono" style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#4a544e;margin-top:18px">Data last reviewed · <span id="s-updated"></span></div>
         </div>
         <div>

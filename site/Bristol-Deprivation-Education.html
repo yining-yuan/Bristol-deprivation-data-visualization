@@ -24,6 +24,8 @@
   .om-fig{cursor:help}
   .om-ic{display:inline-block;flex:none;background-color:currentColor;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain}
   @keyframes ombob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+  .om-pair{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;margin-bottom:36px}
+  @media(max-width:768px){.om-pair{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -49,10 +51,12 @@
     </div>
     <div style="max-width:1080px;margin:0 auto;width:100%">
       <div style="font:500 13px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#cda85f;margin-bottom:28px">The geography of learning</div>
-      <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(44px,7vw,100px);line-height:.98;letter-spacing:-.015em;margin:0 0 28px;max-width:16ch">The gap opens early, and rarely closes</h1>
+      <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(44px,7vw,100px);line-height:.98;letter-spacing:-.015em;margin:0 0 28px;max-width:16ch">Attainment gaps shaped by disadvantage open early and rarely close</h1>
     </div>
-    <div style="max-width:1080px;margin:0 auto;width:100%;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
-      <div id="h-figs" style="display:flex;gap:44px;flex-wrap:wrap"></div>
+    <div style="max-width:1080px;margin:0 auto;width:100%">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px" id="h-figs"></div>
+    </div>
+    <div style="max-width:1080px;margin:0 auto;width:100%;display:flex;justify-content:flex-end;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-top:32px">
       <div style="display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(244,243,240,.55)">
         <span class="om-mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase">Scroll</span>
         <div style="animation:ombob 1.8s ease-in-out infinite;font-size:18px">↓</div>
@@ -63,20 +67,26 @@
   <!-- ===================== TWO CITIES ===================== -->
   <section style="padding:96px 32px 72px">
     <div style="max-width:1080px;margin:0 auto">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start">
+      <div style="margin-bottom:48px">
+        <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b0432b;margin-bottom:20px"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/book-open.svg');mask-image:url('icons/book-open.svg')"></span>A tale of two classrooms</div>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1.06;letter-spacing:-.01em;margin:0 0 24px;max-width:28ch">Bristol is the most highly qualified core city in the UK, but it is also a place where extreme educational inequality persists</h2>
+      </div>
+      <div class="om-pair">
         <div>
-          <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b0432b;margin-bottom:20px"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/book-open.svg');mask-image:url('icons/book-open.svg')"></span>A tale of two classrooms</div>
-          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1.06;letter-spacing:-.01em;margin:0 0 24px">The most qualified core city, and some of England's steepest learning gaps.</h2>
+          <p style="font-size:15.5px;line-height:1.7;color:#4a544e">Stark within-city disparities can be seen in the number of adults achieving Level 4+ qualifications in Bristol's lowest (Redland) and highest (Hartcliffe and Withywood) areas of deprivation.</p>
         </div>
-        <div style="display:flex;flex-direction:column;gap:18px">
-          <div style="border:1px solid rgba(42,74,60,.16);border-radius:4px;padding:22px 24px;background:#fbfaf7">
-            <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:14px">Adults with a Level 4+ qualification, by ward</div>
-            <div id="tc-deg"></div>
-          </div>
-          <div style="border:1px solid rgba(42,74,60,.16);border-radius:4px;padding:22px 24px;background:#fbfaf7">
-            <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:14px">Children in relative low income, by ward</div>
-            <div id="tc-pov"></div>
-          </div>
+        <div style="border:1px solid rgba(42,74,60,.16);border-radius:4px;padding:22px 24px;background:#fbfaf7">
+          <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:14px">Adults with a Level 4+ qualification, by ward</div>
+          <div id="tc-deg"></div>
+        </div>
+      </div>
+      <div class="om-pair">
+        <div>
+          <p style="font-size:15.5px;line-height:1.7;color:#4a544e">Some of the city's most deprived areas are home to the highest proportions of children. Growing up in low-income households and deprived areas affects young people's access to opportunities.</p>
+        </div>
+        <div style="border:1px solid rgba(42,74,60,.16);border-radius:4px;padding:22px 24px;background:#fbfaf7">
+          <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:14px">Children in relative low income, by ward</div>
+          <div id="tc-pov"></div>
         </div>
       </div>
     </div>
@@ -89,21 +99,31 @@
         <span style="font-family:'Newsreader',serif;font-size:clamp(40px,6vw,84px);line-height:1;color:rgba(42,74,60,.22)">00</span>
         <div>
           <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b08a3e"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/trending-up.svg');mask-image:url('icons/trending-up.svg')"></span>The attainment journey</div>
-          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.04;margin:8px 0 0">Level at reception, behind by the end of primary.</h2>
+          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.04;margin:8px 0 0">Educational outcomes in Bristol align with national averages at the start of school but soon fall behind</h2>
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch;margin-top:36px">
-        <div style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:26px 26px 22px">
-          <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:4px">Meeting the standard — Bristol vs England</div>
-          <div style="font-size:13.5px;color:#4a544e;margin-bottom:16px">% reaching the expected level · DfE</div>
-          <div style="position:relative;height:230px"><canvas id="chart-journey"></canvas></div>
-          <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#9a9389;margin-top:14px">Source · <a class="om-src" id="src-journey" href="#" target="_blank" rel="noopener">DfE ↗</a></div>
+      <div style="margin-top:36px">
+        <div class="om-pair">
+          <div>
+            <p style="font-size:15.5px;line-height:1.7;color:#4a544e">Pupils in Reception slightly exceed national averages for reaching a 'good level of development'. Yet by the end of key stage 2, the trend reverses and a marginally lower percentage of pupils (60%) than the national average (63%) achieve the 'expected' standard in reading, writing and maths.</p>
+          </div>
+          <div style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:26px 26px 22px">
+            <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:4px">Meeting the standard — Bristol vs England</div>
+            <div style="font-size:13.5px;color:#4a544e;margin-bottom:16px">% reaching the expected level · Department for Education</div>
+            <div style="position:relative;height:230px"><canvas id="chart-journey"></canvas></div>
+            <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#9a9389;margin-top:14px">Source · <a class="om-src" id="src-journey" href="#" target="_blank" rel="noopener">Department for Education ↗</a></div>
+          </div>
         </div>
-        <div style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:26px 26px 22px">
-          <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:4px">Grade 5+ in English &amp; maths, by disadvantage</div>
-          <div style="font-size:13.5px;color:#4a544e;margin-bottom:16px">% of Bristol pupils · 2024/25</div>
-          <div style="position:relative;height:230px"><canvas id="chart-gap"></canvas></div>
-          <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#9a9389;margin-top:14px">Source · <a class="om-src" id="src-gap" href="#" target="_blank" rel="noopener">DfE ↗</a></div>
+        <div class="om-pair">
+          <div>
+            <p style="font-size:15.5px;line-height:1.7;color:#4a544e">Fewer than a quarter of disadvantaged pupils in the city achieve at least a grade 5 in their maths and English GCSEs, compared to more than half of their peers.</p>
+          </div>
+          <div style="background:#fbfaf7;border:1px solid rgba(42,74,60,.14);border-radius:5px;padding:26px 26px 22px">
+            <div class="om-mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4a544e;margin-bottom:4px">Grade 5+ in English and maths, by disadvantage</div>
+            <div style="font-size:13.5px;color:#4a544e;margin-bottom:16px">% of Bristol pupils · 2024/25</div>
+            <div style="position:relative;height:230px"><canvas id="chart-gap"></canvas></div>
+            <div class="om-mono" style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#9a9389;margin-top:14px">Source · <a class="om-src" id="src-gap" href="#" target="_blank" rel="noopener">Department for Education ↗</a></div>
+          </div>
         </div>
       </div>
     </div>
@@ -135,12 +155,12 @@
   <section id="explore" style="padding:80px 32px 30px;background:#2a4a3c;color:#f4f3f0;border-top:1px solid rgba(42,74,60,.12)">
     <div style="max-width:1080px;margin:0 auto">
       <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#cda85f;margin-bottom:18px"><span class="om-ic" style="width:17px;height:17px;-webkit-mask-image:url('icons/layout-dashboard.svg');mask-image:url('icons/layout-dashboard.svg')"></span>Explore the evidence</div>
-      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,3.8vw,48px);line-height:1.04;margin:0 0 24px;max-width:22ch">Every education indicator, across the school years.</h2>
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,3.8vw,48px);line-height:1.04;margin:0 0 24px;max-width:22ch">Every education indicator, across the school years</h2>
       <div style="display:flex;flex-wrap:wrap;gap:22px;align-items:center;background:rgba(244,243,240,.06);border:1px solid rgba(244,243,240,.16);border-radius:6px;padding:16px 20px">
         <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="width:22px;height:9px;border-radius:2px;background:#3f6b56"></span>Bristol better than average</span>
         <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="width:22px;height:9px;border-radius:2px;background:#b0432b"></span>Bristol worse / unclear</span>
         <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="width:22px;height:9px;border-radius:2px;background:#8a8d86"></span>England / benchmark</span>
-        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="display:inline-flex"><span style="width:11px;height:9px;border-radius:2px 0 0 2px;background:#1f6b43"></span><span style="width:11px;height:9px;border-radius:0 2px 2px 0;background:#8f2f1c"></span></span>Highest / lowest LA</span>
+        <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="display:inline-flex"><span style="width:11px;height:9px;border-radius:2px 0 0 2px;background:#1f6b43"></span><span style="width:11px;height:9px;border-radius:0 2px 2px 0;background:#8f2f1c"></span></span>Highest / lowest local authority</span>
         <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(244,243,240,.85)"><span style="display:inline-flex"><span style="width:11px;height:9px;border-radius:2px 0 0 2px;background:#74a98d"></span><span style="width:11px;height:9px;border-radius:0 2px 2px 0;background:#cf9384"></span></span>London / Manchester</span>
       </div>
     </div>
@@ -161,7 +181,7 @@
     <div style="max-width:1080px;margin:0 auto">
       <div style="display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:start">
         <div>
-          <div style="font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b0432b;margin-bottom:16px">Sources &amp; how this updates</div>
+          <div style="font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b0432b;margin-bottom:16px">Sources and how this updates</div>
           <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(26px,3vw,38px);line-height:1.08;margin:0 0 18px">Sources</h2>
           <div class="om-mono" style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#4a544e;margin-top:18px">Data last reviewed · <span id="s-updated"></span></div>
         </div>
@@ -187,7 +207,7 @@
     <button id="ey-close" title="Close (Esc)" style="position:fixed;top:20px;right:24px;z-index:130;width:46px;height:46px;border-radius:50%;border:1px solid rgba(42,74,60,.22);background:#fbfaf7;color:#1a1f1c;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center">×</button>
     <div style="max-width:1080px;margin:0 auto;padding:60px 32px 88px">
       <div style="display:flex;align-items:center;gap:9px;font:500 12px/1 'IBM Plex Mono';letter-spacing:.16em;text-transform:uppercase;color:#b08a3e;margin-bottom:18px"><span class="om-ic" style="width:18px;height:18px;-webkit-mask-image:url('icons/baby.svg');mask-image:url('icons/baby.svg')"></span>Ages 0–5 · Early years</div>
-      <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(34px,5vw,64px);line-height:1.02;letter-spacing:-.01em;margin:0 0 20px;max-width:20ch">Before school even starts, the gap is already open.</h1>
+      <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(34px,5vw,64px);line-height:1.02;letter-spacing:-.01em;margin:0 0 20px;max-width:20ch">Before school even starts, the gap is already open</h1>
       <p style="font-size:14px;color:#4a544e;margin:0 0 24px"><span id="ey-count">0</span> topics</p>
 
       <div id="ey-clusters"></div>
@@ -263,15 +283,42 @@
   }
 
   function renderHero(E,D){
-    var keys=[['heroKs2','of Bristol pupils meet the expected standard at the end of primary'],['heroFsm','of white FSM pupils in Bristol NW hold a degree by 22'],['degHW','degree-qualified adults in Hartcliffe & Withywood — against 67% in Redland']];
-    el('h-figs').innerHTML=keys.map(function(k){ var f=E.figures[k[0]]; if(!f)return ''; return "<div class='om-fig' title='"+esc(f.about||'')+"'><div style='font-family:\"Newsreader\",serif;font-size:clamp(34px,4vw,52px);line-height:1;color:#fff'>"+figDisp(f)+"</div><div class='om-mono' style='font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,243,240,.6);margin-top:6px;max-width:22ch'>"+k[1]+"</div></div>"; }).join('');
+    var stats=[
+      {
+        key:'Significantly fewer disadvantaged children are school ready',
+        num:'49.9%',
+        body:'of children eligible for free school meals in Bristol are school ready, compared to 74.5% of children who are not eligible for free school meals.'
+      },
+      {
+        key:'Achievement declines during primary school',
+        num:'68.7%',
+        body:'of Bristol pupils reach a good stage of development in Reception, tracking the national average of 68.3%, but only 60% of pupils reach the expected level at the end of primary, relative to an average of 63% in England.'
+      },
+      {
+        key:'Levels of persistent absence from school are extremely high in Bristol',
+        num:'24.7%',
+        body:'of pupils in the city are persistently absent, missing at least 10% of their school sessions. This is among the highest rates in England.'
+      },
+      {
+        key:'Disadvantaged pupils are far less likely to access higher education',
+        num:'3%',
+        body:'of white free school meals pupils in Bristol North West hold a degree by the age of 22. In the deprived ward of Hartcliffe and Withywood only 15.8% of adults have a degree compared to 67% in the affluent ward of Redland.'
+      }
+    ];
+    el('h-figs').innerHTML=stats.map(function(s){
+      return "<div style='border-left:3px solid #b08a3e;padding-left:20px'>"+
+        "<div style='font-family:\"Newsreader\",serif;font-weight:500;font-size:22px;line-height:1.25;color:#fff;margin-bottom:10px'>"+esc(s.key)+"</div>"+
+        "<div style='font-family:\"Newsreader\",serif;font-size:clamp(36px,4.5vw,56px);line-height:1;color:#f4f3f0;margin-bottom:10px'>"+esc(s.num)+"</div>"+
+        "<div style='font-family:\"IBM Plex Sans\",sans-serif;font-size:14px;line-height:1.6;color:rgba(244,243,240,.72)'>"+esc(s.body)+"</div>"+
+      "</div>";
+    }).join('');
   }
 
   function bars(rows,maxV){ return rows.map(function(r){ var w=Math.max(3,Math.min(100,(r.v/maxV*100))).toFixed(1);
     return "<div style='display:flex;align-items:baseline;gap:14px;margin-bottom:10px'><span style='width:150px;font-size:14px;color:#1a1f1c'>"+esc(r.n)+"</span><div style='flex:1;height:18px;background:rgba(42,74,60,.08);border-radius:3px;overflow:hidden'><div style='height:100%;width:"+w+"%;background:"+r.c+"'></div></div><span class='om-fig' title='"+esc(r.about||'')+"' style='width:52px;text-align:right;font-family:\"Newsreader\",serif;font-size:20px'>"+r.v+"%</span></div>"; }).join(''); }
   function renderTwoCities(E,D){
     var f=E.figures, s1=src(D,f.degRedland.src);
-    el('tc-deg').innerHTML=bars([{n:'Redland',v:f.degRedland.v,c:C.green2,about:f.degRedland.about},{n:'Hartcliffe & Withywood',v:f.degHW.v,c:C.brick,about:f.degHW.about}],70)+"<div class='om-mono' style='font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:8px;color:#9a9389'>Source · <a class='om-src' href='"+s1.url+"' target='_blank' rel='noopener'>"+esc(s1.name)+" ↗</a></div>";
+    el('tc-deg').innerHTML=bars([{n:'Redland',v:f.degRedland.v,c:C.green2,about:f.degRedland.about},{n:'Hartcliffe and Withywood',v:f.degHW.v,c:C.brick,about:f.degHW.about}],70)+"<div class='om-mono' style='font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:8px;color:#9a9389'>Source · <a class='om-src' href='"+s1.url+"' target='_blank' rel='noopener'>"+esc(s1.name)+" ↗</a></div>";
     var pv=E.wards.child_pov, s2=src(D,pv.src);
     var rows=pv.wards.slice(0,2).map(function(w){ return {n:w.n,v:w.v,c:w.t==='dep'?C.brick:C.green2}; }).concat([{n:pv.wards[pv.wards.length-1].n,v:pv.wards[pv.wards.length-1].v,c:C.green2}]);
     el('tc-pov').innerHTML=bars(rows,60)+"<div class='om-mono' style='font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:8px;color:#9a9389'>Source · <a class='om-src' href='"+s2.url+"' target='_blank' rel='noopener'>"+esc(s2.name)+" ↗</a></div>";
@@ -279,15 +326,48 @@
 
   // ---- acts ----
   var ACTS=[
-    {stage:'early',num:'01',icon:'baby',id:'early',kicker:'Ages 0–5 · Early years',title:'The gap is open before school begins.',intro:'Bristol’s children arrive at reception roughly level with England — but disadvantaged children are already 19 months behind, and the poorest families are least likely to reach funded early education.',sub:true},
-    {stage:'primary',num:'02',icon:'pencil',id:'primary',kicker:'Ages 5–11 · Primary',title:'Through primary, Bristol slips below the line.',intro:'By the end of primary, Bristol sits six points below England on reading, writing and maths, with fewer good or outstanding schools — and the disadvantage gap is wider than before the pandemic.'},
-    {stage:'secondary',num:'03',icon:'book-open',id:'secondary',kicker:'Ages 11–16 · Secondary',title:'The city average hides the disadvantage penalty.',intro:'Bristol’s average GCSE score is level with England — but its disadvantage gap is far wider: disadvantaged pupils score 18.6 points lower on Attainment 8, are less than half as likely to pass English and maths, and miss far more school.'},
-    {stage:'transition',num:'04',icon:'graduation-cap',id:'transition',kicker:'Ages 16–25 · Transition',title:'The doors that open, and the ones that close.',intro:'The gap ends in university access: Bristol’s FSM pupils are far less likely to progress to HE, in Bristol North West just 3% hold a degree by 22 — the lowest rate in England — and for excluded pupils the door closes almost entirely.'}
+    {stage:'early',num:'01',icon:'baby',id:'early',kicker:'Ages 0–5 · Early years',title:"Inequality affects children’s experiences before school even begins",sub:true},
+    {stage:'primary',num:'02',icon:'pencil',id:'primary',kicker:'Ages 5–11 · Primary',title:'Bristol trails just behind national averages in primary school attainment'},
+    {stage:'secondary',num:'03',icon:'book-open',id:'secondary',kicker:'Ages 11–16 · Secondary',title:'Average secondary attainment in Bristol hides poor outcomes for disadvantaged pupils'},
+    {stage:'transition',num:'04',icon:'graduation-cap',id:'transition',kicker:'Ages 16–25 · Transition to adulthood',title:'Postcode, income and ethnicity strongly influence educational opportunities in Bristol'}
   ];
+
+  var ANALYSIS={
+    early_access:"Nationally, only one in five children from low-income families accesses funded early education compared to four in five families with a household income of over £45,000.",
+    eyfsp_gld:"Children in the city start school at a similar standard to other pupils across the country.",
+    eyfsp_gap:"But disadvantage shapes ‘school readiness’ from the outset; while slightly less than half of disadvantaged children in Bristol are ‘school ready’, nearly three-quarters of their peers are – this 24.6% divide is wider than in England.",
+    phonics:"In the Year 1 phonics screening test, Bristol falls slightly short of the England average; free school meals pupils lag 21% behind the national average.",
+    ks2_rwm:"At the end of primary school, 60% of pupils in Bristol meet the expected standard in reading, writing and maths; this is a marginally lower proportion than the national average (63%).",
+    ks2_gap:"Headline statistics for key stage 2 attainment in Bristol mask extreme educational inequality; only 41% of disadvantaged pupils met the expected standard in reading, writing and maths.",
+    prim_oo:"In line with the city’s performance in other primary school indicators, Bristol dips slightly below the England average in the percentage of its schools rated good or outstanding.",
+    attainment8:"Bristol’s cross-city average Attainment 8 score, measuring pupils’ achievement across eight GCSE subjects, aligns closely with average national attainment.",
+    gcse5_em:"Fewer than a quarter of disadvantaged pupils in the city achieve at least a grade 5 in their maths and English GCSEs, compared to more than half of their non-free school meals peers.",
+    progress8:"Disadvantaged pupils in Bristol make below-average progress between key stages 2 and 4, particularly in the city’s most deprived areas; in contrast, their non-free school meals peers’ progress during secondary school exceeds the national average.",
+    absence:"The proportion of pupils in Bristol who are persistently absent, missing at least 10% of school, is among the highest in England.",
+    suspensions:"The suspension rate in Bristol’s schools is well above the national average; the majority of suspensions are for ‘persistent disruptive behaviour’, signalling behavioural challenges in some of the city’s classrooms.",
+    he_prog:"In the UK’s most highly educated core city, fewer than one in five free school meals pupils progress to higher education by the age of 19.",
+    fsm_uni:"Disadvantaged white pupils are the least likely group to access university-level education in England.",
+    fsm_bristol:"Bristol North West has the lowest rate in England for white former free school meals pupils who have a degree by the age of 22; Bristol South also lingers towards the bottom of this Sutton Trust indicator measuring social mobility for white young people.",
+    neet:"More young people in Bristol are not in education, employment or training at the ages of 16 and 17 than in England on average; in the deprived ward of Hartcliffe and Withywood the proportion rises sharply – to 17.2%."
+  };
+
   function renderActs(E,D){
     el('acts').innerHTML=ACTS.map(function(A){
       var cards=E.indicators.filter(function(i){ return i.stage===A.stage; });
       var btn=A.sub?"<div style='margin:0 0 34px'><button id='ey-open' style='display:inline-flex;align-items:center;gap:9px;background:#2a4a3c;color:#f4f3f0;border:none;border-radius:999px;padding:11px 20px;font:500 12.5px/1 \"IBM Plex Mono\";letter-spacing:.06em;text-transform:uppercase;cursor:pointer'>"+icon('layout-dashboard','#f4f3f0',15)+"Open the full early-years dataset</button></div>":"";
+
+      var cardsHtml=cards.map(function(i){
+        var analysis=ANALYSIS[i.id];
+        if(analysis){
+          return "<div class='om-pair'>"+
+            "<div class='om-analysis'><p style='font-size:15.5px;line-height:1.7;color:#4a544e'>"+esc(analysis)+"</p></div>"+
+            "<div>"+indCard(D,i)+"</div>"+
+          "</div>";
+        } else {
+          return "<div style='margin-bottom:36px;max-width:560px'>"+indCard(D,i)+"</div>";
+        }
+      }).join('');
+
       return "<section id='"+A.id+"' style='padding:64px 32px;border-top:1px solid rgba(42,74,60,.12)'>"+
         "<div style='max-width:1080px;margin:0 auto'>"+
           "<div style='display:flex;align-items:baseline;gap:18px;margin-bottom:8px'>"+
@@ -295,8 +375,9 @@
             "<div><div style='display:flex;align-items:center;gap:9px;font:500 12px/1 \"IBM Plex Mono\";letter-spacing:.16em;text-transform:uppercase;color:#b08a3e'>"+icon(A.icon,'#b08a3e',17)+esc(A.kicker)+"</div>"+
             "<h2 style='font-family:\"Newsreader\",serif;font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.04;margin:8px 0 0'>"+esc(A.title)+"</h2></div>"+
           "</div>"+
-          "<div style='height:"+(A.sub?'24px':'32px')+"'></div>"+btn+
-          "<div style='display:grid;grid-template-columns:repeat(3,1fr);gap:18px'>"+cards.map(function(i){return indCard(D,i);}).join('')+"</div>"+
+          "<div style='height:"+(A.sub?'24px':'32px')+"'></div>"+
+          btn+
+          cardsHtml+
         "</div></section>";
     }).join('');
     var b=el('ey-open'); if(b) b.onclick=openEarly;
