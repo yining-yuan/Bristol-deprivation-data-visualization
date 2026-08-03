@@ -12,6 +12,7 @@
 <script src="indicator-colours.js"></script>
 <script src="bristol-comparators.js"></script>
 <script src="bristol-themes.js"></script>
+<script src="bristol-search.js"></script>
 <style>
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -454,7 +455,7 @@
       var aBold=/bristol/i.test(i.a.p||'');
       mid=barRow(i.a.p,i.a.v,unit,aCol,max,aBold)+barRow(i.b.p,i.b.v,unit,bCol,max,false)+(g?rankedHTML(g,unit):'');
     }
-    return "<div class='om-card om-fig' title='"+esc(i.note||'')+"' style='background:#ffffff;border:1px solid rgba(26,31,28,.14);border-radius:5px;padding:22px;display:flex;flex-direction:column'>"+
+    return "<div class='om-card om-fig' data-ind='"+esc(i.id)+"' title='"+esc(i.note||'')+"' style='background:#ffffff;border:1px solid rgba(26,31,28,.14);border-radius:5px;padding:22px;display:flex;flex-direction:column'>"+
       head+mid+
       "<div class='om-mono' style='font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#9a9389;margin-top:auto;border-top:1px solid rgba(26,31,28,.1);padding-top:9px'>"+esc(i.asOf||'')+" · <a class='om-src' href='"+s.url+"' target='_blank' rel='noopener'>"+esc(s.name)+" ↗</a></div>"+
     "</div>";
@@ -545,7 +546,7 @@
       var aBold=/bristol/i.test((e.a&&e.a.p)||'');
       mid=barRow(e.a.p,av,unit,(av!=null?'#b0432b':'#e6007e'),max,aBold)+barRow(e.b.p,bv,unit,(bv!=null?'#3f6b56':'#e6007e'),max,false)+(gr?rankedHTML(gr,unit):'');
     }
-    return "<div class='om-card' style='background:#ffffff;border:1px solid rgba(26,31,28,.14);border-radius:5px;padding:22px;display:flex;flex-direction:column'>"+
+    return "<div class='om-card' data-ind='"+esc(e.id)+"' style='background:#ffffff;border:1px solid rgba(26,31,28,.14);border-radius:5px;padding:22px;display:flex;flex-direction:column'>"+
       head+mid+
       "<div class='om-mono' style='font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#9a9389;margin-top:auto;border-top:1px solid rgba(26,31,28,.1);padding-top:9px'>"+esc(e.asOf||'')+" · <a class='om-src' href='"+s.url+"' target='_blank' rel='noopener'>"+esc(s.name)+" ↗</a></div>"+
     "</div>";
@@ -633,6 +634,26 @@
     var bb=el('ey-back'); if(bb) bb.onclick=function(){ closeEarly(); };
     [].forEach.call(document.querySelectorAll('[data-nav]'),function(l){ l.onclick=function(){ goTo(l.getAttribute('data-nav')); }; });
     var _st=el('sort-toggle'); if(_st) _st.onclick=function(){ state.sortDir=(state.sortDir==='desc'?'asc':'desc'); _st.textContent=(state.sortDir==='desc'?'High → Low':'Low → High')+'  ⇅'; renderActs(D); renderEarly(D); renderIndicators(D); };
+
+    // ---- fuzzy indicator search (bristol-search.js) ----
+    if(window.BRISTOL_SEARCH){
+      window.BRISTOL_SEARCH.init({
+        page:'housing',
+        placeholder:'Search indicators — try “child poverty”, “overcrowdin”, “life expct”',
+        reveal:function(entry){
+          var ov=el('ey-sub');
+          function pick(inOverlay){
+            var ns=document.querySelectorAll("[data-ind='"+entry.id+"']");
+            for(var n=0;n<ns.length;n++){ var isIn=!!(ov&&ov.contains(ns[n])); if(isIn===inOverlay) return ns[n]; }
+            return null;
+          }
+          if(entry.where==='early'){ openEarly(); return pick(true)||pick(false); }
+          closeEarly();
+          if(state.theme!=='all'){ state.theme='all'; renderThemeChips(D); renderIndicators(D); }
+          return pick(false)||pick(true);
+        }
+      });
+    }
   });
 })();
 </script>
